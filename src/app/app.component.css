@@ -89,13 +89,13 @@ img{
   39%{
     background-color: var(--dark-magenta);
   }
-  40%{
+  41%{
     background-color: var(--light-magenta);
   }
-  41%{
+  43%{
     background-color: var(--dark-magenta);
   }
-  42%{
+  45%{
     background-color: var(--light-magenta);
   }
   63.92%{
@@ -103,28 +103,9 @@ img{
     top: 515px;
     background-color: var(--light-magenta)
   }
-  77%{
-    background-color: var(--dark-magenta);
-  }
-  78%{
-    background-color: var(--light-magenta);
-  }
-  79%{
-    background-color: var(--dark-magenta);
-  }
-  86%{
-    background-color: var(--light-magenta);
-  }
-  87%{
-    background-color: var(--dark-magenta);
-  }
-  88%{
-    background-color: var(--light-magenta);
-  }
   to{
     left: 256px;
     top: 622px;
     background-color: var(--dark-magenta)
   }
-
 }
