@@ -1,45 +1,36 @@
 *{
   --dark-magenta: #a30052;
-  --light-magenta: #e788b8;
-  --glow-magenta: #f3d2e3;
+  --light-magenta: #e8e4d2;
+  --glow-magenta: #f6a6d0;
+  position: absolute;
+
 }
 img{
   position: absolute;
   top: 0;
   left: 0;
 }
-#electrical-pulses{
+.electric-pulses{
+  border-radius: 50%;
+}
+.thin-line{
+  width: 3px;
+  height: 3px;
   -webkit-box-shadow:0 0 10px var(--glow-magenta);
   -moz-box-shadow: 0 0 10px var(--glow-magenta);
   box-shadow:0 0 10px var(--glow-magenta);
 }
-
+.thick-line{
+  width: 10px;
+  height: 10px;
+  -webkit-box-shadow:0 0 20px var(--glow-magenta);
+  -moz-box-shadow: 0 0 20px var(--glow-magenta);
+  box-shadow:0 0 20px var(--glow-magenta);
+}
 
 /*==========LINE 1============*/
 .line-1 {
-  width: 3px;
-  height: 3px;
-  position: absolute;
-  border-radius: 50%;
-}
-#ep-1{
   animation: line-1-pulses 5s linear infinite;
-}
-#ep-2{
-  animation: line-1-pulses 5s linear infinite;
-  animation-delay: 1s;
-}
-#ep-3{
-  animation: line-1-pulses 5s linear infinite;
-  animation-delay: 2s;
-}
-#ep-4{
-  animation: line-1-pulses 5s linear infinite;
-  animation-delay: 3s;
-}
-#ep-5{
-  animation: line-1-pulses 5s linear infinite;
-  animation-delay: 4s;
 }
 
 @keyframes line-1-pulses{
@@ -81,3 +72,59 @@ img{
 
 
 /*=====LINE 2=====*/
+.line-2 {
+  animation: line-2-pulses 3s linear infinite reverse;
+}
+@keyframes line-2-pulses {
+  from{
+    left: 202px;
+    top: 363px;
+    background-color: var(--dark-magenta)
+  }
+  36.08%{
+    left: 202px;
+    top: 461px;
+    background-color: var(--light-magenta)
+  }
+  39%{
+    background-color: var(--dark-magenta);
+  }
+  40%{
+    background-color: var(--light-magenta);
+  }
+  41%{
+    background-color: var(--dark-magenta);
+  }
+  42%{
+    background-color: var(--light-magenta);
+  }
+  63.92%{
+    left: 256px;
+    top: 515px;
+    background-color: var(--light-magenta)
+  }
+  77%{
+    background-color: var(--dark-magenta);
+  }
+  78%{
+    background-color: var(--light-magenta);
+  }
+  79%{
+    background-color: var(--dark-magenta);
+  }
+  86%{
+    background-color: var(--light-magenta);
+  }
+  87%{
+    background-color: var(--dark-magenta);
+  }
+  88%{
+    background-color: var(--light-magenta);
+  }
+  to{
+    left: 256px;
+    top: 622px;
+    background-color: var(--dark-magenta)
+  }
+
+}
