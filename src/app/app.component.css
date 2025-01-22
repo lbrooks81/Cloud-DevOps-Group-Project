@@ -109,3 +109,113 @@ img{
     background-color: var(--dark-magenta)
   }
 }
+
+/*==========LINE 3============*/
+.line-3 {
+  animation: line-3-pulses 10s linear infinite;
+}
+
+@keyframes line-3-pulses{
+  from{
+    left: 334px;
+    top: 175px;
+    background-color: var(--dark-magenta)
+  }
+  20.04%{
+    left: 400px;
+    top: 241px;
+    background-color: var(--light-magenta)
+  }
+  58.83%{
+    left: 580px;
+    top: 241px;
+    background-color: var(--dark-magenta)
+  }
+  70.09%{
+    left: 618px;
+    top: 203px;
+    background-color: var(--light-magenta)
+  }
+
+  to{
+    left: 754px;
+    top: 203px;
+    background-color: var(--dark-magenta)
+  }
+}
+
+/*==========LINE 4============*/
+.line-4 {
+  animation: line-4-pulses 5s linear infinite reverse;
+}
+
+@keyframes line-4-pulses{
+  from{
+    left: 270px;
+    top: 17px;
+    background-color: var(--dark-magenta)
+  }
+  12.25%{
+    left: 340px;
+    top: 88px;
+    background-color: var(--light-magenta)
+  }
+  17.52%{
+    left: 340px;
+    top: 130px;
+    background-color: var(--dark-magenta)
+  }
+  28.3%{
+    left: 402px;
+    top: 191px;
+    background-color: var(--light-magenta)
+  }
+  48.03%{
+    left: 562px;
+    top: 191px;
+    background-color: var(--dark-magenta)
+  }
+  54.16%{
+    left: 596px;
+    top: 156px;
+    background-color: var(--light-magenta)
+  }
+  to{
+    left: 971px;
+    top: 156px;
+    background-color: var(--dark-magenta)
+  }
+}
+
+/*==========LINE 5============*/
+.line-5 {
+  animation: line-5-pulses 3s linear infinite;
+}
+
+@keyframes line-5-pulses{
+  from{
+    left: 189px;
+    top: 289px;
+    background-color: var(--dark-magenta)
+  }
+  22.97%{
+    left: 296px;
+    top: 397px;
+    background-color: var(--light-magenta)
+  }
+  38.59%{
+    left: 296px;
+    top: 499px;
+    background-color: var(--dark-magenta)
+  }
+  64.86%{
+    left: 419px;
+    top: 621px;
+    background-color: var(--light-magenta)
+  }
+  to{
+    left: 654px;
+    top: 621px;
+    background-color: var(--dark-magenta)
+  }
+}
