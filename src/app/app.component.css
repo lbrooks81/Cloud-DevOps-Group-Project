@@ -1,7 +1,10 @@
 *{
   --dark-magenta: #a30052;
-  --light-magenta: #e8e4d2;
+  /*--light-magenta: #e8e4d2*/
+  --light-magenta: #fd8dc6;
+  --inverted-magenta: #5cffad;
   --glow-magenta: #f6a6d0;
+  --periwinkle: #6F779D;
   position: absolute;
 
 }
@@ -73,7 +76,7 @@ img{
 
 /*=====LINE 2=====*/
 .line-2 {
-  animation: line-2-pulses 3s linear infinite reverse;
+  animation: line-2-pulses 4s linear infinite reverse;
 }
 @keyframes line-2-pulses {
   from{
@@ -86,17 +89,67 @@ img{
     top: 461px;
     background-color: var(--light-magenta)
   }
-  39%{
+  37%{
     background-color: var(--dark-magenta);
+    transition: ease-in;
+  }
+  39%{
+    background-color: var(--inverted-magenta);
+    transition: ease-out;
   }
   41%{
-    background-color: var(--light-magenta);
+    background-color: var(--dark-magenta);
+    transition: ease-in;
+
   }
   43%{
-    background-color: var(--dark-magenta);
+    background-color: var(--inverted-magenta);
+    transition: ease-out;
+
   }
   45%{
-    background-color: var(--light-magenta);
+    background-color: var(--dark-magenta);
+    transition: ease-in;
+
+  }
+  47%{
+    background-color: var(--inverted-magenta);
+    transition: ease-out;
+
+  }
+  49%{
+    background-color: var(--dark-magenta);
+    transition: ease-in;
+
+  }
+  51%{
+    background-color: var(--inverted-magenta);
+    transition: ease-out;
+
+  }
+  53%{
+    background-color: var(--dark-magenta);
+    transition: ease-in;
+
+  }
+  55%{
+    background-color: var(--inverted-magenta);
+    transition: ease-out;
+
+  }
+  57%{
+    background-color: var(--dark-magenta);
+    transition: ease-in;
+
+  }
+  59%{
+    background-color: var(--inverted-magenta);
+    transition: ease-out;
+  }
+  61%{
+    background-color: var(--dark-magenta);
+    transition: ease-in;
+
   }
   63.92%{
     left: 256px;

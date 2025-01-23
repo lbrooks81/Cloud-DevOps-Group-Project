@@ -3,6 +3,12 @@
   <img ngSrc="/Untitled.png" height="1000" width="1000" alt="test-img">
 </div>
 
+<!--How to repeat a div-->
+@for(i of [].constructor(10); track $index)
+{
+  <div>{{$index}}</div>
+}
+
 <!--Line 1-->
 <div class="electric-pulses line-1 thin-line"></div>
 <div class="electric-pulses line-1 thin-line" style="animation-delay: 1s;"></div>
