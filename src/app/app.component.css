@@ -28,8 +28,8 @@ img{
   box-shadow:0 0 10px var(--glow-magenta);
 }
 .thick-line{
-  width: 10px;
-  height: 10px;
+  width: 9px;
+  height: 9px;
   -webkit-box-shadow:0 0 20px var(--glow-magenta);
   -moz-box-shadow: 0 0 20px var(--glow-magenta);
   box-shadow:0 0 20px var(--glow-magenta);
@@ -538,5 +538,166 @@ img{
     left: 529px;
     top: 509px;
     background-color: var(--dark-magenta)
+  }
+}
+
+/*==========LINE 12============*/
+.line-12 {
+  animation: line-12-pulses 3s linear infinite;
+}
+
+@keyframes line-12-pulses{
+  from{
+    left: 20px;
+    top: 87px;
+    background-color: var(--light-magenta)
+  }
+  20.49%{
+    left: 214px;
+    top: 87px;
+  }
+  26.22% {
+    left: 250px;
+    top: 124px;
+  }
+  33.33%{
+    background-color: var(--dark-magenta);
+  }
+  35.03% {
+    left: 250px;
+    top: 206px;
+  }
+  54.56% {
+    left: 380px;
+    top: 334px;
+  }
+  66.66%{
+    background-color: var(--light-magenta);
+  }
+  73.14% {
+    left: 553px;
+    top: 334px;
+  }
+  78.77% {
+    left: 589px;
+    top: 371px;
+  }
+  to{
+    left: 789px;
+    top: 371px;
+    background-color: var(--dark-magenta)
+  }
+}
+
+/*==========LINE 13============*/
+.line-13 {
+  animation: line-13-pulses 2500ms linear reverse infinite;
+}
+
+@keyframes line-13-pulses{
+  from{
+    left: 105px;
+    top: 208px;
+    background-color: var(--inverted-magenta)
+  }
+  2%{
+    background-color: var(--light-magenta);
+  }
+  4%{
+    background-color: var(--dark-magenta);
+  }
+  6%{
+    background-color: var(--light-magenta);
+  }
+  8%{
+    background-color: var(--inverted-magenta);
+  }
+  11.49%{
+    left: 60px;
+    top: 254px;
+  }
+  58.35%{
+    left: 60px;
+    top: 509px;
+  }
+  71.81%{
+    left: 111px;
+    top: 560px;
+  }
+  to{
+    left: 111px;
+    top: 716px;
+    background-color: var(--light-magenta)
+  }
+}
+
+/*==========LINE 14============*/
+.line-14 {
+  animation: line-14-pulses 1500ms linear infinite;
+}
+
+@keyframes line-14-pulses{
+  from{
+    left: 20px;
+    top: 114px;
+    background-color: var(--inverted-magenta)
+  }
+  21.88%{
+    left: 180px;
+    top: 114px;
+  }
+  27.11%{
+    left: 204px;
+    top: 142px;
+  }
+  37.45%{
+    left: 204px;
+    top: 215px;
+  }
+  67.92%{
+    left: 362px;
+    top: 373px;
+  }
+  82.68%{
+    left: 362px;
+    top: 479px;
+  }
+  to{
+    left: 453px;
+    top: 568px;
+    background-color: var(--dark-magenta)
+  }
+}
+
+/*==========LINE 15============*/
+.line-15 {
+  animation: line-15-pulses 3s linear alternate infinite;
+}
+
+@keyframes line-15-pulses{
+  from{
+    left: 346px;
+    top: 14px;
+    background-color: var(--light-magenta)
+  }
+  31.91%{
+    left: 425px;
+    top: 92px;
+  }
+  50%{
+    background-color: var(--dark-magenta);
+  }
+  53.85%{
+    left: 499px;
+    top: 92px;
+  }
+  72.08%{
+    left: 543px;
+    top: 48px;
+  }
+  to{
+    left: 640px;
+    top: 48px;
+    background-color: var(--light-magenta)
   }
 }
