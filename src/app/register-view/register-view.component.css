@@ -1,0 +1,29 @@
+#circuit-right-bottom{
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  transform-origin: left;
+  -ms-transform: rotate(180deg);
+  transform: rotate(180deg) scale(50%);
+  z-index: 1;
+}
+#circuit-left-top{
+  position: fixed;
+  left: 0;
+  top: 0;
+  transform: scale(50%);
+  z-index: 1;
+}
+#registration-form-area{
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 25%;
+  height: auto;
+  padding: 20px;
+  border-radius: 5px;
+  border: 3px solid var(--periwinkle);
+  box-sizing: border-box;
+  z-index: 2;
+}
