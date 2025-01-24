@@ -80,7 +80,7 @@ img{
 
 /*=====LINE 2=====*/
 .line-2 {
-  animation: line-2-pulses 4s linear infinite alternate-reverse;
+  animation: line-2-pulses 3s linear infinite alternate-reverse;
 }
 @keyframes line-2-pulses {
   from{
@@ -473,5 +473,70 @@ img{
     left: 920px;
     top: 76px;
     background-color: var(--light-magenta)
+  }
+}
+
+/*==========LINE 10============*/
+.line-10 {
+  animation: line-10-pulses 3s linear infinite;
+}
+
+@keyframes line-10-pulses{
+  from{
+    left: 402px;
+    top: 393px;
+    background-color: var(--light-magenta)
+  }
+  33.33%{
+    background-color: var(--dark-magenta);
+  }
+  47.96%{
+    left: 541px;
+    top: 393px;
+  }
+  66.66%{
+    background-color: var(--light-magenta);
+  }
+  71.09%{
+    left: 588px;
+    top: 441px;
+  }
+  to{
+    left: 673px;
+    top: 441px;
+    background-color: var(--dark-magenta)
+  }
+}
+
+/*==========LINE 11============*/
+.line-11 {
+  animation: line-11-pulses 3s linear infinite;
+}
+
+@keyframes line-11-pulses{
+  from{
+    left: 402px;
+    top: 393px;
+    background-color: var(--light-magenta)
+  }
+  29.58%{
+    left: 402px;
+    top: 455px;
+  }
+  33.33%{
+    background-color: var(--dark-magenta);
+  }
+
+  66.2%{
+    left: 458px;
+    top: 509px;
+  }
+  66.66%{
+    background-color: var(--light-magenta);
+  }
+  to{
+    left: 529px;
+    top: 509px;
+    background-color: var(--dark-magenta)
   }
 }
