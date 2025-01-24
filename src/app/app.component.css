@@ -5,12 +5,14 @@
   transform-origin: left;
   -ms-transform: rotate(180deg);
   transform: rotate(180deg) scale(50%);
+  z-index: 1;
 }
 #circuit-left-top{
   position: fixed;
   left: 0;
   top: 0;
   transform: scale(50%);
+  z-index: 1;
 }
 #registration-form-area{
   position: fixed;
@@ -23,4 +25,5 @@
   border-radius: 5px;
   border: 3px solid var(--periwinkle);
   box-sizing: border-box;
+  z-index: 2;
 }

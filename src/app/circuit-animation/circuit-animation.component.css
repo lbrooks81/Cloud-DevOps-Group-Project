@@ -26,6 +26,7 @@ img{
   box-shadow:0 0 20px var(--ultraviolet-glow);
 }
 
+
 /*==========LINE 1============*/
 .line-1 {
   animation: line-1-pulses 5s linear infinite;
