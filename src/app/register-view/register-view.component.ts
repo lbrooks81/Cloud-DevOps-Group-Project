@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import {CircuitAnimationComponent} from '../circuit-animation/circuit-animation.component';
-import {RegisterFormComponent} from '../register-form/register-form.component';
+import {CircuitAnimationComponent} from '../components/circuit-animation/circuit-animation.component';
+import {RegisterFormComponent} from '../components/register-form/register-form.component';
 
 @Component({
   selector: 'app-register-view',
