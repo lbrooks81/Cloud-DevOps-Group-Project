@@ -1,17 +1,17 @@
 #logo-container{
-  position: absolute;
-
-    justify-content: center;
-    align-items: center;
-    width: 10vh;
-    height: 10vh;
-    min-width: fit-content;
-    min-height: fit-content;
-    max-width: 10vh;
-    max-height: 10vh;
-    transform: scale(6%) rotate(45deg);
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  height: 192px;
+  width: 192px;
 }
-
+#fucker{
+  transform-origin: left top;
+  transform: scale(10%) rotate(180deg);
+  position: absolute;
+  top: 100px;
+  left: 100px;
+}
 #bottom-left{
   position: absolute;
   transform-origin: left top;
@@ -21,9 +21,11 @@
   position: absolute;
   transform-origin: left top;
   transform: rotate(180deg);
+  margin-bottom: 100px;
 }
 #top-right{
   position: absolute;
   transform-origin: left top;
   transform: rotate(-90deg);
 }
+html, body { height: 100% }

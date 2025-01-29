@@ -5,7 +5,6 @@ import {CircuitForLogoComponent} from '../circuit-for-logo/circuit-for-logo.comp
 @Component({
   selector: 'app-logo',
   imports: [
-    CircuitAnimationComponent,
     CircuitForLogoComponent
   ],
   templateUrl: './logo.component.html',

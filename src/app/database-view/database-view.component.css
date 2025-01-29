@@ -1,12 +1,8 @@
-#logo-div{
-  position: absolute;
-  left: 2%;
-  top: 2%;
-}
+
 #database-div{
   position: absolute;
   left: 50%;
-  top: 52%;
+  top: 55%;
   transform: translate(-50%, -50%);
 }
 

@@ -7,8 +7,7 @@ import {LoginFormComponent} from '../components/login-form/login-form.component'
   selector: 'app-login-view',
   imports: [
     CircuitAnimationComponent,
-    RegisterFormComponent,
-    LoginFormComponent
+        LoginFormComponent
   ],
   templateUrl: './login-view.component.html',
   standalone: true,
