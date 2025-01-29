@@ -1,0 +1,30 @@
+#logo-container{
+  position: absolute;
+
+    justify-content: center;
+    align-items: center;
+    width: 10vh;
+    height: 10vh;
+    min-width: fit-content;
+    min-height: fit-content;
+    max-width: 10vh;
+    max-height: 10vh;
+    background-color: blueviolet;
+    transform: scale(6%);
+}
+
+#bottom-left{
+  position: absolute;
+  transform-origin: left top;
+  transform: rotate(90deg);
+}
+#top-left{
+  position: absolute;
+  transform-origin: left top;
+  transform: rotate(180deg);
+}
+#top-right{
+  position: absolute;
+  transform-origin: left top;
+  transform: rotate(-90deg);
+}
