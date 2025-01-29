@@ -4,6 +4,7 @@ import { Component } from '@angular/core';
   selector: 'app-database-table',
   imports: [],
   templateUrl: './database-table.component.html',
+  standalone: true,
   styleUrl: './database-table.component.css'
 })
 export class DatabaseTableComponent {

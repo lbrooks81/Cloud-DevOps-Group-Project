@@ -1,0 +1,57 @@
+.form-container {
+  padding: 20px;
+  border-radius: 5px;
+  box-sizing: border-box;
+  height: 100%;
+  overflow: hidden;
+}
+
+.form-floating.mb-3:nth-child(2) {
+  margin-top: 10px; /* Adjust the margin to stagger the input */
+}
+
+.form-control {
+  background-color: var(--indigogo);
+  color: var(--midnight);
+  border: 1px solid var(--indigogo);
+}
+
+
+.form-control::placeholder {
+  color: var(--greyrocking);
+}
+
+.form-control:focus {
+  border-color: var(--dark-magenta);
+  box-shadow: 0 0 0 0.2rem rgba(var(--ultraviolet-glow-rgb), 0.25);
+}
+label::after {
+  display: none;
+}
+.btn-primary {
+  background-color: var(--dark-magenta);
+  border-color: var(--dark-magenta);
+  color: white;
+  display: block;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.btn-primary:hover {
+  background-color: var(--light-magenta);
+  border-color: var(--light-magenta);
+  color: var(--midnight);
+}
+.login-link {
+  margin-top: 15px;
+  text-align: center;
+}
+
+.login-link a {
+  color: var(--dark-magenta);
+  text-decoration: none;
+}
+
+.login-link a:hover {
+  text-decoration: underline;
+}

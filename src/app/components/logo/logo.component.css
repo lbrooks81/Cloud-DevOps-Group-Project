@@ -1,0 +1,31 @@
+#logo-container{
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  height: 192px;
+  width: 192px;
+}
+#fucker{
+  transform-origin: left top;
+  transform: scale(10%) rotate(180deg);
+  position: absolute;
+  top: 100px;
+  left: 100px;
+}
+#bottom-left{
+  position: absolute;
+  transform-origin: left top;
+  transform: rotate(90deg);
+}
+#top-left{
+  position: absolute;
+  transform-origin: left top;
+  transform: rotate(180deg);
+  margin-bottom: 100px;
+}
+#top-right{
+  position: absolute;
+  transform-origin: left top;
+  transform: rotate(-90deg);
+}
+html, body { height: 100% }
