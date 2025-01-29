@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import {LogoComponent} from '../components/logo/logo.component';
+import {HeaderComponent} from '../components/header/header.component';
 
 @Component({
   selector: 'app-profile-view',
   imports: [
-    LogoComponent
+    HeaderComponent
   ],
   templateUrl: './profile-view.component.html',
   standalone: true,

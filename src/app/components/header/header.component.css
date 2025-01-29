@@ -1,0 +1,19 @@
+.navbar{
+  width: 50vw;
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 200px;
+  min-height: fit-content;
+  z-index: 0;
+  padding: 20px;
+}
+.navbar-block{
+  width: calc(100vw);
+  color: #a6fa42 !important;
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 200px;
+  min-height: fit-content;
+}
