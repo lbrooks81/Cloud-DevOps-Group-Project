@@ -1,0 +1,40 @@
+
+#table-container{
+  width: 95vw;
+  height: 75vh;
+  overflow-y: scroll;
+}
+th, td{
+  z-index: 4;
+  text-align: center;
+  border-radius: 2%;
+}
+tr{
+  margin-top: 10px;
+}
+.breathing-room-table-th-td, .breathing-room-table-rows{
+  background-color: var(--background);
+}
+.breathing-room-table-th-td{
+  width: 0;
+  max-width: 0;
+}
+.breathing-room-table-rows{
+  height: 0;
+  max-height: 0;
+  padding: 4px 4px;
+}
+th{
+  background-color: var(--midnight);
+  font-style: italic;
+}
+.odd > td:not(.breathing-room-table-th-td){
+  background-color: var(--indigogo);
+}
+.even > td:not(.breathing-room-table-th-td){
+  background-color: var(--periwinkle);
+}
+thead th{
+  position: sticky;
+  top: 0;
+}

@@ -1,0 +1,45 @@
+#logo-container{
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  height: 162px;
+  width: 162px;
+}
+#fucker{
+  transform-origin: left top;
+  transform: scale(8%) rotate(180deg);
+  position: absolute;
+  top: 90px;
+  left: calc(2.5vw + 90px);
+  z-index: 1;
+}
+#bottom-left{
+  position: absolute;
+  transform-origin: left top;
+  transform: rotate(90deg);
+}
+#top-left{
+  position: absolute;
+  transform-origin: left top;
+  transform: rotate(180deg);
+  margin-bottom: 100px;
+}
+#top-right{
+  position: absolute;
+  transform-origin: left top;
+  transform: rotate(-90deg);
+  z-index: 1;
+}
+html, body
+{ height: 100% }
+
+#logo-bg-div1{
+  width: 160px;
+  height: 160px;
+  border-radius: 10%;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 0;
+  opacity: 0.2;
+}

@@ -1,0 +1,227 @@
+*{
+  --light-magenta: #a6fa42;
+  position: absolute;
+
+}
+img{
+  position: absolute;
+  top: 0;
+  left: 0;
+  filter: blur(5px);
+}
+.electric-pulses{
+  border-radius: 50%;
+}
+
+
+.thick-line{
+  width: 9px;
+  height: 9px;
+  -webkit-box-shadow:0 0 20px var(--ultraviolet-glow);
+  -moz-box-shadow: 0 0 20px var(--ultraviolet-glow);
+  box-shadow:0 0 20px var(--ultraviolet-glow);
+}
+
+
+
+/*=====LINE 2=====*/
+.line-2 {
+  animation: line-2-pulses 3s linear infinite alternate-reverse;
+}
+@keyframes line-2-pulses {
+  from{
+    left: 202px;
+    top: 363px;
+    background-color: var(--dark-magenta)
+  }
+  36.08%{
+    left: 202px;
+    top: 461px;
+    background-color: var(--light-magenta)
+  }
+  37%{
+    background-color: var(--dark-magenta);
+    transition: ease-in;
+  }
+  39%{
+    background-color: var(--dark-teal);
+    transition: ease-out;
+  }
+  41%{
+    background-color: var(--dark-magenta);
+    transition: ease-in;
+
+  }
+  43%{
+    background-color: var(--dark-teal);
+    transition: ease-out;
+
+  }
+  45%{
+    background-color: var(--dark-magenta);
+    transition: ease-in;
+
+  }
+  47%{
+    background-color: var(--dark-teal);
+    transition: ease-out;
+
+  }
+  49%{
+    background-color: var(--dark-magenta);
+    transition: ease-in;
+
+  }
+  51%{
+    background-color: var(--dark-teal);
+    transition: ease-out;
+
+  }
+  53%{
+    background-color: var(--dark-magenta);
+    transition: ease-in;
+
+  }
+  55%{
+    background-color: var(--dark-teal);
+    transition: ease-out;
+
+  }
+  57%{
+    background-color: var(--dark-magenta);
+    transition: ease-in;
+
+  }
+  59%{
+    background-color: var(--dark-teal);
+    transition: ease-out;
+  }
+  61%{
+    background-color: var(--dark-magenta);
+    transition: ease-in;
+
+  }
+  63.92%{
+    left: 256px;
+    top: 515px;
+    background-color: var(--light-magenta)
+  }
+  to{
+    left: 256px;
+    top: 622px;
+    background-color: var(--dark-magenta)
+  }
+}
+
+/*==========LINE 13============*/
+.line-13 {
+  animation: line-13-pulses 100ms linear reverse infinite;
+}
+
+@keyframes line-13-pulses{
+  from{
+    left: 105px;
+    top: 208px;
+    background-color: var(--dark-teal)
+  }
+  2%{
+    background-color: var(--light-magenta);
+  }
+  4%{
+    background-color: var(--dark-magenta);
+  }
+  6%{
+    background-color: var(--light-magenta);
+  }
+  8%{
+    background-color: var(--dark-teal);
+  }
+  11.49%{
+    left: 60px;
+    top: 254px;
+  }
+  58.35%{
+    left: 60px;
+    top: 509px;
+  }
+  71.81%{
+    left: 111px;
+    top: 560px;
+  }
+  to{
+    left: 111px;
+    top: 716px;
+    background-color: var(--light-magenta)
+  }
+}
+
+/*==========LINE 14============*/
+.line-14 {
+  animation: line-14-pulses 1500ms linear infinite;
+}
+
+@keyframes line-14-pulses{
+  from{
+    left: 20px;
+    top: 114px;
+    background-color: var(--dark-teal)
+  }
+  21.88%{
+    left: 180px;
+    top: 114px;
+  }
+  27.11%{
+    left: 204px;
+    top: 142px;
+  }
+  37.45%{
+    left: 204px;
+    top: 215px;
+  }
+  67.92%{
+    left: 362px;
+    top: 373px;
+  }
+  82.68%{
+    left: 362px;
+    top: 479px;
+  }
+  to{
+    left: 453px;
+    top: 568px;
+    background-color: var(--dark-magenta)
+  }
+}
+
+/*==========LINE 15============*/
+.line-15 {
+  animation: line-15-pulses 3s linear alternate infinite;
+}
+
+@keyframes line-15-pulses{
+  from{
+    left: 346px;
+    top: 14px;
+    background-color: var(--light-magenta)
+  }
+  31.91%{
+    left: 425px;
+    top: 92px;
+  }
+  50%{
+    background-color: var(--dark-magenta);
+  }
+  53.85%{
+    left: 499px;
+    top: 92px;
+  }
+  72.08%{
+    left: 543px;
+    top: 48px;
+  }
+  to{
+    left: 640px;
+    top: 48px;
+    background-color: var(--light-magenta)
+  }
+}
