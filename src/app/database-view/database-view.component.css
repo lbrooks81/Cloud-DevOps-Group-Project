@@ -2,8 +2,9 @@
 #database-div{
   position: absolute;
   left: 50%;
-  top: 200px;
-  margin-top: 20px;
+  top: 180px;
+  margin-top: 10px;
+  margin-bottom: 10px;
   transform: translate(-50%);
 }
 

@@ -1,19 +1,35 @@
 .navbar{
   width: 50vw;
   position: absolute;
-  right: 0;
+  right: 2.5vw;
   top: 0;
-  height: 200px;
+  height: 180px;
   min-height: fit-content;
-  z-index: 0;
-  padding: 20px;
+  z-index: 1;
 }
 .navbar-block{
-  width: calc(100vw);
+  width: 100vw;
   color: #a6fa42 !important;
   position: absolute;
   right: 0;
   top: 0;
-  height: 200px;
+  height: 180px;
   min-height: fit-content;
+}
+#menu-fun-bar{
+  width: 60vw;
+  position: absolute;
+  right: 2.5vw;
+  top: 60px;
+  height: 55px;
+  z-index: 0;
+  background: hsla(330, 100%, 32%, 1);
+
+  background: linear-gradient(180deg, hsla(330, 100%, 32%, 1) 0%, hsla(240, 19%, 6%, 1) 100%);
+
+  background: -moz-linear-gradient(180deg, hsla(330, 100%, 32%, 1) 0%, hsla(240, 19%, 6%, 1) 100%);
+
+  background: -webkit-linear-gradient(180deg, hsla(330, 100%, 32%, 1) 0%, hsla(240, 19%, 6%, 1) 100%);
+
+  filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#A30052", endColorstr="#0D0D13", GradientType=1 );
 }
