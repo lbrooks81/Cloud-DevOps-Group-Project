@@ -1,19 +1,42 @@
 
 #footer-dividend{
-  width: 60vw;
-  height: 27px;
+  width: 100vw;
+  height: 70px;
 
   position: absolute;
-  left: 2.5vw;
+  left: 0;
   bottom: 0;
   z-index: 1;
   background: hsla(240, 19%, 6%, 1);
 
-  background: linear-gradient(180deg, hsla(240, 19%, 6%, 1) 0%, hsla(330, 100%, 32%, 1) 100%);
+  background: linear-gradient(270deg, hsla(240, 19%, 6%, 0) 0%, hsla(330, 100%, 32%, 1) 100%);
 
-  background: -moz-linear-gradient(180deg, hsla(240, 19%, 6%, 1) 0%, hsla(330, 100%, 32%, 1) 100%);
+  background: -moz-linear-gradient(270deg, hsla(240, 19%, 6%, 0) 0%, hsla(330, 100%, 32%, 1) 100%);
 
-  background: -webkit-linear-gradient(180deg, hsla(240, 19%, 6%, 1) 0%, hsla(330, 100%, 32%, 1) 100%);
+  background: -webkit-linear-gradient(270deg, hsla(240, 19%, 6%, 0) 0%, hsla(330, 100%, 32%, 1) 100%);
 
   filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#0D0D13", endColorstr="#A30052", GradientType=1 );
+}
+#copywrite{
+  position: absolute;
+  bottom: 0;
+  padding: 0 0;
+  margin-bottom: 0;
+  color: var(--periwinkle);
+}
+img{
+  transform-origin: center;
+  transform: translate(-50%, 0);
+  position: absolute;
+  left: 50%;
+  bottom: 20px;
+}
+#name-logo{
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, 0);
+  padding: 0 0;
+  margin-bottom: 0;
+  color: var(--periwinkle);
 }
