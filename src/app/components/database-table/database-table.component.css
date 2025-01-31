@@ -1,7 +1,7 @@
 
 #table-container{
   width: 95vw;
-  height: 75vh;
+  height: calc(100vh - 270px);
   overflow-y: scroll;
 }
 th, td{

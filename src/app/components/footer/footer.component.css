@@ -1,0 +1,19 @@
+
+#footer-dividend{
+  width: 60vw;
+  height: 27px;
+
+  position: absolute;
+  left: 2.5vw;
+  bottom: 0;
+  z-index: 1;
+  background: hsla(240, 19%, 6%, 1);
+
+  background: linear-gradient(180deg, hsla(240, 19%, 6%, 1) 0%, hsla(330, 100%, 32%, 1) 100%);
+
+  background: -moz-linear-gradient(180deg, hsla(240, 19%, 6%, 1) 0%, hsla(330, 100%, 32%, 1) 100%);
+
+  background: -webkit-linear-gradient(180deg, hsla(240, 19%, 6%, 1) 0%, hsla(330, 100%, 32%, 1) 100%);
+
+  filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#0D0D13", endColorstr="#A30052", GradientType=1 );
+}
