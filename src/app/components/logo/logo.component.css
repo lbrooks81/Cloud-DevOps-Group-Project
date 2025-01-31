@@ -2,15 +2,16 @@
   justify-content: center;
   align-items: center;
   display: flex;
-  height: 192px;
-  width: 192px;
+  height: 162px;
+  width: 162px;
 }
 #fucker{
   transform-origin: left top;
-  transform: scale(10%) rotate(180deg);
+  transform: scale(8%) rotate(180deg);
   position: absolute;
-  top: 100px;
-  left: 100px;
+  top: 90px;
+  left: calc(2.5vw + 90px);
+  z-index: 1;
 }
 #bottom-left{
   position: absolute;
@@ -27,5 +28,18 @@
   position: absolute;
   transform-origin: left top;
   transform: rotate(-90deg);
+  z-index: 1;
 }
-html, body { height: 100% }
+html, body
+{ height: 100% }
+
+#logo-bg-div1{
+  width: 160px;
+  height: 160px;
+  border-radius: 10%;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 0;
+  opacity: 0.2;
+}
