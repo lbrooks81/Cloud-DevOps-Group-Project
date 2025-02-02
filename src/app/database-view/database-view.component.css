@@ -1,11 +1,8 @@
 
 #database-div{
-  position: absolute;
-  left: 50%;
-  top: 180px;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  transform: translate(-50%);
+  width: calc(100vw - 40px);
+  height: calc(100vh - 290px);
+  margin: 200px 20px 90px;
 }
 
 

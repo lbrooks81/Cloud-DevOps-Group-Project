@@ -1,8 +1,46 @@
+.form-select, option, input, input:focus {
+  border: var(--bs-border-width) solid var(--gatorade) !important;
+  color: var(--periwinkle);
+  background-color: var(--indigogo);
+}
+option:focus{
+  box-shadow: 0 0 10px 100px var(--indigogo) inset;
+}
 
+#database-choice-dropdown{
+  width: calc((95vw) / 12);
+  float: left;
+  height: calc(3.5rem + calc(var(--bs-border-width) * 2))
+}
+#attribute-choice-dropdown{
+  width: calc((95vw) / 12);
+  float: left;
+  margin-left: calc(((95vw) / 12) * 9);
+  height: calc(3.5rem + calc(var(--bs-border-width) * 2))
+}
+#attribute-search{
+  width: calc((95vw) / 12);
+  float: left;
+  margin-left: 0;
+}
+#searching-container{
+  width: 95vw;
+  height: 100px;
+  margin: 0;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, 0);
+  top: 200px;
+}
 #table-container{
   width: 95vw;
-  height: calc(100vh - 270px);
+  height: calc(100vh - 350px);
   overflow-y: scroll;
+  margin-bottom: 0;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, 0);
+  bottom: 90px;
 }
 th, td{
   z-index: 4;
