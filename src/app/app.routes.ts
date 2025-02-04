@@ -6,11 +6,11 @@ import {IndividualRecordViewComponent} from './individual-record-view/individual
 import {LoginViewComponent} from './login-view/login-view.component';
 
 export const routes: Routes = [
-  {path: '', redirectTo: '/register', pathMatch: 'full'},
   {path: 'login', component: LoginViewComponent},
   {path: 'register', component: RegisterViewComponent},
   {path: 'database', component: DatabaseViewComponent},
   {path: 'profile', component: ProfileViewComponent},
-  {path: 'record', component: IndividualRecordViewComponent}
+  {path: 'record', component: IndividualRecordViewComponent},
+  {path: '', redirectTo: '/register', pathMatch: 'full'},
 ];
-// TODO - Protect these routes via rerouting to /login if the user is not logged in. 
+// TODO - Protect these routes via rerouting to /login if the user is not logged in.
