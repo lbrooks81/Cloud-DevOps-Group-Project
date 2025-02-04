@@ -8,15 +8,19 @@
   z-index: 1;
   margin-right: 4vw;
 }
+.nav-link:hover{
+  cursor: pointer;
+  text-decoration: underline;
+
+}
 .navbar-block{
   width: 100vw;
-  color: #a6fa42 !important;
+  color: rgb(253, 179, 217) !important; /*if i had to work with that green, i'd ctrl alt delete all of us*/
   position: absolute;
   right: 0;
   top: 0;
   height: 180px;
   min-height: fit-content;
-
 }
 #menu-fun-bar{
   width: 60vw;
