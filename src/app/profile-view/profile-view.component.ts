@@ -10,7 +10,6 @@ import {IndividualProfileComponent} from '../components/individual-profile/indiv
     HeaderComponent,
     FooterComponent,
     IndividualProfileComponent
-    FooterComponent
   ],
   templateUrl: './profile-view.component.html',
   standalone: true,
