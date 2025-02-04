@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import {RouterLink, RouterLinkActive} from '@angular/router';
-import {NgOptimizedImage} from '@angular/common';
 import {LogoComponent} from '../logo/logo.component';
 import {MatRipple} from '@angular/material/core';
 
