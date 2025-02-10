@@ -1,7 +1,3 @@
-import {Employee} from './entities/employee';
-
-export { ServerData };
-
 import {DataSource} from 'typeorm';
 import {Department} from './entities/department';
 import {Plant} from './entities/plant';
@@ -13,12 +9,15 @@ import {Roles} from './entities/roles';
 import {Vendor} from './entities/vendor';
 import {Part} from './entities/part';
 import {ManufacturedPart} from './entities/manufactured-part';
+import {Employee} from './entities/employee';
+
+export { ServerData };
 
 //Server Data Source
 const ServerData = new DataSource({
   type: "mysql",
   host: "it239-devops.database.windows.net",
-  port: 3306,
+  port: 1433,
   username: 'IT239',
   password: 'Devops239!@',
   database: 'it239-devops.database.windows.net',
