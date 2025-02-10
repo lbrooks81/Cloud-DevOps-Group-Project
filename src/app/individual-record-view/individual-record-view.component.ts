@@ -10,7 +10,6 @@ import {RecordFormComponent} from '../components/record-form/record-form.compone
     HeaderComponent,
     FooterComponent,
     RecordFormComponent
-    FooterComponent
   ],
   templateUrl: './individual-record-view.component.html',
   standalone: true,
