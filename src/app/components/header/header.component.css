@@ -15,7 +15,7 @@
 }
 .navbar-block{
   width: 100vw;
-  color: rgb(253, 179, 217) !important; /*if i had to work with that green, i'd ctrl alt delete all of us*/
+  color: rgb(253, 179, 217) !important;
   position: absolute;
   right: 0;
   top: 0;
