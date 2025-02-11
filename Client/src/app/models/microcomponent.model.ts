@@ -1,4 +1,4 @@
-export interface MicrocomponentsModel {
+export interface MicrocomponentModel {
   microcomponentSKU: number;
   microcomponentName: string;
   microcomponentDescription: string | null;
