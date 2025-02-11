@@ -21,6 +21,7 @@ import {PermissionLevelService} from '../../services/permission-level.service';
 import {PlantService} from '../../services/plant.service';
 import {PurchasedPartService} from '../../services/purchased-part.service';
 import {RoleService} from '../../services/role.service';
+import {valueOf} from 'jasmine';
 
 @Component({
   selector: 'app-database-table',
@@ -42,6 +43,8 @@ export class DatabaseTableComponent {
   roles: RoleModel[] = [];
   vendors: VendorModel[] = [];
 
+  selectedTable: string = [];
+
   errorMessage: string = '';
 
   // We inject services via a constructor.
@@ -57,7 +60,7 @@ export class DatabaseTableComponent {
               private roleService: RoleService,
               private vendorService: VendorService) {
     // Whenever we initialize this conponent
-    // It gets the product from our service
+    // It gets these bitches
 
 
   }
@@ -67,6 +70,12 @@ export class DatabaseTableComponent {
     // Depending on table selection, display the database and then when it changes, call the correct function.
   }
 
+  setSelectedTable(){
+    let selectTableElement = <HTMLInputElement>document.querySelector('#database-choice-dropdown')!;
+    this.selectedTable = selectTableElement.value;
+  }
+
+  /* I need to invent my own language where you can use variable values in variable names because this is ridiculous*/
   getCompanies() {
     this.companyService.getCompanies().subscribe({
       next: (data) => {

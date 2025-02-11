@@ -20,19 +20,19 @@ make a row
 -->
 <!-- TODO: If we can return all the table names, then this can be simplified-->
 <div id="searching-container">
-  <select id="database-choice-dropdown" class="form-select" aria-label="Default select example">
+  <select id="database-choice-dropdown" (change)="setSelectedTable()" class="form-select" aria-label="Default select example">
     <option selected>Choose Table</option>
-    <option value="1">Companies</option>
-    <option value="2">Departments</option>
-    <option value="3">Employees</option>
-    <option value="4">Micro Components</option>
-    <option value="5">Orders</option>
-    <option value="6">Parts</option>
-    <option value="7">Permission Levels</option>
-    <option value="8">Plants</option>
-    <option value="9">Purchased Parts</option>
-    <option value="10">Roles</option>
-    <option value="11">Vendor</option>
+    <option [value]="this.companies">Companies</option>
+    <option [value]="this.departments">Departments</option>
+    <option [value]="this.employees">Employees</option>
+    <option [value]="this.microcomponents">Micro Components</option>
+    <option [value]="this.orders">Orders</option>
+    <option [value]="this.parts">Parts</option>
+    <option [value]="this.permissionLevels">Permission Levels</option>
+    <option [value]="this.plants">Plants</option>
+    <option [value]="this.purchasedParts">Purchased Parts</option>
+    <option [value]="this.roles">Roles</option>
+    <option [value]="this.vendors">Vendor</option>
   </select>
 
 @if (errorMessage) {
@@ -42,13 +42,20 @@ make a row
   <table>
     <thead>
       <tr>
+<!--
+        @for ()
 
+        // API Return all the attributes of the selected table and create table headers
+-->
         <th>
 
         </th>
       </tr>
     </thead>
     <tbody>
+<!--
+    For each record in the table, create a row
+-->
 
     </tbody>
   </table>
