@@ -3,10 +3,16 @@
   color: var(--periwinkle);
   background-color: var(--indigogo);
 }
+label{
+  color: var(--periwinkle);
+}
 option:focus{
   box-shadow: 0 0 10px 100px var(--indigogo) inset;
 }
-
+option:hover{
+  background-color: var(--periwinkle) !important;
+  color: var(--indigogo);
+}
 #database-choice-dropdown{
   width: calc((95vw) / 12);
   float: left;
@@ -35,13 +41,18 @@ option:focus{
 #table-container{
   width: 95vw;
   height: calc(100vh - 350px);
-  overflow-y: scroll;
+  overflow-y: auto;
   margin-bottom: 0;
   position: absolute;
   left: 50%;
   transform: translate(-50%, 0);
   bottom: 90px;
 }
+#table{
+  overflow: auto;
+  white-space: nowrap;
+}
+
 th, td{
   z-index: 4;
   text-align: center;
@@ -75,4 +86,9 @@ th{
 thead th{
   position: sticky;
   top: 0;
+}
+.form-floating > label::after {
+  background-color: transparent !important;
+  color: var(--periwinkle);
+
 }
