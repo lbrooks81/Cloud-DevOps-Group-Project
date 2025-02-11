@@ -16,5 +16,8 @@ import {IndividualProfileComponent} from '../components/individual-profile/indiv
   styleUrl: './profile-view.component.css'
 })
 export class ProfileViewComponent {
+  ngOnInit() {
 
+    document.querySelector('.navbar-block')!.classList.add('d-none');
+  }
 }

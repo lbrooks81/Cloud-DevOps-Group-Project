@@ -1,8 +1,7 @@
 
-/* TODO: Tint the  #profile-link white image to #a30052*/
 
 
-.navbar-block:hover{
+.navbar-block:hover, .home-button:hover{
   transform: scale(1.2);
   opacity: 1;
 
@@ -12,7 +11,7 @@
 
 
 }
-.navbar-block{
+.navbar-block, .home-button{
   border-radius: 50%;
   position: absolute;
   right: 2.5vw;
@@ -20,4 +19,9 @@
   background-color: inherit;
   width: 55px;
   height: 55px;
+}
+.home-button{
+
+  right: calc(5vw + 25px);
+
 }

@@ -1,5 +1,5 @@
 .form-select, option, input, input:focus {
-  border: var(--bs-border-width) solid var(--gatorade) !important;
+  border: var(--bs-border-width) solid var(--dark-magenta) !important;
   color: var(--periwinkle);
   background-color: var(--indigogo);
 }
