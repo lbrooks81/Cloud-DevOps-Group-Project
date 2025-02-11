@@ -1,22 +1,70 @@
+<!--ngIf depending on selection value of table
+
+Bind the for loop variable to the value of the database-choice-dropdown
 
 
 
 
+select <value = "VARIABLE">
 
+angular for each (variable in VARIABLE)
+{
+<Table header>
+}
 
+angular for each (value in variable)
+{
+make a row
+}
 
-
-
-
-
-
+-->
+<!-- TODO: If we can return all the table names, then this can be simplified-->
 <div id="searching-container">
   <select id="database-choice-dropdown" class="form-select" aria-label="Default select example">
     <option selected>Choose Table</option>
-    <option value="1">People</option>
-    <option value="2">Parts</option>
-    <option value="3">Managers</option>
+    <option value="1">Companies</option>
+    <option value="2">Departments</option>
+    <option value="3">Employees</option>
+    <option value="4">Micro Components</option>
+    <option value="5">Orders</option>
+    <option value="6">Parts</option>
+    <option value="7">Permission Levels</option>
+    <option value="8">Plants</option>
+    <option value="9">Purchased Parts</option>
+    <option value="10">Roles</option>
+    <option value="11">Vendor</option>
   </select>
+
+@if (errorMessage) {
+  <p>{{errorMessage}}</p>
+}
+@else {
+  <table>
+    <thead>
+      <tr>
+
+        <th>
+
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+
+    </tbody>
+  </table>
+}
+
+
+
+
+
+
+
+
+<!--------------------------------------------------->
+
+
+
   <select id="attribute-choice-dropdown" class="decorated form-select" aria-label="Default select example">
     <option selected>Choose Attribute</option>
     <option value="1">ID</option>
