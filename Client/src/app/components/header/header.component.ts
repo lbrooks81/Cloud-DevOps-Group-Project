@@ -10,7 +10,6 @@ import {NgOptimizedImage} from '@angular/common';
     RouterLink,
     RouterLinkActive,
     LogoComponent,
-    MatRipple,
     NgOptimizedImage
   ],
   templateUrl: './header.component.html',

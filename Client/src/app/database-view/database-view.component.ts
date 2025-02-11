@@ -15,5 +15,7 @@ import {FooterComponent} from '../components/footer/footer.component';
   styleUrl: './database-view.component.css'
 })
 export class DatabaseViewComponent {
-
+  ngOnInit() {
+    document.querySelector('.home-button')!.classList.add('d-none');
+  }
 }
