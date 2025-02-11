@@ -1,0 +1,46 @@
+export interface EmployeeModel {
+  empId: number;
+  empFirstName: string;
+  empLastName: string;
+  empEmail: string | null;
+  empUsername: string | null;
+  empPassword: string | null;
+  empPhoneNum: number | null;
+  roleId: number;
+  deptId: number;
+}
+
+/*
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[EMPLOYEE](
+	[EMP_ID] [int] NOT NULL,
+	[EMP_FNAME] [varchar](32) NOT NULL,
+	[EMP_LNAME] [varchar](32) NOT NULL,
+	[EMP_EMAIL] [varchar](64) NULL,
+	[EMP_USERNAME] [varchar](64) NULL,
+	[EMP_PASSWORD] [varchar](128) NULL,
+	[EMP_PHONE_NUM] [int] NULL,
+	[ROLE_ID] [int] NOT NULL,
+	[DEPT_ID] [int] NOT NULL
+) ON [PRIMARY]
+GO
+ALTER TABLE [dbo].[EMPLOYEE] ADD PRIMARY KEY CLUSTERED
+(
+	[EMP_ID] ASC
+)WITH (STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ONLINE = OFF, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+GO
+ALTER TABLE [dbo].[EMPLOYEE]  WITH CHECK ADD  CONSTRAINT [FK_EMPLOYEE_DEPARTMENT] FOREIGN KEY([DEPT_ID])
+REFERENCES [dbo].[DEPARTMENT] ([DEPT_ID])
+GO
+ALTER TABLE [dbo].[EMPLOYEE] CHECK CONSTRAINT [FK_EMPLOYEE_DEPARTMENT]
+GO
+ALTER TABLE [dbo].[EMPLOYEE]  WITH CHECK ADD  CONSTRAINT [FK_EMPLOYEE_ROLES] FOREIGN KEY([ROLE_ID])
+REFERENCES [dbo].[ROLES] ([ROLE_ID])
+GO
+ALTER TABLE [dbo].[EMPLOYEE] CHECK CONSTRAINT [FK_EMPLOYEE_ROLES]
+GO
+
+ */
