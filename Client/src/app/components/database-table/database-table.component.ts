@@ -21,11 +21,13 @@ import {PermissionLevelService} from '../../services/permission-level.service';
 import {PlantService} from '../../services/plant.service';
 import {PurchasedPartService} from '../../services/purchased-part.service';
 import {RoleService} from '../../services/role.service';
-import {valueOf} from 'jasmine';
+import {FormsModule} from '@angular/forms';
 
 @Component({
   selector: 'app-database-table',
-  imports: [],
+  imports: [
+    FormsModule
+  ],
   templateUrl: './database-table.component.html',
   standalone: true,
   styleUrl: './database-table.component.css'
@@ -43,8 +45,7 @@ export class DatabaseTableComponent {
   roles: RoleModel[] = [];
   vendors: VendorModel[] = [];
 
-  selectedTable: string = [];
-
+  selectedTable: any[] = [];
   errorMessage: string = '';
 
   // We inject services via a constructor.
@@ -68,11 +69,6 @@ export class DatabaseTableComponent {
   // Attach functionality to the initialization of the component.
   ngOnInit(): void{
     // Depending on table selection, display the database and then when it changes, call the correct function.
-  }
-
-  setSelectedTable(){
-    let selectTableElement = <HTMLInputElement>document.querySelector('#database-choice-dropdown')!;
-    this.selectedTable = selectTableElement.value;
   }
 
   /* I need to invent my own language where you can use variable values in variable names because this is ridiculous*/
