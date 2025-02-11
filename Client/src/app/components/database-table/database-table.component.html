@@ -20,7 +20,7 @@ make a row
 -->
 <!-- TODO: If we can return all the table names, then this can be simplified-->
 <div id="searching-container">
-  <select id="database-choice-dropdown" (change)="setSelectedTable()" class="form-select" aria-label="Default select example">
+  <select id="database-choice-dropdown" [(ngModel)]="this.selectedTable" class="form-select" aria-label="Default select example">
     <option selected>Choose Table</option>
     <option [value]="this.companies">Companies</option>
     <option [value]="this.departments">Departments</option>

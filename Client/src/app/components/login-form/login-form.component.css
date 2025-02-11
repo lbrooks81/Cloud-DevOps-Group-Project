@@ -6,6 +6,13 @@
   overflow: hidden;
 }
 
+#company-name{
+  font-style: italic;
+  font-variant: small-caps;
+  padding-top: 0;
+  color: var(--indigogo)
+}
+
 .form-floating.mb-3:nth-child(2) {
   margin-top: 10px; /* Adjust the margin to stagger the input */
 }

@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import {CircuitAnimationComponent} from '../components/circuit-animation/circuit-animation.component';
-import {RegisterFormComponent} from '../components/register-form/register-form.component';
 import {LoginFormComponent} from '../components/login-form/login-form.component';
 
 @Component({
