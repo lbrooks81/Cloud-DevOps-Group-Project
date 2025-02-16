@@ -4,7 +4,7 @@ import bodyParser from "body-parser";
 import {ServerData} from "./data-source";
 import {Company} from './entities/company';
 import {Employee} from './entities/employee';
-import {ManufacturedPart} from './entities/manufactured-part';
+import {PurchasedPart} from './entities/purchased-part';
 import {PermissionLevel} from './entities/permission-level';
 import {Plant} from './entities/plant';
 import {Vendor} from './entities/vendor';
@@ -233,7 +233,7 @@ ServerData.initialize()
     //================================= MANUFACTURED PART =================================
     // get all manufactured parts
     app.get('/manufactured-parts', async(req,res) => {
-      const manufacturedParts = await ServerData.getRepository(ManufacturedPart).find();
+      const manufacturedParts = await ServerData.getRepository(PurchasedPart).find();
       res.json(manufacturedParts);
     });
 
@@ -241,7 +241,7 @@ ServerData.initialize()
     app.get('/manufactured-parts/:id', async(req,res) => {
       const id = Number(req.params.id);
 
-      const manufacturedPart = await ServerData.getRepository(ManufacturedPart).findOneBy({
+      const manufacturedPart = await ServerData.getRepository(PurchasedPart).findOneBy({
         plantID: id
       });
 
@@ -262,7 +262,7 @@ ServerData.initialize()
       const id = Number(req.params.id);
       const manufacturedPartData = req.body;
 
-      const manufacturedPartRepository = ServerData.getRepository(ManufacturedPart);
+      const manufacturedPartRepository = ServerData.getRepository(PurchasedPart);
       const manufacturedPart = await manufacturedPartRepository.findOneBy({
         plantID: id
       });
@@ -284,7 +284,7 @@ ServerData.initialize()
     // delete a specific manufactured part based on an id
     app.delete('/manufactured-parts/:id', async(req,res) => {
       const id = Number(req.params.id);
-      const manufacturedPartRepository = ServerData.getRepository(ManufacturedPart);
+      const manufacturedPartRepository = ServerData.getRepository(PurchasedPart);
       const manufacturedPart = await manufacturedPartRepository.findOneBy({
         plantID: id
       });
@@ -306,7 +306,7 @@ ServerData.initialize()
     app.post('/manufactured-parts', async(req,res) => {
       const manufacturedPartData = req.body;
 
-      const manufacturedPartRepository = ServerData.getRepository(ManufacturedPart);
+      const manufacturedPartRepository = ServerData.getRepository(PurchasedPart);
       const newManufacturedPart = manufacturedPartRepository.create({
         plantID: manufacturedPartData.plantID,
         partID: manufacturedPartData.partID,

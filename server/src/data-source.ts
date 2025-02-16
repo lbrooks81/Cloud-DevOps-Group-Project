@@ -8,7 +8,7 @@ import {PermissionLevel} from './entities/permission-level';
 import {Roles} from './entities/roles';
 import {Vendor} from './entities/vendor';
 import {Part} from './entities/part';
-import {ManufacturedPart} from './entities/manufactured-part';
+import {PurchasedPart} from './entities/purchased-part';
 import {Employee} from './entities/employee';
 
 export { ServerData };
@@ -23,7 +23,7 @@ const ServerData = new DataSource({
   database: 'DevOps239',
   synchronize: false,
   logging: true,
-  entities: [Employee, Department, Plant, MicroComponent, Company, Orders, PermissionLevel, Roles, Vendor, Part, ManufacturedPart],
+  entities: [Employee, Department, Plant, MicroComponent, Company, Orders, PermissionLevel, Roles, Vendor, Part, PurchasedPart],
   subscribers: [],
   migrations: []
 });
