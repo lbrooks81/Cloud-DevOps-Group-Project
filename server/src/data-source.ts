@@ -20,7 +20,7 @@ const ServerData = new DataSource({
   port: 1433,
   username: 'IT239',
   password: 'Devops239!@',
-  database: 'it239-devops.database.windows.net',
+  database: 'DevOps239',
   synchronize: false,
   logging: true,
   entities: [Employee, Department, Plant, MicroComponent, Company, Orders, PermissionLevel, Roles, Vendor, Part, ManufacturedPart],

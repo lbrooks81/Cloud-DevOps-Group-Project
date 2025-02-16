@@ -18,26 +18,26 @@ class Employee
   employeeID!: number;
 
   @Column({name: "EMP_FNAME", type: "varchar", length: 32})
-  employeeFirstName!: string;
+  firstName!: string;
 
   @Column({name: "EMP_LNAME", type: "varchar", length: 32})
-  employeeLastName!: string;
+  lastName!: string;
 
-  @Column({name: "EMP_EMAIL", type: "varchar", length: 64})
-  employeeEmail!: string;
+  @Column({name: "EMP_EMAIL", type: "varchar", length: 64, nullable: true})
+  email!: string | undefined;
 
-  @Column({name: "EMP_USERNAME", type: "varchar", length: 64})
-  employeeUsername!: string;
+  @Column({name: "EMP_USERNAME", type: "varchar", length: 64, nullable: true})
+  username!: string | undefined;
 
-  @Column({name: "EMP_PASSWORD", type: "varchar", length: 128})
-  employeePassword!: string;
+  @Column({name: "EMP_PASSWORD", type: "varchar", length: 128, nullable: true})
+  password!: string | undefined;
 
-  @Column({name: "EMP_PHONE_NUM", type: "int", unsigned: true})
-  employeePhoneNum!: number;
+  @Column({name: "EMP_PHONE_NUM", type: "int", unsigned: true, nullable: true})
+  phoneNum!: number | undefined;
 
   @Column({name: "EMP_ROLE_ID", type: "int", unsigned: true})
-  employeeRoleID!: number;
+  roleID!: number;
 
-  @Column({name: "DEPT_ID", type: "int", unsigned: true, nullable: true})
-  departmentID!: number | null;
+  @Column({name: "DEPT_ID", type: "int", unsigned: true})
+  departmentID!: number;
 }

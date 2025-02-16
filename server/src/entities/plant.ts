@@ -19,5 +19,5 @@ class Plant
   plantZipcode!: string;
 
   @Column({name: "MANAGER_ID", type: "int", unsigned: true, nullable: true})
-  managerID!: number | null;
+  managerID!: number;
 }
