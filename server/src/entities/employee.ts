@@ -35,7 +35,7 @@ class Employee
   @Column({name: "EMP_PHONE_NUM", type: "int", unsigned: true, nullable: true})
   phoneNum!: number | undefined;
 
-  @Column({name: "EMP_ROLE_ID", type: "int", unsigned: true})
+  @Column({name: "ROLE_ID", type: "int", unsigned: true})
   roleID!: number;
 
   @Column({name: "DEPT_ID", type: "int", unsigned: true})

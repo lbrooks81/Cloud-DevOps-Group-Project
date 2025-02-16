@@ -15,7 +15,7 @@ export { ServerData };
 
 //Server Data Source
 const ServerData = new DataSource({
-  type: "mysql",
+  type: "mssql",
   host: "it239-devops.database.windows.net",
   port: 1433,
   username: 'IT239',
