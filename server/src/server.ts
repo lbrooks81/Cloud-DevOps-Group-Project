@@ -230,59 +230,62 @@ ServerData.initialize()
       res.json(newEmployee);
     });
 
-    //================================= MANUFACTURED PART =================================
-    // get all manufactured parts
-    app.get('/manufactured-parts', async(req,res) => {
-      const manufacturedParts = await ServerData.getRepository(PurchasedPart).find();
-      res.json(manufacturedParts);
+    //================================= PURCHASED PART =================================
+    // get all purchased parts
+    app.get('/purchased-parts', async(req,res) => {
+      const purchasedParts = await ServerData.getRepository(PurchasedPart).find();
+      res.json(purchasedParts);
     });
 
     // get manufactured part by id
-    app.get('/manufactured-parts/:id', async(req,res) => {
-      const id = Number(req.params.id);
+    app.get('/purchased-parts/:id', async(req,res) => {
+      // TODO figure out how to return a part based on both ID's
+      const partId = Number(req.params.id);
+      const plantId = Number(req.params.id);
 
-      const manufacturedPart = await ServerData.getRepository(PurchasedPart).findOneBy({
-        plantID: id
+      const purchasedPart = await ServerData.getRepository(PurchasedPart).findOneBy({
+        plantID: plantId,
+        partID: partId
       });
 
-      if(!manufacturedPart)
+      if(!purchasedPart)
       {
         res.status(404).json({
-          message: `Manufactured Part with ID ${id} not found`
+          message: `Purchased Part with Plant ID ${plantId}, Part ID ${partId} not found`
         });
       }
       else
       {
-        res.json(manufacturedPart);
+        res.json(purchasedPart);
       }
     });
 
     // update a specific manufactured part based on an id
-    app.put('/manufactured-parts/:id', async(req,res) => {
+    app.put('/purchased-parts/:id', async(req,res) => {
       const id = Number(req.params.id);
-      const manufacturedPartData = req.body;
+      const purchasedPartData = req.body;
 
-      const manufacturedPartRepository = ServerData.getRepository(PurchasedPart);
-      const manufacturedPart = await manufacturedPartRepository.findOneBy({
+      const purchasedPartRepository = ServerData.getRepository(PurchasedPart);
+      const purchasedPart = await purchasedPartRepository.findOneBy({
         plantID: id
       });
 
-      if (!manufacturedPart) {
+      if (!purchasedPart) {
         res.status(404).json({
           message: `Manufactured Part with ID ${id} not found`
         });
       } else {
-        manufacturedPart.plantID = manufacturedPartData.plantID;
-        manufacturedPart.partID = manufacturedPartData.partID;
-        manufacturedPart.manufactureDate = manufacturedPartData.manufactureDate;
+        purchasedPart.plantID = purchasedPartData.plantID;
+        purchasedPart.partID = purchasedPartData.partID;
+        purchasedPart.date = purchasedPartData.date;
 
-        await manufacturedPartRepository.save(manufacturedPart);
-        res.json(manufacturedPart);
+        await purchasedPartRepository.save(purchasedPart);
+        res.json(purchasedPart);
       }
     });
 
     // delete a specific manufactured part based on an id
-    app.delete('/manufactured-parts/:id', async(req,res) => {
+    app.delete('/purchased-parts/:id', async(req,res) => {
       const id = Number(req.params.id);
       const manufacturedPartRepository = ServerData.getRepository(PurchasedPart);
       const manufacturedPart = await manufacturedPartRepository.findOneBy({
@@ -303,18 +306,18 @@ ServerData.initialize()
     });
 
     // create a new manufactured part
-    app.post('/manufactured-parts', async(req,res) => {
-      const manufacturedPartData = req.body;
+    app.post('/purchased-parts', async(req,res) => {
+      const purchasedPartData = req.body;
 
-      const manufacturedPartRepository = ServerData.getRepository(PurchasedPart);
-      const newManufacturedPart = manufacturedPartRepository.create({
-        plantID: manufacturedPartData.plantID,
-        partID: manufacturedPartData.partID,
-        manufactureDate: manufacturedPartData.manufactureDate
+      const purchasedPartRepository = ServerData.getRepository(PurchasedPart);
+      const newPurchasedPart = purchasedPartRepository.create({
+        plantID: purchasedPartData.plantID,
+        partID: purchasedPartData.partID,
+        date: purchasedPartData.date
       });
 
-      await manufacturedPartRepository.save(newManufacturedPart);
-      res.json(newManufacturedPart);
+      await purchasedPartRepository.save(newPurchasedPart);
+      res.json(newPurchasedPart);
     });
 
     //================================= MICRO COMPONENT =================================
@@ -327,7 +330,6 @@ ServerData.initialize()
 
 
     //================================= PERMISSION LEVEL =================================
-    // TODO remove unnecessary endpoints after database is populated
     // get all permission levels
     app.get('/permission-levels', async(req,res) => {
       const permissionLevels = await ServerData.getRepository(PermissionLevel).find();
@@ -354,7 +356,7 @@ ServerData.initialize()
       }
     });
 
-    // update a specific permission level based on an id
+/*  // update a specific permission level based on an id
     app.put('/permission-levels/:id', async(req,res) => {
       const id = Number(req.params.id);
       const permissionLevelData = req.body;
@@ -415,7 +417,7 @@ ServerData.initialize()
 
       await permissionLevelRepository.save(newPermissionLevel);
       res.json(newPermissionLevel);
-    });
+    });*/
 
     //================================= PLANT =================================
     // get all plants
