@@ -237,21 +237,20 @@ ServerData.initialize()
       res.json(purchasedParts);
     });
 
-    // get manufactured part by id
-    app.get('/purchased-parts/:id', async(req,res) => {
-      // TODO figure out how to return a part based on both ID's
-      const partId = Number(req.params.id);
-      const plantId = Number(req.params.id);
+    // get purchased part by composite key {partID, plantID}
+    app.get('/purchased-parts/:partID/:plantID', async(req,res) => {
+      const partID = Number(req.params.partID);
+      const plantID = Number(req.params.plantID);
 
       const purchasedPart = await ServerData.getRepository(PurchasedPart).findOneBy({
-        plantID: plantId,
-        partID: partId
+        partID: partID,
+        plantID: plantID
       });
 
       if(!purchasedPart)
       {
         res.status(404).json({
-          message: `Purchased Part with Plant ID ${plantId}, Part ID ${partId} not found`
+          message: `Purchased Part with Part ID ${partID} and Plant ID ${plantID} not found`
         });
       }
       else
@@ -260,21 +259,24 @@ ServerData.initialize()
       }
     });
 
-    // update a specific manufactured part based on an id
-    app.put('/purchased-parts/:id', async(req,res) => {
-      const id = Number(req.params.id);
+    // update a specific purchased part based on an id
+    app.put('/purchased-parts/:partID/:plantID', async(req,res) => {
+      const partID = Number(req.params.partID);
+      const plantID = Number(req.params.plantID);
       const purchasedPartData = req.body;
 
       const purchasedPartRepository = ServerData.getRepository(PurchasedPart);
-      const purchasedPart = await purchasedPartRepository.findOneBy({
-        plantID: id
+      const purchasedPart = await ServerData.getRepository(PurchasedPart).findOneBy({
+        partID: partID,
+        plantID: plantID
       });
 
       if (!purchasedPart) {
         res.status(404).json({
-          message: `Manufactured Part with ID ${id} not found`
+          message: `Purchased Part with partID ${partID} and plantID ${plantID} not found`
         });
-      } else {
+      }
+      else {
         purchasedPart.plantID = purchasedPartData.plantID;
         purchasedPart.partID = purchasedPartData.partID;
         purchasedPart.date = purchasedPartData.date;
@@ -284,28 +286,31 @@ ServerData.initialize()
       }
     });
 
-    // delete a specific manufactured part based on an id
-    app.delete('/purchased-parts/:id', async(req,res) => {
-      const id = Number(req.params.id);
-      const manufacturedPartRepository = ServerData.getRepository(PurchasedPart);
-      const manufacturedPart = await manufacturedPartRepository.findOneBy({
-        plantID: id
+    // delete a specific purchased part based on an id
+    app.delete('/purchased-parts/:partID/:plantID', async(req,res) => {
+      const partID = Number(req.params.partID);
+      const plantID = Number(req.params.plantID);
+
+      const purchasedPartRepository = ServerData.getRepository(PurchasedPart);
+      const purchasedPart = await ServerData.getRepository(PurchasedPart).findOneBy({
+        partID: partID,
+        plantID: plantID
       });
 
-      if (!manufacturedPart) {
+      if (!purchasedPart) {
         res.status(404).json({
-          message: `Manufactured Part with ID ${id} not found`
+          message: `Purchased Part with partID ${partID} and plantID ${plantID} not found`
         });
       }
       else {
-        await manufacturedPartRepository.delete(manufacturedPart);
+        await purchasedPartRepository.delete(purchasedPart);
         res.json({
-          message: `Manufactured Part with ID ${id} has been deleted`
+          message: `Purchased Part with partID ${partID} and plantID ${plantID} has been deleted`
         });
       }
     });
 
-    // create a new manufactured part
+    // create a new purchased part
     app.post('/purchased-parts', async(req,res) => {
       const purchasedPartData = req.body;
 
@@ -324,6 +329,7 @@ ServerData.initialize()
 
 
     //================================= ORDERS =================================
+    // if you need help getting the composite key to work, take a look at PURCHASED PART
 
 
     //================================= PART =================================

@@ -19,6 +19,6 @@ class PurchasedPart
   @Column({name: "PURCHASED_DATE", type: "date"})
   date!: string;
 
-  @Column({name: "PART_QOH", type: "int", unsigned: true})
+  @Column({name: "PP_QOH", type: "int", unsigned: true})
   quantityOnHand!: number;
 }

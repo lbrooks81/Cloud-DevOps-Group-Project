@@ -32,6 +32,8 @@ class Employee
   @Column({name: "EMP_PASSWORD", type: "varchar", length: 128, nullable: true})
   password!: string | undefined;
 
+  // TODO add salt when database is updated
+
   @Column({name: "EMP_PHONE_NUM", type: "int", unsigned: true, nullable: true})
   phoneNum!: number | undefined;
 
