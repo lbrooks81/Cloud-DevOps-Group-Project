@@ -8,6 +8,11 @@ import {PurchasedPart} from './entities/purchased-part';
 import {PermissionLevel} from './entities/permission-level';
 import {Plant} from './entities/plant';
 import {Vendor} from './entities/vendor';
+import {Department} from './entities/department';
+import {MicroComponent} from './entities/micro-component';
+import {Part} from './entities/part';
+import {Orders} from './entities/orders';
+import {Roles} from './entities/roles';
 
 
 const app = express();
@@ -123,6 +128,104 @@ ServerData.initialize()
     });
 
     //================================= DEPARTMENT =================================
+
+    app.get('/departments', async (req, res)=> {
+      const departments = await ServerData.getRepository(Department).find();
+      res.json(departments);
+    });
+
+    // get department by id
+    app.get('/departments/:id', async(req,res) =>
+    {
+      const id = Number(req.params.id);
+      console.log(id);
+
+      const department = await ServerData.getRepository(Department).findOneBy({
+        departmentId: id
+      });
+
+      if(!department)
+      {
+        res.status(404).json({
+          message: `Department with ID ${id} not found`
+        });
+      }
+      else
+      {
+        res.json(department);
+      }
+    });
+
+    // update a specific department based on an id
+
+    app.put('/departments/:id', async(req,res) => {
+      const id = Number(req.params.id);
+      const departmentData = req.body;
+
+      const departmentRepository = ServerData.getRepository(Department);
+      const department = await departmentRepository.findOneBy({
+        departmentId: id
+      });
+
+      if(!department)
+      {
+        res.status(404).json({
+          message: `Department with ID ${id} not found`
+        });
+      }
+      else
+      {
+        department.departmentName = departmentData.departmentName;
+        department.employeeID = departmentData.employeeID;
+        department.plantID = departmentData.plantID;
+
+        await departmentRepository.save(department);
+
+        res.json(department);
+      }
+    });
+
+    // delete a specific department based on an id
+
+    app.delete('/departments/:id', async(req,res) => {
+      const id = Number(req.params.id);
+      const departmentRepository = ServerData.getRepository(Department);
+      const department = await departmentRepository.findOneBy({
+        departmentId: id
+      });
+
+      if(!department)
+      {
+        res.status(404).json({
+          message: `Department with ID ${id} not found`
+        });
+      }
+      else
+      {
+        await departmentRepository.delete(department);
+        res.json({
+          message: `Department with ID ${id} has been deleted`
+        });
+      }
+    });
+
+    // create a new department
+
+    app.post('/departments', async(req,res) => {
+      const departmentData = req.body;
+
+      const departmentRepository = ServerData.getRepository(Department);
+      const newDepartment = departmentRepository.create({
+        departmentId: departmentData.departmentId,
+        departmentName: departmentData.departmentName,
+        employeeID: departmentData.employeeID,
+        plantID: departmentData.plantID
+      });
+
+      await departmentRepository.save(newDepartment);
+
+      res.json(newDepartment);
+    });
 
 
     //================================= EMPLOYEE =================================
@@ -327,13 +430,271 @@ ServerData.initialize()
 
     //================================= MICRO COMPONENT =================================
 
+    // get all micro components
+    app.get('/micro-components', async(req,res) => {
+      const microComponents = await ServerData.getRepository(MicroComponent).find();
+      res.json(microComponents);
+    });
+
+    // get micro component by id
+    app.get('/micro-components/:id', async(req,res) => {
+      const id = Number(req.params.id);
+
+      const microComponent = await ServerData.getRepository(MicroComponent).findOneBy({
+        microComponentSKU: id
+      });
+
+      if(!microComponent)
+      {
+        res.status(404).json({
+          message: `Micro Component with ID ${id} not found`
+        });
+      }
+      else
+      {
+        res.json(microComponent);
+      }
+    });
+
+    // update a specific micro component based on an id
+
+    app.put('/micro-components/:id', async(req,res) => {
+      const id = Number(req.params.id);
+      const microComponentData = req.body;
+
+      const microComponentRepository = ServerData.getRepository(MicroComponent);
+      const microComponent = await microComponentRepository.findOneBy({
+        microComponentSKU: id
+      });
+
+      if(!microComponent)
+      {
+        res.status(404).json({
+          message: `Micro Component with ID ${id} not found`
+        });
+      }
+      else
+      {
+        microComponent.microComponentSKU = microComponentData.microComponentSKU;
+        microComponent.microComponentName = microComponentData.microComponentName;
+        microComponent.microComponentDescript = microComponentData.microComponentDescript;
+        microComponent.microComponentCost = microComponentData.microComponentCost;
+        microComponent.microComponentQoh = microComponentData.microComponentQoh;
+
+        await microComponentRepository.save(microComponent);
+        res.json(microComponent);
+      }
+    });
+
+    // delete a specific micro component based on an id
+    app.delete('/micro-components/:id', async(req,res) => {
+      const SKU = Number(req.params.id);
+      const microComponentRepository = ServerData.getRepository(MicroComponent);
+      const microComponent = await ServerData.getRepository(MicroComponent).findOne({
+        where: {
+          microComponentSKU: SKU
+        }
+      });
+
+      if(!microComponent)
+      {
+        res.status(404).json({
+          message: `Micro Component with ID ${SKU} not found`
+        });
+      }
+      else
+      {
+        await microComponentRepository.delete({ microComponentSKU: SKU });
+        res.json({
+          message: `Micro Component with ID ${SKU} has been deleted`
+        });
+      }
+    });
 
     //================================= ORDERS =================================
     // if you need help getting the composite key to work, take a look at PURCHASED PART
 
+    // get all orders
+    app.get('/orders', async(req,res) => {
+      const orders = await ServerData.getRepository(Orders).find();
+      res.json(orders);
+    });
+
+    // get order by composite key {microComponentSKU, companyId}
+    app.get('/orders/:microComponentSKU/:companyId', async(req,res) => {
+      const microComponentSKU = Number(req.params.microComponentSKU);
+      const companyId = Number(req.params.companyId);
+
+      const order = await ServerData.getRepository(Orders).findOneBy({
+        microComponentSKU: microComponentSKU,
+        companyId: companyId
+      });
+
+      if(!order)
+      {
+        res.status(404).json({
+          message: `Order with Micro Component SKU ${microComponentSKU} and Company ID ${companyId} not found`
+        });
+      }
+      else
+      {
+        res.json(order);
+      }
+    });
+
+    // update a specific order based on an id
+    app.put('/orders/:microComponentSKU/:companyId', async(req,res) => {
+      const microComponentSKU = Number(req.params.microComponentSKU);
+      const companyId = Number(req.params.companyId);
+      const orderData = req.body;
+
+      const orderRepository = ServerData.getRepository(Orders);
+      const order = await ServerData.getRepository(Orders).findOneBy({
+        microComponentSKU: microComponentSKU,
+        companyId: companyId
+      });
+
+      if(!order)
+      {
+        res.status(404).json({
+          message: `Order with Micro Component SKU ${microComponentSKU} and Company ID ${companyId} not found`
+        });
+      }
+      else
+      {
+        order.microComponentSKU = orderData.microComponentSKU;
+        order.companyId = orderData.companyId;
+        order.orderDate = orderData.orderDate;
+        order.orderQuantity = orderData.orderQuantity;
+
+        await orderRepository.save(order);
+        res.json(order);
+      }
+    });
+
+    // delete a specific order based on an id
+    app.delete('/orders/:microComponentSKU/:companyId', async(req,res) => {
+      const microComponentSKU = Number(req.params.microComponentSKU);
+      const companyId = Number(req.params.companyId);
+
+      const orderRepository = ServerData.getRepository(Orders);
+      const order = await ServerData.getRepository(Orders).findOneBy({
+        microComponentSKU: microComponentSKU,
+        companyId: companyId
+      });
+
+      if(!order)
+      {
+        res.status(404).json({
+          message: `Order with Micro Component SKU ${microComponentSKU} and Company ID ${companyId} not found`
+        });
+      }
+      else
+      {
+        await orderRepository.delete({ microComponentSKU: microComponentSKU, companyId: companyId });
+        res.json({
+          message: `Order with Micro Component SKU ${microComponentSKU} and Company ID ${companyId} has been deleted`
+        });
+      }
+    });
+
+    // create a new order
+    app.post('/orders', async(req,res) => {
+      const orderData = req.body;
+
+      const orderRepository = ServerData.getRepository(Orders);
+      const newOrder = orderRepository.create({
+        microComponentSKU: orderData.microComponentSKU,
+        companyId: orderData.companyId,
+        orderDate: orderData.orderDate,
+        orderQuantity: orderData.orderQuantity
+      });
+
+      await orderRepository.save(newOrder);
+      res.json(newOrder);
+    });
 
     //================================= PART =================================
 
+    // get all parts
+    app.get('/parts', async(req,res) => {
+      const parts = await ServerData.getRepository(Part).find();
+      res.json(parts);
+    });
+
+    // get part by id
+    app.get('/parts/:id', async(req,res) => {
+      const id = Number(req.params.id);
+
+      const part = await ServerData.getRepository(Part).findOneBy({
+        partId: id
+      });
+
+      if(!part)
+      {
+        res.status(404).json({
+          message: `Part with ID ${id} not found`
+        });
+      }
+      else
+      {
+        res.json(part);
+      }
+    });
+
+    // update a specific part based on an id
+    app.put('/parts/:id', async(req,res) => {
+      const id = Number(req.params.id);
+      const partData = req.body;
+
+      const partRepository = ServerData.getRepository(Part);
+      const part = await partRepository.findOneBy({
+        partId: id
+      });
+
+      if(!part)
+      {
+        res.status(404).json({
+          message: `Part with ID ${id} not found`
+        });
+      }
+      else
+      {
+        part.partId = partData.partId;
+        part.partName = partData.partName;
+        part.partDescription = partData.partDescription;
+        part.partCost = partData.partCost;
+        part.partQoh = partData.partQoh;
+        part.vendorId = partData.vendorId;
+
+        await partRepository.save(part);
+        res.json(part);
+      }
+    });
+
+    // delete a specific part based on an id
+
+    app.delete('/parts/:id', async(req,res) => {
+      const id = Number(req.params.id);
+      const partRepository = ServerData.getRepository(Part);
+      const part = await partRepository.findOneBy({
+        partId: id
+      });
+
+      if(!part)
+      {
+        res.status(404).json({
+          message: `Part with ID ${id} not found`
+        });
+      }
+      else
+      {
+        await partRepository.delete({ partId: id });
+        res.json({
+          message: `Part with ID ${id} has been deleted`
+        });
+      }
+    });
 
     //================================= PERMISSION LEVEL =================================
     // get all permission levels
@@ -521,6 +882,85 @@ ServerData.initialize()
 
     //================================= ROLES =================================
 
+    // get all roles
+    app.get('/roles', async(req,res) => {
+      const roles = await ServerData.getRepository(Roles).find();
+      res.json(roles);
+    });
+
+    // get role by id
+    app.get('/roles/:id', async(req,res) => {
+      const id = Number(req.params.id);
+
+      const role = await ServerData.getRepository(Roles).findOneBy({
+        roleId: id
+      });
+
+      if (!role) {
+        res.status(404).json({
+          message: `Role with ID ${id} not found`
+        });
+      } else {
+        res.json(role);
+      }
+    });
+
+    // update a specific role based on an id
+    app.put('/roles/:id', async(req,res) => {
+      const id = Number(req.params.id);
+      const roleData = req.body;
+
+      const roleRepository = ServerData.getRepository(Roles);
+      const role = await roleRepository.findOneBy({
+        roleId: id
+      });
+
+      if (!role) {
+        res.status(404).json({
+          message: `Role with ID ${id} not found`
+        });
+      } else {
+        role.roleId = roleData.roleId;
+        role.roleTitle = roleData.roleTitle;
+
+        await roleRepository.save(role);
+        res.json(role);
+      }
+    });
+
+    // delete a specific role based on an id
+    app.delete('/roles/:id', async(req,res) => {
+      const id = Number(req.params.id);
+      const roleRepository = ServerData.getRepository(Roles);
+      const role = await roleRepository.findOneBy({
+        roleId: id
+      });
+
+      if (!role) {
+        res.status(404).json({
+          message: `Role with ID ${id} not found`
+        });
+      } else {
+        await roleRepository.delete(role);
+        res.json({
+          message: `Role with ID ${id} has been deleted`
+        });
+      }
+    });
+
+    // create a new role
+    app.post('/roles', async(req,res) => {
+      const roleData = req.body;
+
+      const roleRepository = ServerData.getRepository(Roles);
+      const newRole = roleRepository.create({
+        roleId: roleData.roleId,
+        roleTitle: roleData.roleTitle
+      });
+
+      await roleRepository.save(newRole);
+      res.json(newRole);
+    });
 
     //================================= VENDOR =================================
     // get all vendors
