@@ -8,7 +8,6 @@ import {NgOptimizedImage} from '@angular/common';
   selector: 'app-header',
   imports: [
     RouterLink,
-    RouterLinkActive,
     LogoComponent,
     NgOptimizedImage
   ],

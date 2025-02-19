@@ -9,10 +9,7 @@ label{
 option:focus{
   box-shadow: 0 0 10px 100px var(--indigogo) inset;
 }
-option:hover{
-  background-color: var(--periwinkle) !important;
-  color: var(--indigogo);
-}
+
 #database-choice-dropdown{
   width: calc((95vw) / 12);
   float: left;

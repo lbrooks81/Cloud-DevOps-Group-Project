@@ -45,6 +45,7 @@ export class DatabaseTableComponent {
   roles: RoleModel[] = [];
   vendors: VendorModel[] = [];
 
+
   selectedTable: any[] = [];
   errorMessage: string = '';
 
