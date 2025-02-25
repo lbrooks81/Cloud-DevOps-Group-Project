@@ -1,7 +1,7 @@
 
 #footer-dividend{
   width: 100vw;
-  height: 70px;
+  height: calc(var(--bottom-most-point) - 20px);
 
   position: absolute;
   left: 0;

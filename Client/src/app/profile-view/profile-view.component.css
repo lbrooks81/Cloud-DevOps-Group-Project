@@ -1,6 +1,14 @@
 #profile-container{
-  width: calc(100vw - 40px);
-  height: calc(100vh - 290px);
-  margin: 200px 20px 90px;
+  width: calc(100vw - 2 * var(--classic-margin));
+  height: calc(100vh - var(--top-most-point) - (2 * var(--classic-margin)) - var(--bottom-most-point));
+  margin: calc(var(--top-most-point) + var(--classic-margin)) /*top*/
+          var(--classic-margin) /*both sides*/
+          calc(var(--classic-margin) + var(--bottom-most-point)) /*bottom*/;
+
   border: 5px solid var(--indigogo);
+}
+
+#profile-formsies{
+    position: relative;
+    margin: var(--classic-margin);
 }

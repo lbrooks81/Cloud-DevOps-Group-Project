@@ -15,7 +15,25 @@ import {FooterComponent} from '../components/footer/footer.component';
   styleUrl: './database-view.component.css'
 })
 export class DatabaseViewComponent {
+/*  employees: EmployeeModel[] = [];
+  errorMessage: string = "";*/
+
+/*
+  constructor(private empService: EmployeeService) {}
+*/
+
   ngOnInit() {
     document.querySelector('.home-button')!.classList.add('d-none');
+    /*this.empService.getEmployees().subscribe({
+      next: (data) => {
+        this.employees = [...data];
+        console.log(this.employees);
+
+      },
+      error: (err) => {
+        this.errorMessage = 'Error fetching employees.';
+        console.error(`${this.errorMessage}`, err);
+      }
+    });*/
   }
 }
