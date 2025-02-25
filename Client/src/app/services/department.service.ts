@@ -10,7 +10,7 @@ export class DepartmentService {
   private apiUrl = 'http://localhost:3000/departments';
 
   constructor(private http: HttpClient) { }
-  getDepartments(): Observable<DepartmentModel[]> {
+  getDepartments(): Observable<DepartmentModel[]> { 
     return this.http.get<DepartmentModel[]>(this.apiUrl);
   }
 }
