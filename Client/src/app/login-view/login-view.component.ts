@@ -16,22 +16,10 @@ import {Octokit} from 'octokit';
   styleUrl: './login-view.component.css'
 })
 export class LoginViewComponent {
-  employees: EmployeeModel[] = [];
-  errorMessage: string = "";
 
-  constructor(private empService: EmployeeService) {}
+
   ngOnInit() {
-    this.empService.getEmployees().subscribe({
-      next: (data) => {
-        this.employees = [...data];
-        console.log(this.employees);
-
-      },
-      error: (err) => {
-        this.errorMessage = 'Error fetching employees.';
-        console.error(`${this.errorMessage}`, err);
-      }
-    });
+    
 
 
   }
