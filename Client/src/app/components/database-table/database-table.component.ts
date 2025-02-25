@@ -21,11 +21,13 @@ import {PermissionLevelService} from '../../services/permission-level.service';
 import {PlantService} from '../../services/plant.service';
 import {PurchasedPartService} from '../../services/purchased-part.service';
 import {RoleService} from '../../services/role.service';
-import {valueOf} from 'jasmine';
+import {FormsModule} from '@angular/forms';
 
 @Component({
   selector: 'app-database-table',
-  imports: [],
+  imports: [
+    FormsModule
+  ],
   templateUrl: './database-table.component.html',
   standalone: true,
   styleUrl: './database-table.component.css'
@@ -42,9 +44,9 @@ export class DatabaseTableComponent {
   purchasedParts: PurchasedPartModel[] = [];
   roles: RoleModel[] = [];
   vendors: VendorModel[] = [];
-
-  selectedTable: string = [];
-
+  
+  selectedTable: any[] = [];
+  attributes: string[] = [];
   errorMessage: string = '';
 
   // We inject services via a constructor.
@@ -68,18 +70,42 @@ export class DatabaseTableComponent {
   // Attach functionality to the initialization of the component.
   ngOnInit(): void{
     // Depending on table selection, display the database and then when it changes, call the correct function.
+    this.getEmployees();
+    this.getCompanies();
+    this.getDepartments();
+    this.getMicrocomponents();
+    this.getOrders();
+    this.getParts();
+    this.getPermissionLevels();
+    this.getPlants();
+    this.getPurchasedParts();
+    this.getRoles();
+    this.getVendors();
+
   }
 
-  setSelectedTable(){
-    let selectTableElement = <HTMLInputElement>document.querySelector('#database-choice-dropdown')!;
-    this.selectedTable = selectTableElement.value;
+  /*I have an array of objects. I need the name of every one of the keys*/
+
+  setDataBeingViewed(event: Event){
+    console.log("Selected Table", this.selectedTable); //
+    this.attributes = this.getKeysFromArray();
+    console.log("Keys", this.attributes);
+  }
+
+  getKeysFromArray(): string[] {
+    if(this.selectedTable.length > 0)
+    {
+      return Object.keys(this.selectedTable[0]);
+    }
+    return [];
   }
 
   /* I need to invent my own language where you can use variable values in variable names because this is ridiculous*/
   getCompanies() {
     this.companyService.getCompanies().subscribe({
       next: (data) => {
-        this.companies = data;
+        this.companies = [...data];
+        console.log("Companies", this.companies);
       },
       error:(error) => {
         this.errorMessage = 'Error fetching companies';
@@ -90,7 +116,8 @@ export class DatabaseTableComponent {
   getDepartments() {
     this.departmentService.getDepartments().subscribe({
       next: (data) => {
-        this.departments = data;
+        this.departments = [...data];
+        console.log("Departments", this.departments);
       },
       error:(error) => {
         this.errorMessage = 'Error fetching departments';
@@ -101,7 +128,8 @@ export class DatabaseTableComponent {
   getEmployees() {
     this.employeeService.getEmployees().subscribe({
       next: (data) => {
-        this.employees = data;
+        this.employees = [...data];
+        console.log("Employees", this.employees);
       },
       error:(error) => {
         this.errorMessage = 'Error fetching employees';
@@ -112,7 +140,8 @@ export class DatabaseTableComponent {
   getMicrocomponents() {
     this.microcomponentService.getMicrocomponents().subscribe({
       next: (data) => {
-        this.microcomponents = data;
+        this.microcomponents = [...data];
+        console.log("Microcomponents", this.microcomponents);
       },
       error:(error) => {
         this.errorMessage = 'Error fetching microcomponents';
@@ -123,7 +152,8 @@ export class DatabaseTableComponent {
   getOrders() {
     this.orderService.getOrders().subscribe({
       next: (data) => {
-        this.orders = data;
+        this.orders = [...data];
+        console.log("Orders", this.orders);
       },
       error:(error) => {
         this.errorMessage = 'Error fetching orders';
@@ -134,7 +164,8 @@ export class DatabaseTableComponent {
   getParts() {
     this.partService.getParts().subscribe({
       next: (data) => {
-        this.parts = data;
+        this.parts = [...data];
+        console.log("Parts", this.parts);
       },
       error:(error) => {
         this.errorMessage = 'Error fetching parts';
@@ -145,7 +176,8 @@ export class DatabaseTableComponent {
   getPermissionLevels() {
     this.permissionLevelService.getPermissionLevels().subscribe({
       next: (data) => {
-        this.permissionLevels = data;
+        this.permissionLevels = [...data];
+        console.log("Permission Levels", this.permissionLevels);
       },
       error:(error) => {
         this.errorMessage = 'Error fetching permission levels';
@@ -156,7 +188,8 @@ export class DatabaseTableComponent {
   getPlants() {
     this.plantService.getPlants().subscribe({
       next: (data) => {
-        this.plants = data;
+        this.plants = [...data];
+        console.log("Plants", this.plants);
       },
       error:(error) => {
         this.errorMessage = 'Error fetching plants';
@@ -167,7 +200,8 @@ export class DatabaseTableComponent {
   getPurchasedParts() {
     this.purchasedPartService.getPurchasedParts().subscribe({
       next: (data) => {
-        this.purchasedParts = data;
+        this.purchasedParts = [...data];
+        console.log("Purchased Parts", this.purchasedParts);
       },
       error:(error) => {
         this.errorMessage = 'Error fetching purchased parts';
@@ -178,7 +212,8 @@ export class DatabaseTableComponent {
   getRoles() {
     this.roleService.getRoles().subscribe({
       next: (data) => {
-        this.roles = data;
+        this.roles = [...data];
+        console.log("Roles", this.roles);
       },
       error:(error) => {
         this.errorMessage = 'Error fetching roles';
@@ -189,7 +224,8 @@ export class DatabaseTableComponent {
   getVendors() {
     this.vendorService.getVendors().subscribe({
       next: (data) => {
-        this.vendors = data;
+        this.vendors = [...data];
+        console.log("Vendors", this.vendors);
       },
       error:(error) => {
         this.errorMessage = 'Error fetching vendors';

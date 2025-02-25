@@ -2,14 +2,14 @@ import { Component } from '@angular/core';
 import {RouterLink, RouterLinkActive} from '@angular/router';
 import {LogoComponent} from '../logo/logo.component';
 import {MatRipple} from '@angular/material/core';
+import {NgOptimizedImage} from '@angular/common';
 
 @Component({
   selector: 'app-header',
   imports: [
     RouterLink,
-    RouterLinkActive,
     LogoComponent,
-    MatRipple
+    NgOptimizedImage
   ],
   templateUrl: './header.component.html',
   standalone: true,
