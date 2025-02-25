@@ -13,26 +13,32 @@ import {MicroComponent} from './entities/micro-component';
 import {Part} from './entities/part';
 import {Orders} from './entities/orders';
 import {Roles} from './entities/roles';
+import fs from "fs";
+import https from "https";
 
 
 const app = express();
 const port: number = 3000;
+const options = {
+  key: fs.readFileSync("key.pem"),
+  cert: fs.readFileSync("cert.pem")
+}
+
+https.createServer(options, app).listen(port, () => {
+    console.log(`Server is running on https://localhost:${port}`);
+});
 
 app.use(cors());
 
 app.use(bodyParser.json()); // take a request body and turn it into a json object
 
-app.listen(port, ()=>
-{
-  console.log(`Server is listening at http://localhost:${port}`);
-});
 
 // Initialize my data source
 ServerData.initialize()
   .then(()=>{
     console.log("Data source has been initialized");
-
-    //================================= COMPANY =================================
+//================================= COMPANY =================================
+    // pass into void function request and response
     // get all companies
     app.get('/companies', async (req, res)=> {
       const companies = await ServerData.getRepository(Company).find();
