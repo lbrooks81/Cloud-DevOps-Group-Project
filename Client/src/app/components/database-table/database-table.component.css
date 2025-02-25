@@ -1,3 +1,5 @@
+/*
+
 .form-select, option, input, input:focus {
   border: var(--bs-border-width) solid var(--dark-magenta) !important;
   color: var(--periwinkle);
@@ -9,10 +11,7 @@ label{
 option:focus{
   box-shadow: 0 0 10px 100px var(--indigogo) inset;
 }
-option:hover{
-  background-color: var(--periwinkle) !important;
-  color: var(--indigogo);
-}
+
 #database-choice-dropdown{
   width: calc((95vw) / 12);
   float: left;
@@ -29,66 +28,97 @@ option:hover{
   float: left;
   margin-left: 0;
 }
-#searching-container{
-  width: 95vw;
-  height: 100px;
-  margin: 0;
-  position: absolute;
-  left: 50%;
-  transform: translate(-50%, 0);
-  top: 200px;
-}
-#table-container{
-  width: 95vw;
-  height: calc(100vh - 350px);
-  overflow-y: auto;
-  margin-bottom: 0;
-  position: absolute;
-  left: 50%;
-  transform: translate(-50%, 0);
-  bottom: 90px;
-}
-#table{
-  overflow: auto;
-  white-space: nowrap;
-}
 
-th, td{
-  z-index: 4;
-  text-align: center;
-  border-radius: 2%;
-}
-tr{
-  margin-top: 10px;
-}
-.breathing-room-table-th-td, .breathing-room-table-rows{
-  background-color: var(--background);
-}
-.breathing-room-table-th-td{
-  width: 0;
-  max-width: 0;
-}
-.breathing-room-table-rows{
-  height: 0;
-  max-height: 0;
-  padding: 4px 4px;
-}
-th{
-  background-color: var(--midnight);
-  font-style: italic;
-}
+
 .odd > td:not(.breathing-room-table-th-td){
   background-color: var(--indigogo);
 }
 .even > td:not(.breathing-room-table-th-td){
   background-color: var(--periwinkle);
 }
-thead th{
-  position: sticky;
-  top: 0;
-}
+
 .form-floating > label::after {
   background-color: transparent !important;
   color: var(--periwinkle);
 
 }
+
+ */
+
+
+
+thead th{
+  position: sticky;
+  top: 0;
+}
+
+#table-container{
+  height: calc(100vh - var(--top-most-point) - (5 * var(--classic-margin)) - var(--bottom-most-point) - 100px);
+  width: calc(100vw - 4 * var(--classic-margin));
+  overflow-y: scroll;
+  overflow-x: scroll;
+  margin-top: calc(2 * var(--classic-margin));
+  mask-image: linear-gradient(to bottom, black calc(100% - 48px), transparent 100%);
+  /*
+  border: 2px solid teal;
+  */
+}
+
+th, td{
+  z-index: 4;
+  text-align: center;
+  border-radius: 5px;
+}
+
+.breathing-room-table-th-td, .breathing-room-table-rows {
+  background-color: var(--background);
+  opacity: 0;
+}
+
+th{
+  background-color: var(--midnight);
+  font-style: italic;
+}
+
+#searching-container{
+  /*
+  border: 2px solid teal;
+  */
+  width: calc(100vw - 4 * var(--classic-margin));
+  height: 100px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  flex-direction: column;
+  align-content: flex-start;
+}
+
+#database-choice-dropdown{
+  margin-right: 50%;
+}
+
+select{
+  width: 25%;
+}
+
+#attribute-search{
+  width: 25%;
+}
+
+tr:nth-child(2n) td{
+  background-color: var(--indigogo);
+}
+
+tr:nth-child(4n) td{
+  background-color: var(--periwinkle);
+  color: var(--midnight);
+}
+
+select{
+  border: var(--bs-border-width) solid var(--dark-magenta) !important;
+  color: var(--periwinkle);
+  background-color: var(--indigogo);
+}
+
+
+
