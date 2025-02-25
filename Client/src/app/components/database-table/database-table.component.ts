@@ -44,7 +44,7 @@ export class DatabaseTableComponent {
   purchasedParts: PurchasedPartModel[] = [];
   roles: RoleModel[] = [];
   vendors: VendorModel[] = [];
-  
+
   selectedTable: any[] = [];
   attributes: string[] = [];
   errorMessage: string = '';
@@ -70,7 +70,7 @@ export class DatabaseTableComponent {
   // Attach functionality to the initialization of the component.
   ngOnInit(): void{
     // Depending on table selection, display the database and then when it changes, call the correct function.
-    this.getEmployees();
+    /*this.getEmployees();
     this.getCompanies();
     this.getDepartments();
     this.getMicrocomponents();
@@ -80,7 +80,7 @@ export class DatabaseTableComponent {
     this.getPlants();
     this.getPurchasedParts();
     this.getRoles();
-    this.getVendors();
+    this.getVendors();*/ //TODO this shouldn't be commented out, just for development
 
   }
 
