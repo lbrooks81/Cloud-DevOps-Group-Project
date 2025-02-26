@@ -21,14 +21,14 @@
   flex-direction: row;
 }
 
-#permissions{
-  margin-left: 125px;
+
+.name{
+  font-size: 45px;
 }
 
-#position{
-  margin-left: 100px;
-}
 
-#profile-pic{
-  margin-right: 100px;
+.emp{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
