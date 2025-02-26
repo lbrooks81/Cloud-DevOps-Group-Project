@@ -3,11 +3,8 @@
   width: 100vw;
   height: calc(var(--bottom-most-point) - 20px);
 
-  position: absolute;
-  left: 0;
-  bottom: 0;
   z-index: 1;
-
+  position: relative;
   background: rgb(13,13,19);
   background: linear-gradient(0deg, rgba(163,0,82,1) 0%, rgba(52,45,71,1) 35%, rgba(13,13,19,1) 100%);
   /*background: hsla(240, 19%, 6%, 1);
