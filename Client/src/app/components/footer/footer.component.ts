@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import {NgOptimizedImage} from '@angular/common';
+import {style} from "@angular/animations";
 
 @Component({
   selector: 'app-footer',
@@ -12,4 +13,6 @@ import {NgOptimizedImage} from '@angular/common';
 })
 export class FooterComponent {
 
+    protected readonly style = style;
+  protected readonly alert = alert;
 }

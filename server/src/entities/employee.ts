@@ -29,11 +29,8 @@ class Employee
   @Column({name: "EMP_USERNAME", type: "varchar", length: 64, nullable: true})
   username!: string | undefined;
 
-  @Column({name: "EMP_PASSWORD", type: "varchar", length: 128, nullable: true})
+  @Column({name: "EMP_HASH", type: "varchar", length: 256, nullable: true})
   password!: string | undefined;
-
-  @Column({name: "EMP_SALT", type: "varchar", length: 256})
-  salt!: string | undefined;
 
   @Column({name: "EMP_PHONE_NUM", type: "int", unsigned: true, nullable: true})
   phoneNum!: number | undefined;

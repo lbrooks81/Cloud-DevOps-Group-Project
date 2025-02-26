@@ -44,7 +44,7 @@ export class DatabaseTableComponent {
   purchasedParts: PurchasedPartModel[] = [];
   roles: RoleModel[] = [];
   vendors: VendorModel[] = [];
-  
+
   selectedTable: any[] = [];
   attributes: string[] = [];
   errorMessage: string = '';
@@ -81,7 +81,6 @@ export class DatabaseTableComponent {
     this.getPurchasedParts();
     this.getRoles();
     this.getVendors();
-
   }
 
   /*I have an array of objects. I need the name of every one of the keys*/

@@ -3,39 +3,26 @@
   width: 100vw;
   height: calc(var(--bottom-most-point) - 20px);
 
-  z-index: 1;
-  position: relative;
-  background: rgb(13,13,19);
-  background: linear-gradient(0deg, rgba(163,0,82,1) 0%, rgba(52,45,71,1) 35%, rgba(13,13,19,1) 100%);
-  /*background: hsla(240, 19%, 6%, 1);
-
-  background: linear-gradient(270deg, hsla(240, 19%, 6%, 0) 0%, hsl(256, 22%, 23%) 100%);
-
-  background: -moz-linear-gradient(270deg, hsla(240, 19%, 6%, 0) 0%, hsl(256, 22%, 23%) 0%);
-
-  background: -webkit-linear-gradient(270deg, hsla(240, 19%, 6%, 0) 0%, hsl(256, 22%, 23%) 100%);
-*/
+  border-top: 2px solid var(--dark-magenta);
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  color: var(--periwinkle);
+  display: inline-flex;
+  justify-content: space-between;
 }
 #copywrite{
-  position: absolute;
-  bottom: 0;
-  padding: 0 0;
-  margin-bottom: 0;
-  color: var(--periwinkle);
+
 }
-img{
-  transform-origin: center;
-  transform: translate(-50%, 0);
-  position: absolute;
+#contact:hover{
+  cursor: pointer;
+  scale: 1.1;
+}
+.modal {
+  position: absolute !important;
   left: 50%;
-  bottom: 20px;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
 }
-#name-logo{
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translate(-50%, 0);
-  padding: 0 0;
-  margin-bottom: 0;
-  color: var(--periwinkle);
-}
+
