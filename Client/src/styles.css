@@ -1,6 +1,6 @@
 @import "bootstrap/dist/css/bootstrap.min.css";
-body{
-  background-color: var(--background);
+body {
+  background-color: var(--background) !important;
 }
 :root{
   /***********COLORS************/

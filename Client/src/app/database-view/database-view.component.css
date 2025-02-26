@@ -6,7 +6,9 @@
   var(--classic-margin) /*both sides*/
   calc(var(--classic-margin) + var(--bottom-most-point)) /*bottom*/;
 
+  /*
   border: 5px solid var(--indigogo);
+  */
 }
 
 #database-formses{

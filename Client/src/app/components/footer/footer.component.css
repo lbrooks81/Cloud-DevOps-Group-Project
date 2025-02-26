@@ -2,7 +2,7 @@
 #footer-dividend{
   width: 100vw;
   height: calc(var(--bottom-most-point) - 20px);
-  border: 2px solid teal;
+  border: 2px solid var(--dark-magenta);
   position: absolute;
   left: 0;
   bottom: 0;
@@ -16,5 +16,12 @@
 #contact:hover{
   cursor: pointer;
   scale: 1.1;
+}
+.modal {
+  position: absolute !important;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
 }
 
