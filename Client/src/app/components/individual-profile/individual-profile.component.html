@@ -1,10 +1,15 @@
 <div class="info">
   <div>
-    <div id="name-goes-here" class="readable">
-      Name: Valtor
+    <div id="whole-name" class="readable name">
+      <p id="last-name">{{ testData.lastName }}, {{ testData.firstName }}</p>
     </div>
-    <p id="position" class="readable">Position: Executive</p>
-    <p id="permissions" class="readable">Permissions: All</p>
+    <p id="role-title" class="readable">Role: {{ testData.role }}</p>
+    <p id="department-name" class="readable">Department: {{ testData.department }}</p>
   </div>
-  <img id="profile-pic" alt="user profile pic" ngSrc="/place-holder.png" height="240" width="240" />
+  <div class="emp">
+    <img id="profile-pic" alt="user profile pic" ngSrc="/place-holder.png" height="240" width="240"/>
+    <p id="emp-username" class="readable">Username: {{ testData.username }}</p>
+    <p id="emp-email" class="readable">Email: {{ testData.email }}</p>
+    <p id="emp-phone" class="readable">Phone: {{ testData.phone }}</p>
+  </div>
 </div>
