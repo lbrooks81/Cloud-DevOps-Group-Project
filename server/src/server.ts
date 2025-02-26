@@ -20,8 +20,8 @@ import https from "https";
 const app = express();
 const port: number = 3000;
 const options = {
-  key: fs.readFileSync("key.pem"),
-  cert: fs.readFileSync("cert.pem")
+  key: fs.readFileSync("../key.pem"),
+  cert: fs.readFileSync("../cert.pem")
 }
 
 https.createServer(options, app).listen(port, () => {
