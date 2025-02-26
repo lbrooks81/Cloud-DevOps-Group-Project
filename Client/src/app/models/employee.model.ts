@@ -4,8 +4,9 @@ export interface EmployeeModel {
   empLastName: string;
   empEmail: string | null;
   empUsername: string | null;
-  empPassword: string | null;
+  empHash: string | null;
   empPhoneNum: number | null;
+  plantId: number | null;
   roleId: number;
   deptId: number;
 }

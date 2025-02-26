@@ -7,7 +7,7 @@ import {OrderModel} from '../models/order.model';
   providedIn: 'root'
 })
 export class OrderService {
-  private apiUrl = 'http://localhost:3000/orders';
+  private apiUrl = 'https://localhost:3000/orders';
   constructor(private http: HttpClient) { }
   getOrders(): Observable<OrderModel[]> {
     return this.http.get<OrderModel[]>(this.apiUrl);

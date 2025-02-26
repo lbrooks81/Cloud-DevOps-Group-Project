@@ -9,7 +9,7 @@ import {Observable} from 'rxjs';
   providedIn: 'root'
 })
 export class PlantService {
-  private apiUrl = 'http://localhost:3000/plants';
+  private apiUrl = 'https://localhost:3000/plants';
 
   constructor(private http: HttpClient) { }
   getPlants(): Observable<PlantModel[]> {
