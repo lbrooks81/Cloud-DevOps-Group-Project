@@ -85,7 +85,7 @@ th{
   border: 2px solid teal;
   */
   width: calc(100vw - 4 * var(--classic-margin));
-  height: 100px;
+  height: 105px;
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
@@ -104,6 +104,7 @@ select{
 #attribute-search{
   width: 25%;
   z-index: 9;
+  margin-top: 5px;
 }
 
 tr:nth-child(2n) td{
