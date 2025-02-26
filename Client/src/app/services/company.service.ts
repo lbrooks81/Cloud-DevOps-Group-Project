@@ -8,7 +8,7 @@ import {Observable} from 'rxjs';
 })
 
 export class CompanyService {
-  private apiUrl = 'http://localhost:3000/companies';
+  private apiUrl = 'https://localhost:3000/companies';
   constructor(private http: HttpClient) { }
   getCompanies(): Observable<CompanyModel[]> {
     return this.http.get<CompanyModel[]>(this.apiUrl);

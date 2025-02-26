@@ -7,7 +7,7 @@ import {Observable} from 'rxjs';
   providedIn: 'root'
 })
 export class PurchasedPartService {
-  private apiUrl = 'http://localhost:3000/purchased-parts';
+  private apiUrl = 'https://localhost:3000/purchased-parts';
 
   constructor(private http: HttpClient) { }
   getPurchasedParts(): Observable<PurchasedPartModel[]>{

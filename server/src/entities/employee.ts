@@ -36,7 +36,7 @@ class Employee
   phoneNum!: number | undefined;
 
   @Column({name: "PLANT_ID", type: "int", unsigned: true})
-  plantID!: number;
+  plantID!: number | null;
 
   @Column({name: "ROLE_ID", type: "int", unsigned: true})
   roleID!: number;

@@ -6,6 +6,7 @@ export interface EmployeeModel {
   empUsername: string | null;
   empHash: string | null;
   empPhoneNum: number | null;
+  plantId: number | null;
   roleId: number;
   deptId: number;
 }
