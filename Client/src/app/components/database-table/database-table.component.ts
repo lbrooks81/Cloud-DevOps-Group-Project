@@ -70,7 +70,7 @@ export class DatabaseTableComponent {
   // Attach functionality to the initialization of the component.
   ngOnInit(): void{
     // Depending on table selection, display the database and then when it changes, call the correct function.
-    /*this.getEmployees();
+    this.getEmployees();
     this.getCompanies();
     this.getDepartments();
     this.getMicrocomponents();
@@ -80,8 +80,7 @@ export class DatabaseTableComponent {
     this.getPlants();
     this.getPurchasedParts();
     this.getRoles();
-    this.getVendors();*/ //TODO this shouldn't be commented out, just for development
-
+    this.getVendors();
   }
 
   /*I have an array of objects. I need the name of every one of the keys*/

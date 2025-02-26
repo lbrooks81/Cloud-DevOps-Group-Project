@@ -29,15 +29,15 @@
     <input type="text" class="form-control" id="floatingInput" placeholder="attribute">
     <label for="floatingInput">Search Attribute</label>
   </div>
-
-
 </div>
 
-@if (this.errorMessage) {
+@if (this.errorMessage)
+{
   <p>{{this.errorMessage}}</p>
 }
 
-@else {
+@else
+{
   <div id="table-container">
 
   <table class="table table-borderless table-dark">
@@ -56,27 +56,25 @@
       </tr>
     </thead>
     <tbody>
-<!--
-    For each record in the table, create a row
--->
-@for(record of this.selectedTable; track $index){
+    @for(record of this.selectedTable; track $index)
+    {
       <tr>
-        @for(att of this.attributes; track $index){
-
+        @for(att of this.attributes; track $index)
+        {
           <td class="breathing-room-table-rows"></td>
           <td class="breathing-room-table-rows"></td>
         }
       </tr>
+
       <tr>
         <td class="breathing-room-table-rows"></td>
-
-        @for(att of this.attributes; track $index){
+        @for(att of this.attributes; track $index)
+        {
           <td>{{record[att]}}</td>
           <td class="breathing-room-table-th-td"></td>
-
         }
       </tr>
-}
+    }
     </tbody>
   </table>
   </div>
