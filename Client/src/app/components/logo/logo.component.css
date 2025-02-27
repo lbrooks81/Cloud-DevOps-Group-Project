@@ -10,7 +10,7 @@
   transform: scale(8%) rotate(-90deg);
   position: absolute;
   top: 90px;
-  left: calc(2.5vw + 90px);
+  right: calc(2.5vw - 90px);
   z-index: 1;
 }
 #logo-cir-2{
@@ -27,7 +27,7 @@
   color: white;
   z-index: 100;
   top: 90px;
-  left: calc(2.5vw + 10px);
+  right: calc(2.5vw - 10px);
 }
 
 html, body
@@ -39,7 +39,7 @@ html, body
   border-radius: 10%;
   position: absolute;
   top: 10px;
-  left: 10px;
+  right: 10px;
   z-index: 0;
   opacity: 0.2;
 }
