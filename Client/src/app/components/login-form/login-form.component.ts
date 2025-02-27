@@ -3,6 +3,8 @@ import {RouterLink} from '@angular/router';
 import {getCookie} from '../../cookieShtuff';
 import {FormsModule} from '@angular/forms';
 import {Octokit} from 'octokit';
+import {EmpInfoService} from '../../services/emp-info.service';
+import {EmpInfoModel} from '../../models/emp-info.model';
 
 @Component({
   selector: 'app-login-form',
@@ -19,6 +21,9 @@ export class LoginFormComponent {
   public userEmail: string = "";
   public userID: string = "";
   public password: string = "";
+  public empInfo: EmpInfoModel[] = [];
+
+  constructor(private empInfoService: EmpInfoService) { }
 
   setEmployeeInformation(){
 
@@ -35,8 +40,14 @@ export class LoginFormComponent {
   }
 
   async getUserInformation() {
-    let data = ((await this.octokit.request(`GET http://localhost:3000/emp-info?username=${encodeURIComponent(this.username)}`, {}))).data;
-    let employee: {} = [...data]
-    console.log(employee);
-  } // TODO this returns errors
+    this.empInfoService.getEmployeeInfo(this.username).subscribe({
+      next: (data) => {
+        this.empInfo = [...data];
+        console.log("Emp Info: ", this.empInfo);
+      },
+      error: (error) => {
+        console.error(error);
+      }
+    });
+  }
 }

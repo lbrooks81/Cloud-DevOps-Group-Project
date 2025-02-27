@@ -1075,7 +1075,6 @@ ServerData.initialize()
             email: user?.email
         }
 
-        // @ts-ignore
         res.json(heresAnObjectB);
       }
       catch (e) {
