@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
-import {RouterLink} from '@angular/router';
-import {getCookie} from '../../cookieShtuff';
+import {Router, RouterLink} from '@angular/router';
+import {getCookie, setCookie} from '../../cookieShtuff';
 import {FormsModule} from '@angular/forms';
 import {Octokit} from 'octokit';
+import {EmpInfoService} from '../../services/emp-info.service';
+import {EmpInfoModel} from '../../models/emp-info.model';
 
 @Component({
   selector: 'app-login-form',
@@ -19,24 +21,33 @@ export class LoginFormComponent {
   public userEmail: string = "";
   public userID: string = "";
   public password: string = "";
+  public empInfo: EmpInfoModel[] = [];
+
+  constructor(private empInfoService: EmpInfoService, private router: Router) { }
 
   setEmployeeInformation(){
 
     this.getUserInformation();
 
     // TODO verify login
-    // TODO set user ID cookie
-    // TODO navigate to database page.
 
 
-/*
-    getCookie('employee-info', '')
-*/
+
+    setCookie('employee-id', 'this.userID');
+    this.router.navigate(['/database']);
   }
 
   async getUserInformation() {
-    let data = ((await this.octokit.request(`GET http://localhost:3000/emp-info?username=${encodeURIComponent(this.username)}`, {}))).data;
-    let employee: {} = [...data]
-    console.log(employee);
-  } // TODO this returns errors
+    this.empInfoService.getEmployeeInfo(this.username).subscribe({
+      next: (data) => {
+        this.empInfo = data;
+        // @ts-ignore
+        this.userID = this.empInfo["empId"] as string;
+        console.log("Emp Info: ", this.userID);
+      },
+      error: (error) => {
+        console.error(error);
+      }
+    });
+  }
 }

@@ -1071,11 +1071,9 @@ ServerData.initialize()
         });
 
         let heresAnObjectB = {
-            employeeID: user?.employeeID,
-            email: user?.email
-        }
+            empId: user?.employeeID,
+        };
 
-        // @ts-ignore
         res.json(heresAnObjectB);
       }
       catch (e) {
