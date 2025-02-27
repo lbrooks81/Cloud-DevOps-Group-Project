@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Router, RouterLink} from '@angular/router';
 import {getCookie, setCookie} from '../../cookieShtuff';
 import {FormsModule} from '@angular/forms';
@@ -15,7 +15,7 @@ import {EmpInfoModel} from '../../models/emp-info.model';
   standalone: true,
   styleUrl: './login-form.component.css'
 })
-export class LoginFormComponent {
+export class LoginFormComponent implements OnInit{
   private octokit = new Octokit({});
   public username: string = "";
   public userEmail: string = "";
@@ -25,13 +25,18 @@ export class LoginFormComponent {
 
   constructor(private empInfoService: EmpInfoService, private router: Router) { }
 
-  setEmployeeInformation(){
+  ngOnInit() {
+    if(getCookie('employee-id'))
+    {
+      this.router.navigate(['/database']);
+    }
+  }
 
-    this.getUserInformation();
+  async setEmployeeInformation() {
 
-    // TODO verify login
+    await this.getUserInformation();
 
-
+    // TODO verify login - Nick Q
 
     setCookie('employee-id', 'this.userID');
     this.router.navigate(['/database']);
