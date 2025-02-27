@@ -43,12 +43,20 @@ export class LoginFormComponent implements OnInit{
   }
 
   async getUserInformation() {
-    this.empInfoService.getEmployeeInfo(this.username).subscribe({
+    this.empInfoService.getEmployeeInfo(this.username, this.password).subscribe({
       next: (data) => {
         this.empInfo = data;
+
         // @ts-ignore
-        this.userID = this.empInfo["empId"] as string;
-        console.log("Emp Info: ", this.userID);
+        if(!this.empInfo["validLogin"])
+        {
+          console.log("Invalid Login");
+        }
+        else {
+          // @ts-ignore
+          this.userID = this.empInfo["empId"] as string;
+          console.log("Emp Info: ", this.userID);
+        }
       },
       error: (error) => {
         console.error(error);

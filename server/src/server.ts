@@ -1063,7 +1063,10 @@ ServerData.initialize()
 
     //================================= IGNORE THIS BUT DON'T DELETE =================================
     app.get('/emp-info', async(req, res) => {
-      const thisUsername = req.query.username;
+      const thisUsername = req.query.body;
+/*
+        const thisPassword = req.query.body[1];
+*/
       try{
         const user = await ServerData.getRepository(Employee).findOneBy({
           // @ts-ignore
