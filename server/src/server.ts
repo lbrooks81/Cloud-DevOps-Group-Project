@@ -1071,9 +1071,8 @@ ServerData.initialize()
         });
 
         let heresAnObjectB = {
-            employeeID: user?.employeeID,
-            email: user?.email
-        }
+            empId: user?.employeeID,
+        };
 
         res.json(heresAnObjectB);
       }
