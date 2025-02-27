@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {DatabaseTableComponent} from '../components/database-table/database-table.component';
 import {HeaderComponent} from '../components/header/header.component';
 import {FooterComponent} from '../components/footer/footer.component';
+import {Router} from '@angular/router';
+import {getCookie} from '../cookieShtuff';
 
 @Component({
   selector: 'app-database-view',
@@ -14,26 +16,16 @@ import {FooterComponent} from '../components/footer/footer.component';
   standalone: true,
   styleUrl: './database-view.component.css'
 })
-export class DatabaseViewComponent {
-/*  employees: EmployeeModel[] = [];
-  errorMessage: string = "";*/
+export class DatabaseViewComponent implements OnInit{
 
-/*
-  constructor(private empService: EmployeeService) {}
-*/
+  constructor(private router: Router ) {  }
 
   ngOnInit() {
     document.querySelector('.home-button')!.classList.add('d-none');
-    /*this.empService.getEmployees().subscribe({
-      next: (data) => {
-        this.employees = [...data];
-        console.log(this.employees);
 
-      },
-      error: (err) => {
-        this.errorMessage = 'Error fetching employees.';
-        console.error(`${this.errorMessage}`, err);
-      }
-    });*/
+    if(!getCookie('employee-info'))
+    {
+      this.router.navigate(['/login']);
+    }
   }
 }

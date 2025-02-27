@@ -1060,7 +1060,32 @@ ServerData.initialize()
       await vendorRepository.save(newVendor);
       res.json(newVendor);
     });
+
+    //================================= IGNORE THIS BUT DON'T DELETE =================================
+    app.get('/emp-info', async(req, res) => {
+      const thisUsername = req.query.username;
+      try{
+        const user = await ServerData.getRepository(Employee).findOneBy({
+          // @ts-ignore
+          username: thisUsername
+        });
+
+        let heresAnObjectB = {
+            employeeID: user?.employeeID,
+            email: user?.email
+        }
+
+        // @ts-ignore
+        res.json(heresAnObjectB);
+      }
+      catch (e) {
+        console.log(e);
+      }
+    });
   })
   .catch((error)=>{
     console.error("Error during data source initialization", error);
   });
+
+
+
