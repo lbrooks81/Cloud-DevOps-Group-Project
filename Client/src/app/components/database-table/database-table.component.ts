@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {PartModel} from '../../models/part.model';
 import {PartService} from '../../services/part.service';
 import {CompanyModel} from '../../models/company.model';
@@ -22,6 +22,8 @@ import {PlantService} from '../../services/plant.service';
 import {PurchasedPartService} from '../../services/purchased-part.service';
 import {RoleService} from '../../services/role.service';
 import {FormsModule} from '@angular/forms';
+import {getCookie, setCookie} from '../../cookieShtuff';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-database-table',
@@ -32,7 +34,7 @@ import {FormsModule} from '@angular/forms';
   standalone: true,
   styleUrl: './database-table.component.css'
 })
-export class DatabaseTableComponent {
+export class DatabaseTableComponent implements OnInit {
   companies: CompanyModel[] = [];
   departments: DepartmentModel[] = [];
   employees: EmployeeModel[] = [];
@@ -60,15 +62,14 @@ export class DatabaseTableComponent {
               private plantService: PlantService,
               private purchasedPartService: PurchasedPartService,
               private roleService: RoleService,
-              private vendorService: VendorService) {
-    // Whenever we initialize this conponent
-    // It gets these bitches
-
-
-  }
+              private vendorService: VendorService,
+              private router: Router
+  ) {}
 
   // Attach functionality to the initialization of the component.
   ngOnInit(): void{
+    setCookie('table-name', '');
+    setCookie('record-id', '');
     // Depending on table selection, display the database and then when it changes, call the correct function.
     this.getEmployees();
     this.getCompanies();
@@ -84,7 +85,6 @@ export class DatabaseTableComponent {
   }
 
   /*I have an array of objects. I need the name of every one of the keys*/
-
   setDataBeingViewed(event: Event){
     console.log("Selected Table", this.selectedTable); //
     this.attributes = this.getKeysFromArray();
@@ -97,6 +97,34 @@ export class DatabaseTableComponent {
       return Object.keys(this.selectedTable[0]);
     }
     return [];
+  }
+
+  getTableName(): string {
+    if (this.selectedTable === this.companies) return 'Companies';
+    if (this.selectedTable === this.departments) return 'Departments';
+    if (this.selectedTable === this.employees) return 'Employees';
+    if (this.selectedTable === this.microcomponents) return 'Micro Components';
+    if (this.selectedTable === this.orders) return 'Orders';
+    if (this.selectedTable === this.parts) return 'Parts';
+    if (this.selectedTable === this.permissionLevels) return 'Permission Levels';
+    if (this.selectedTable === this.plants) return 'Plants';
+    if (this.selectedTable === this.purchasedParts) return 'Purchased Parts';
+    if (this.selectedTable === this.roles) return 'Roles';
+    if (this.selectedTable === this.vendors) return 'Vendors';
+    return '';
+  }
+
+
+  onRowClick(record: any) {
+    const tableName = this.getTableName();
+    const recordId = record[this.attributes[0]];
+
+    setCookie('table-name', tableName);
+    setCookie('record-id', recordId);
+    console.log("Table name cookie:", getCookie('table-name'));
+    console.log("Record id cookie:", getCookie('record-id'));
+
+    this.router.navigate(['/record']);
   }
 
   /* I need to invent my own language where you can use variable values in variable names because this is ridiculous*/

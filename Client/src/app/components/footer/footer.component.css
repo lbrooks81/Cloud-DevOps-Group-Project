@@ -2,7 +2,6 @@
 #footer-dividend{
   width: 100vw;
   height: calc(var(--bottom-most-point) - 20px);
-
   border-top: 2px solid var(--dark-magenta);
   position: absolute;
   left: 0;
@@ -10,9 +9,6 @@
   color: var(--periwinkle);
   display: inline-flex;
   justify-content: space-between;
-}
-#copywrite{
-
 }
 #contact:hover{
   cursor: pointer;

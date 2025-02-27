@@ -10,6 +10,7 @@ export class PermissionLevelService {
   private apiUrl = 'https://localhost:3000/permission-levels';
 
   constructor(private http: HttpClient) { }
+
   getPermissionLevels(): Observable<PermissionLevelModel[]> {
     return this.http.get<PermissionLevelModel[]>(this.apiUrl);
   }
