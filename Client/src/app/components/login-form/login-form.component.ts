@@ -21,9 +21,9 @@ export class LoginFormComponent {
   public password: string = "";
 
   setEmployeeInformation(){
-/*
-    this.getUserInformation(this.username);
-*/
+
+    this.getUserInformation();
+
     // TODO verify login
     // TODO set user ID cookie
     // TODO navigate to database page.
@@ -35,8 +35,8 @@ export class LoginFormComponent {
   }
 
   async getUserInformation() {
-    /*let data = ((await this.octokit.request(`GET http://localhost:3000/emp-info?username=${encodeURIComponent(this.username)}`, {}))).data;
+    let data = ((await this.octokit.request(`GET http://localhost:3000/emp-info?username=${encodeURIComponent(this.username)}`, {}))).data;
     let employee: {} = [...data]
-    console.log(employee)*/
+    console.log(employee);
   } // TODO this returns errors
 }
