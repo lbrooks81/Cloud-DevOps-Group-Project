@@ -238,7 +238,7 @@ ServerData.initialize()
     // get all employees
     app.get('/employees', async(req,res) => {
       const employees = await ServerData.getRepository(Employee).find();
-      res.json(employees);
+      res.status(200).json(employees);
     });
 
     // get employee by id
