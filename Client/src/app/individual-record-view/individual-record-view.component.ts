@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {HeaderComponent} from '../components/header/header.component';
 import {FooterComponent} from '../components/footer/footer.component';
 import {RecordFormComponent} from '../components/record-form/record-form.component';
+import {getCookie} from '../cookieShtuff';
+import {Router} from '@angular/router';
 
 
 @Component({
@@ -15,6 +17,13 @@ import {RecordFormComponent} from '../components/record-form/record-form.compone
   standalone: true,
   styleUrl: './individual-record-view.component.css'
 })
-export class IndividualRecordViewComponent {
+export class IndividualRecordViewComponent implements OnInit{
 
+  constructor(private router: Router) {}
+  ngOnInit() {
+    if(!getCookie('employee-id'))
+    {
+      this.router.navigate(['/']);
+    }
+  }
 }

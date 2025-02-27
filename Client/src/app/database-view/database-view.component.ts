@@ -23,7 +23,7 @@ export class DatabaseViewComponent implements OnInit{
   ngOnInit() {
     document.querySelector('.home-button')!.classList.add('d-none');
 
-    if(!getCookie('employee-info'))
+    if(!getCookie('employee-id'))
     {
       this.router.navigate(['/login']);
     }
