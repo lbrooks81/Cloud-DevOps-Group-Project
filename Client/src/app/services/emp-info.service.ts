@@ -13,4 +13,5 @@ export class EmpInfoService {
   getEmployeeInfo(username: string): Observable<EmpInfoModel[]> {
     return this.http.get<EmpInfoModel[]>(`${this.apiUrl}?username=${username}`);
   }
+
 }
