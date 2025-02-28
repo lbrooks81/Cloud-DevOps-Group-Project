@@ -117,9 +117,9 @@ export class DatabaseTableComponent implements OnInit {
 
   onRowClick(record: any) {
     const tableName = this.getTableName();
-    const recordId = record[this.attributes[0]];
+    const recordId: string = record[this.attributes[0]];
 
-    setCookie('table-name', tableName);
+    setCookie('table-name', tableName.replace(/\s+/g, '-').toLowerCase());
     setCookie('record-id', recordId);
     console.log("Table name cookie:", getCookie('table-name'));
     console.log("Record id cookie:", getCookie('record-id'));
