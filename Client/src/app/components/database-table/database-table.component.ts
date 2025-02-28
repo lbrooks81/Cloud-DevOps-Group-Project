@@ -69,7 +69,7 @@ export class DatabaseTableComponent implements OnInit {
   // Attach functionality to the initialization of the component.
   ngOnInit(): void{
     setCookie('table-name', '');
-    setCookie('record-id', '');
+    setCookie('record', '');
     // Depending on table selection, display the database and then when it changes, call the correct function.
     this.getEmployees();
     this.getCompanies();
@@ -100,15 +100,15 @@ export class DatabaseTableComponent implements OnInit {
   }
 
   getTableName(): string {
-    if (this.selectedTable === this.companies) return 'Companies';
-    if (this.selectedTable === this.departments) return 'Departments';
-    if (this.selectedTable === this.employees) return 'Employees';
-    if (this.selectedTable === this.microcomponents) return 'Micro Components';
-    if (this.selectedTable === this.orders) return 'Orders';
-    if (this.selectedTable === this.parts) return 'Parts';
-    if (this.selectedTable === this.permissionLevels) return 'Permission Levels';
-    if (this.selectedTable === this.plants) return 'Plants';
-    if (this.selectedTable === this.purchasedParts) return 'Purchased Parts';
+    if (this.selectedTable === this.companies) return 'companies';
+    if (this.selectedTable === this.departments) return 'departments';
+    if (this.selectedTable === this.employees) return 'employees';
+    if (this.selectedTable === this.microcomponents) return 'micro-components';
+    if (this.selectedTable === this.orders) return 'orders';
+    if (this.selectedTable === this.parts) return 'parts';
+    if (this.selectedTable === this.permissionLevels) return 'permission-levels';
+    if (this.selectedTable === this.plants) return 'plants';
+    if (this.selectedTable === this.purchasedParts) return 'purchased-parts';
     if (this.selectedTable === this.roles) return 'Roles';
     if (this.selectedTable === this.vendors) return 'Vendors';
     return '';
@@ -116,13 +116,16 @@ export class DatabaseTableComponent implements OnInit {
 
 
   onRowClick(record: any) {
+    console.log(JSON.stringify(record));
+
+
     const tableName = this.getTableName();
-    const recordId: string = record[this.attributes[0]];
+    const recordString = JSON.stringify(record);
 
     setCookie('table-name', tableName.replace(/\s+/g, '-').toLowerCase());
-    setCookie('record-id', recordId);
+    setCookie('record', recordString);
     console.log("Table name cookie:", getCookie('table-name'));
-    console.log("Record id cookie:", getCookie('record-id'));
+    console.log("Record id cookie:", getCookie('record'));
 
     this.router.navigate(['/record']);
   }

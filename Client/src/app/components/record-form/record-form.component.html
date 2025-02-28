@@ -10,53 +10,58 @@
     } -->
 
     <form class="row g-3">
-      <div class="col-4">
-        <label for="product-code" class="form-label">Product Code</label>
-        <input class="form-control" id="product-code"
-               name="productCode">
-               <!--[(ngModel)]="modifiedProduct!.productCode"> -->
+      <div *ngFor="let key of this.recordKeys" class="col-4">
+        <label [for]="key" class="form-label">{{ key }}</label>
+        <input class="form-control" [id]="key" [name]="key" [value]="this.record[key]">
       </div>
+    </form>
+
+
+
+
+
+  <!--
       <div class="col-8">
         <label for="product-description" class="form-label">Product Description</label>
         <input class="form-control" id="product-description"
                name="description" >
-              <!-- [(ngModel)]="modifiedProduct!.description"> -->
+              &lt;!&ndash; [(ngModel)]="modifiedProduct!.description"> &ndash;&gt;
       </div>
       <div class="col-3">
         <label for="product-indate" class="form-label">Product Intake Date</label>
         <input class="form-control" id="product-indate"
                name="inDate" type="date" >
-                <!--[(ngModel)]="modifiedProduct!.inDate"> -->
+                &lt;!&ndash;[(ngModel)]="modifiedProduct!.inDate"> &ndash;&gt;
       </div>
       <div class="col-3">
         <label for="product-qoh" class="form-label">Product Quantity On Hand</label>
         <input class="form-control" id="product-qoh"
                name="quantityOnHand" type="number" min="0">
-               <!--[(ngModel)]="modifiedProduct!.quantityOnHand" -->
+               &lt;!&ndash;[(ngModel)]="modifiedProduct!.quantityOnHand" &ndash;&gt;
       </div>
       <div class="col-3">
         <label for="product-min" class="form-label">Product Minimum Stock</label>
         <input class="form-control" id="product-min"
                name="minimumQuantity" type="number" min="0">
-              <!-- [(ngModel)]="modifiedProduct!.minimumQuantity"> -->
+              &lt;!&ndash; [(ngModel)]="modifiedProduct!.minimumQuantity"> &ndash;&gt;
       </div>
       <div class="col-3">
         <label for="product-price" class="form-label">Product Price (USD)</label>
         <input class="form-control" id="product-price"
                name="price" type="number" min="0" step="0.01">
-              <!-- [(ngModel)]="modifiedProduct!.price" -->
+              &lt;!&ndash; [(ngModel)]="modifiedProduct!.price" &ndash;&gt;
       </div>
       <div class="col-3">
         <label for="product-discount" class="form-label">Product Price Discount</label>
         <input class="form-control" id="product-discount"
                name="discount" type="number" min="0" step="0.01">
-               <!-- [(ngModel)]="modifiedProduct!.discount" -->
+               &lt;!&ndash; [(ngModel)]="modifiedProduct!.discount" &ndash;&gt;
       </div>
       <div class="col-4">
         <label for="product-vendor" class="form-label">Product Vendor</label>
         <input class="form-control" id="product-vendor"
                name="vendorCode">
-              <!-- [(ngModel)]="modifiedProduct!.vendorCode" -->
+              &lt;!&ndash; [(ngModel)]="modifiedProduct!.vendorCode" &ndash;&gt;
       </div>
 
       <hr class="my-1" />
@@ -65,10 +70,10 @@
 
       <div>
         <button type="button" class="btn btn-success m-2"> Save or Create
-               <!-- (click)="saveChanges()">{{ isNewProduct ? 'Create Product' : 'Save Changes'}} --></button>
-       <!-- @if(!isNewProduct)
-        { -->
-          <button type="button" class="btn btn-danger m-2"> <!--(click)="deleteProduct()"-->Delete Product</button>
+               &lt;!&ndash; (click)="saveChanges()">{{ isNewProduct ? 'Create Product' : 'Save Changes'}} &ndash;&gt;</button>
+       &lt;!&ndash; @if(!isNewProduct)
+        { &ndash;&gt;
+          <button type="button" class="btn btn-danger m-2"> &lt;!&ndash;(click)="deleteProduct()"&ndash;&gt;Delete Product</button>
 
         <button type="button" class="btn btn-warning m-2">Discard Changes</button>
         <a routerLink="/database" routerLinkActive="active"
@@ -76,7 +81,7 @@
            class="btn btn-secondary m-2">Go Back</a>
       </div>
     </form>
-
+-->
 
     <div class="toast-container position-fixed bottom-0 end-0 p-3">
       <div id="toast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
