@@ -36,8 +36,7 @@ export class LoginFormComponent implements OnInit{
   }
 
   async getUserInformation() {
-    this.username = "";
-    this.password = "";
+
 
     this.empInfoService.getEmployeeInfo(this.username, this.password).subscribe({
       next: (data) => {
@@ -46,7 +45,8 @@ export class LoginFormComponent implements OnInit{
         // @ts-ignore
         if(!this.empInfo["validLogin"])
         {
-
+          this.username = "";
+          this.password = "";
           alert("Invalid Login");
         }
         else {
