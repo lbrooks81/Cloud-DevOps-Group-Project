@@ -37,7 +37,7 @@ import {Router} from '@angular/router';
 export class DatabaseTableComponent implements OnInit {
   companies: CompanyModel[] = [];
   departments: DepartmentModel[] = [];
-  employees: EmployeeModel[] = [];
+  employees: EmployeeModel[] = []; // Good
   microcomponents: MicrocomponentModel[] = [];
   orders: OrderModel[] = [];
   parts: PartModel[] = [];
@@ -218,7 +218,7 @@ export class DatabaseTableComponent implements OnInit {
     })
   }
   getPlants() {
-    this.plantService.getPlants().subscribe({
+    this.plantService.getPlants(this.empID).subscribe({
       next: (data) => {
         this.plants = [...data];
         console.log("Plants", this.plants);
@@ -230,7 +230,7 @@ export class DatabaseTableComponent implements OnInit {
     })
   }
   getPurchasedParts() {
-    this.purchasedPartService.getPurchasedParts().subscribe({
+    this.purchasedPartService.getPurchasedParts(this.empID).subscribe({
       next: (data) => {
         this.purchasedParts = [...data];
         console.log("Purchased Parts", this.purchasedParts);

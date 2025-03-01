@@ -9,10 +9,10 @@ import {Observable} from 'rxjs';
   providedIn: 'root'
 })
 export class PlantService {
-  private apiUrl = 'https://localhost:3000/plants';
+  private apiUrl = 'https://localhost:3000/myplant';
 
   constructor(private http: HttpClient) { }
-  getPlants(): Observable<PlantModel[]> {
-    return this.http.get<PlantModel[]>(this.apiUrl);
+  getPlants(id: number): Observable<PlantModel[]> {
+    return this.http.get<PlantModel[]>(`${this.apiUrl}/${id}`);
   }
 }

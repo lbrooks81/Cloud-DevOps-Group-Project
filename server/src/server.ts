@@ -1145,7 +1145,8 @@ ServerData.initialize()
         const employees = await ServerData.getRepository(Employee).find({
           where: {
             plantID: plantIdentification
-          }
+          },
+          select: ["employeeID", "firstName", "lastName", "email", "phoneNum", "plantID", "roleID", "departmentID"]
         });
         if(!employees)
         {
@@ -1159,9 +1160,86 @@ ServerData.initialize()
       }
     });
 
-    // Employees can view all the plants
+    // Employees can view only their plant - DONE
+    app.get('/myplant/:id', async(req, res) => {
+      // GET EMPLOYEE BY ID
+      const id = Number(req.params.id);
+      let plantIdentification: number | undefined;
+
+      const employee: Employee | null = await ServerData.getRepository(Employee).findOneBy({
+        employeeID: id
+      });
+
+      if(!employee)
+      {
+        res.status(404).json({
+          message: `Employee with ID ${id} not found`
+        });
+      }
+      else
+      {
+        plantIdentification = employee.plantID;
+        /*res.json(plantIdentification);*/
+      }
+
+      // GET PLANTS BY PLANT ID
+      if(plantIdentification) {
+        const plants = await ServerData.getRepository(Plant).find({
+          where: { plantId: plantIdentification }
+
+        });
+        if(!plants)
+        {
+          res.status(404).json({
+            message: 'Plant not found'
+          })
+        }
+        else{
+          res.json(plants);
+        }
+      }
+    });
 
     // Employees can only view purchased parts from their plant
+    app.get('/our-purchased-parts/:id', async(req, res) => {
+      // GET EMPLOYEE BY ID
+      const id = Number(req.params.id);
+      let plantIdentification: number | undefined;
+
+      const employee: Employee | null = await ServerData.getRepository(Employee).findOneBy({
+        employeeID: id
+      });
+
+      if(!employee)
+      {
+        res.status(404).json({
+          message: `Employee with ID ${id} not found`
+        });
+      }
+      else
+      {
+        plantIdentification = employee.plantID;
+        /*res.json(plantIdentification);*/
+      }
+
+      // GET PURCHASED PARTS BY PLANT ID
+      const purPart: PurchasedPart[] | null = await ServerData.getRepository(PurchasedPart).find({
+        where: {
+          plantID: plantIdentification
+        }
+      });
+
+      if(!purPart)
+      {
+        res.status(404).json({
+          message: `Purchased Parts with Plant ID ${plantIdentification} not found`
+        });
+      }
+      else
+      {
+        res.json(purPart);
+      }
+    });
     // Employees can only view parts from their plant
     // Employees can only view vendors that supplied parts in their plant
     // Employees can only view their own role
