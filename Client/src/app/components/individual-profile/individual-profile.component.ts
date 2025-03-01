@@ -1,24 +1,30 @@
-import { Component } from '@angular/core';
-import {NgOptimizedImage} from '@angular/common';
+import {Component, OnInit} from '@angular/core';
+import {AsyncPipe, NgOptimizedImage} from '@angular/common';
+import {EmployeeService} from '../../services/employee.service';
+import {EmployeeModel} from '../../models/employee.model';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-individual-profile',
   imports: [
-    NgOptimizedImage
+    NgOptimizedImage,
+    AsyncPipe
   ],
   templateUrl: './individual-profile.component.html',
   standalone: true,
   styleUrl: './individual-profile.component.css'
 })
-export class IndividualProfileComponent {
-  testData =
+export class IndividualProfileComponent  {
+
+  employeeData$!: Observable<EmployeeModel>;
+
+  constructor(private employeeService: EmployeeService)
     {
-      firstName: 'Valtor',
-      lastName: 'TheGreat',
-      role: 'Software Developer',
-      department: 'IT',
-      email: 'valtorthgreat@it.com',
-      phone: '123-456-7890',
-      username: 'ValtorTheGreat'
-    };
+
+    }
+
+    ngOnInit(): void {
+        this.employeeData$ = this.employeeService.getOneEmployee(100);
+    }
+
 }
