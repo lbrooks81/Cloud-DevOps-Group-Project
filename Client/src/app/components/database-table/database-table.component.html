@@ -2,17 +2,14 @@
   <select (change)="setDataBeingViewed($event)" [(ngModel)]="selectedTable"
           id="database-choice-dropdown" class="decorated h-75 form-select" aria-label="Default select example">
     <option selected>Choose Table</option>
-    <option [ngValue]="this.companies" value="1">Companies</option>
-    <option [ngValue]="this.departments" value="2">Departments</option>
-    <option [ngValue]="this.employees" value="3">Employees</option>
-    <option [ngValue]="this.microcomponents" value="4">Micro Components</option>
-    <option [ngValue]="this.orders" value="5">Orders</option>
-    <option [ngValue]="this.parts" value="6">Parts</option>
-    <option [ngValue]="this.permissionLevels" value="7">Permission Levels</option>
-    <option [ngValue]="this.plants" value="8">Plants</option>
-    <option [ngValue]="this.purchasedParts" value="9">Purchased Parts</option>
-    <option [ngValue]="this.roles" value="10">Roles</option>
-    <option [ngValue]="this.vendors" value="11">Vendor</option>
+    <option [ngValue]="this.departments" value="1">Departments</option>
+    <option [ngValue]="this.employees" value="2">Employees</option>
+    <option [ngValue]="this.parts" value="3">Parts</option>
+    <option [ngValue]="this.permissionLevels" value="4">Permission Levels</option>
+    <option [ngValue]="this.plants" value="5">Plants</option>
+    <option [ngValue]="this.purchasedParts" value="6">Purchased Parts</option>
+    <option [ngValue]="this.roles" value="7">Roles</option>
+    <option [ngValue]="this.vendors" value="8">Vendors</option>
   </select>
 </div>
 

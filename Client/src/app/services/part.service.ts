@@ -7,11 +7,11 @@ import {PartModel} from '../models/part.model';
   providedIn: 'root'
 })
 export class PartService {
-  private apiUrl = 'https://localhost:3000/parts';
+  private apiUrl = 'https://localhost:3000/our-parts';
   constructor(private http: HttpClient) { }
 
-  getParts(): Observable<PartModel[]> {
-    return this.http.get<PartModel[]>(this.apiUrl);
+  getParts(id: number): Observable<PartModel[]> {
+    return this.http.get<PartModel[]>(`${this.apiUrl}/${id}`);
   }
 }
 /*

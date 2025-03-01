@@ -11,5 +11,5 @@ class Roles
   roleTitle!: string;
 
   @Column({name: 'PL_ID', type: 'int'})
-  plantId!: number;
+  permissionLevelId!: number;
 }

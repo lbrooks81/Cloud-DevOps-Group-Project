@@ -7,10 +7,10 @@ import {VendorModel} from '../models/vendor.model';
   providedIn: 'root'
 })
 export class VendorService {
-  private apiUrl = 'https://localhost:3000/vendors';
+  private apiUrl = 'https://localhost:3000/our-vendors';
 
   constructor(private http: HttpClient) { }
-  getVendors(): Observable<VendorModel[]>{
-    return this.http.get<VendorModel[]>(this.apiUrl);
+  getVendors(id: number): Observable<VendorModel[]>{
+    return this.http.get<VendorModel[]>(`${this.apiUrl}/${id}`);
   }
 }
