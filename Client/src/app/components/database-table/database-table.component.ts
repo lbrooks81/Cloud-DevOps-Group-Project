@@ -69,7 +69,9 @@ export class DatabaseTableComponent implements OnInit {
     this.getPurchasedParts();
     this.getRoles();
     this.getVendors();
+    // When the component loads, choose Employees from the drop down TODO
   }
+
 
   /*I have an array of objects. I need the name of every one of the keys*/
   setDataBeingViewed(event: Event){

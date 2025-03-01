@@ -109,11 +109,13 @@ select{
 
 tr:nth-child(2n) td{
   background-color: var(--indigogo);
+  cursor: pointer;
 }
 
 tr:nth-child(4n) td{
   background-color: var(--periwinkle);
   color: var(--midnight);
+  cursor: pointer;
 }
 
 select, input{
