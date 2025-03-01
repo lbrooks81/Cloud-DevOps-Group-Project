@@ -1,15 +1,18 @@
 <div class="info">
+  @if(employeeData$ | async; as employeeData)
+  {
   <div>
     <div id="whole-name" class="readable name">
-      <p id="last-name">{{ testData.lastName }}, {{ testData.firstName }}</p>
+      <p id="last-name">{{ employeeData.empLastName }}, {{ employeeData.empFirstName }}</p>
     </div>
-    <p id="role-title" class="readable">Role: {{ testData.role }}</p>
-    <p id="department-name" class="readable">Department: {{ testData.department }}</p>
+    <p id="role-title" class="readable">Role: {{ employeeData.roleId }}</p>
+    <p id="department-name" class="readable">Department: {{ employeeData.deptId }}</p>
   </div>
   <div class="emp">
     <img id="profile-pic" alt="user profile pic" ngSrc="/place-holder.png" height="240" width="240"/>
-    <p id="emp-username" class="readable">Username: {{ testData.username }}</p>
-    <p id="emp-email" class="readable">Email: {{ testData.email }}</p>
-    <p id="emp-phone" class="readable">Phone: {{ testData.phone }}</p>
+    <p id="emp-username" class="readable">Username: {{ employeeData.empUsername }}</p>
+    <p id="emp-email" class="readable">Email: {{ employeeData.empEmail }}</p>
+    <p id="emp-phone" class="readable">Phone: {{ employeeData.empPhoneNum }}</p>
   </div>
+    }
 </div>

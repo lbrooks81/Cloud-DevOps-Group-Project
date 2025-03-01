@@ -12,4 +12,11 @@ export class EmployeeService {
   getEmployees(): Observable<EmployeeModel[]> {
     return this.http.get<EmployeeModel[]>(this.apiUrl);
   }
+
+  getOneEmployee(id: number): Observable<EmployeeModel>
+  {
+    return this.http.get<EmployeeModel>(`${this.apiUrl}/${id}`);
+  }
+
 }
+
