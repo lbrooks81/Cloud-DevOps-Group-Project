@@ -1,9 +1,6 @@
 import {DataSource} from 'typeorm';
 import {Department} from './entities/department';
 import {Plant} from './entities/plant';
-import {MicroComponent} from './entities/micro-component';
-import {Company} from './entities/company';
-import {Orders} from './entities/orders';
 import {PermissionLevel} from './entities/permission-level';
 import {Roles} from './entities/roles';
 import {Vendor} from './entities/vendor';
@@ -23,7 +20,7 @@ const ServerData = new DataSource({
   database: 'DevOps239',
   synchronize: false,
   logging: true,
-  entities: [Employee, Department, Plant, MicroComponent, Company, Orders, PermissionLevel, Roles, Vendor, Part, PurchasedPart],
+  entities: [Employee, Department, Plant, PermissionLevel, Roles, Vendor, Part, PurchasedPart],
   subscribers: [],
   migrations: []
 });
