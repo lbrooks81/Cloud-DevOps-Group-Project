@@ -206,7 +206,7 @@ export class DatabaseTableComponent implements OnInit {
     })
   }
   getPermissionLevels() {
-    this.permissionLevelService.getPermissionLevels().subscribe({
+    this.permissionLevelService.getPermissionLevels(this.empID).subscribe({
       next: (data) => {
         this.permissionLevels = [...data];
         console.log("Permission Levels", this.permissionLevels);

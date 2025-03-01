@@ -1402,7 +1402,51 @@ ServerData.initialize()
     });
 
 
-    // Employees can only view their own permission level
+    // Employees can only view their own permission level - DONE
+    app.get('/my-permission-level/:id', async(req, res) => {
+      const id = Number(req.params.id);
+      const employee: Employee | null = await ServerData.getRepository(Employee).findOneBy({
+        employeeID: id
+      });
+      if(!employee)
+      {
+        res.status(404).json({
+          message: `Employee with ID ${id} not found`
+        });
+      }
+      else{
+        const emp_roleID = employee.roleID;
+        const role: Roles | null = await ServerData.getRepository(Roles).findOneBy({
+          roleId: emp_roleID
+        });
+
+        if(!role)
+        {
+          res.status(404).json({
+            message: `Role with ID ${emp_roleID} not found`
+          });
+        }
+        else{
+          /*res.json([role]);*/
+            const role_permissionLevelID = role.permissionLevelId;
+            const permissionLevel: PermissionLevel | null = await ServerData.getRepository(PermissionLevel).findOneBy({
+              permissionLevelID: role_permissionLevelID
+            });
+
+            if(!permissionLevel)
+            {
+              res.status(404).json({
+                message: `Permission Level with ID ${role_permissionLevelID} not found`
+              });
+            }
+            else{
+              res.json([permissionLevel]);
+            }
+        }
+      }
+
+    });
+
     // Employees can view departments with employees from their plant.
   })
   .catch((error)=>{
