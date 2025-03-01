@@ -35,11 +35,6 @@ export class LoginFormComponent implements OnInit{
   async setEmployeeInformation() {
 
     await this.getUserInformation();
-
-    // TODO verify login - Nick Q
-
-    setCookie('employee-id', 'this.userID');
-    this.router.navigate(['/database']);
   }
 
   async getUserInformation() {
@@ -56,6 +51,8 @@ export class LoginFormComponent implements OnInit{
           // @ts-ignore
           this.userID = this.empInfo["empId"] as string;
           console.log("Emp Info: ", this.userID);
+          setCookie('employee-id', this.userID.toString());
+          this.router.navigate(['/database']);
         }
       },
       error: (error) => {
