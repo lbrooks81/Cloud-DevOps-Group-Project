@@ -1,14 +1,14 @@
 export interface EmployeeModel {
-  empId: number;
-  empFirstName: string;
-  empLastName: string;
-  empEmail: string | null;
-  empUsername: string | null;
-  empHash: string | null;
-  empPhoneNum: number | null;
-  plantId: number | null;
-  roleId: number;
-  deptId: number;
+  employeeID: number;
+  firstName: string;
+  lastName: string;
+  email: string | null;
+  username: string | null;
+  password: string | null;
+  phoneNum: number | null;
+  plantID: number | null;
+  roleID: number;
+  departmentID: number;
 }
 
 /*
