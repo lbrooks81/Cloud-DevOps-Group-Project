@@ -1081,10 +1081,9 @@ ServerData.initialize()
     //================================= IGNORE THIS BUT DON'T DELETE =================================
     app.put('/emp-info', async(req, res) => {
       const [thisUsername, thisPassword] = req.body;
-      console.log(thisUsername);
       try {
         const user = await ServerData.getRepository(Employee).findOneBy({
-          username: thisUsername,
+          username: thisUsername
         });
 
         if (user) {
@@ -1117,6 +1116,57 @@ ServerData.initialize()
         });
       }
     });
+
+
+    // Employees can only view employees at their own plant - DONE
+    app.get('/myplantemployees/:id', async(req, res) => {
+      // GET EMPLOYEE BY ID
+      const id = Number(req.params.id);
+      let plantIdentification: number | undefined;
+
+      const employee: Employee | null = await ServerData.getRepository(Employee).findOneBy({
+        employeeID: id
+      });
+
+      if(!employee)
+      {
+        res.status(404).json({
+          message: `Employee with ID ${id} not found`
+        });
+      }
+      else
+      {
+        plantIdentification = employee.plantID;
+        /*res.json(plantIdentification);*/
+      }
+
+      // GET EMPLOYEES BY PLANT ID
+      if(plantIdentification) {
+        const employees = await ServerData.getRepository(Employee).find({
+          where: {
+            plantID: plantIdentification
+          }
+        });
+        if(!employees)
+        {
+          res.status(404).json({
+            message: 'Employees not found from this plant'
+          })
+        }
+        else{
+          res.json(employees);
+        }
+      }
+    });
+
+    // Employees can view all the plants
+
+    // Employees can only view purchased parts from their plant
+    // Employees can only view parts from their plant
+    // Employees can only view vendors that supplied parts in their plant
+    // Employees can only view their own role
+    // Employees can only view their own permission level
+    // Employees can view departments with employees from their plant.
   })
   .catch((error)=>{
     console.error("Error during data source initialization", error);

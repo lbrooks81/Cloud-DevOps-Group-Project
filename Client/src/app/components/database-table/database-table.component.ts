@@ -46,6 +46,7 @@ export class DatabaseTableComponent implements OnInit {
   purchasedParts: PurchasedPartModel[] = [];
   roles: RoleModel[] = [];
   vendors: VendorModel[] = [];
+  empID: number = 0;
 
   selectedTable: any[] = [];
   attributes: string[] = [];
@@ -70,6 +71,7 @@ export class DatabaseTableComponent implements OnInit {
   ngOnInit(): void{
     setCookie('table-name', '');
     setCookie('record', '');
+    this.empID = parseInt(getCookie('employee-id'));
     // Depending on table selection, display the database and then when it changes, call the correct function.
     this.getEmployees();
     this.getCompanies();
@@ -156,7 +158,7 @@ export class DatabaseTableComponent implements OnInit {
     })
   }
   getEmployees() {
-    this.employeeService.getEmployees().subscribe({
+    this.employeeService.getEmployees(this.empID).subscribe({
       next: (data) => {
         this.employees = [...data];
         console.log("Employees", this.employees);
