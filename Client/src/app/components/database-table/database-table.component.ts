@@ -194,7 +194,7 @@ export class DatabaseTableComponent implements OnInit {
     })
   }
   getParts() {
-    this.partService.getParts().subscribe({
+    this.partService.getParts(this.empID).subscribe({
       next: (data) => {
         this.parts = [...data];
         console.log("Parts", this.parts);
@@ -242,7 +242,7 @@ export class DatabaseTableComponent implements OnInit {
     })
   }
   getRoles() {
-    this.roleService.getRoles().subscribe({
+    this.roleService.getRoles(this.empID).subscribe({
       next: (data) => {
         this.roles = [...data];
         console.log("Roles", this.roles);
@@ -254,7 +254,7 @@ export class DatabaseTableComponent implements OnInit {
     })
   }
   getVendors() {
-    this.vendorService.getVendors().subscribe({
+    this.vendorService.getVendors(this.empID).subscribe({
       next: (data) => {
         this.vendors = [...data];
         console.log("Vendors", this.vendors);

@@ -16,6 +16,7 @@ import {Roles} from './entities/roles';
 import fs from "fs";
 import https from "https";
 import bcrypt from "bcrypt";
+import {In} from "typeorm";
 
 
 const app = express();
@@ -1200,7 +1201,7 @@ ServerData.initialize()
       }
     });
 
-    // Employees can only view purchased parts from their plant
+    // Employees can only view purchased parts from their plant - DONE
     app.get('/our-purchased-parts/:id', async(req, res) => {
       // GET EMPLOYEE BY ID
       const id = Number(req.params.id);
@@ -1240,9 +1241,167 @@ ServerData.initialize()
         res.json(purPart);
       }
     });
-    // Employees can only view parts from their plant
-    // Employees can only view vendors that supplied parts in their plant
-    // Employees can only view their own role
+
+    // Employees can only view parts from their plant - DONE
+    app.get('/our-parts/:id', async(req, res) => {
+      // GET EMPLOYEE BY ID
+      const id = Number(req.params.id);
+      let plantIdentification: number | undefined;
+
+      const employee: Employee | null = await ServerData.getRepository(Employee).findOneBy({
+        employeeID: id
+      });
+
+      if(!employee)
+      {
+        res.status(404).json({
+          message: `Employee with ID ${id} not found`
+        });
+      }
+      else
+      {
+        plantIdentification = employee.plantID;
+        /*res.json(plantIdentification);*/
+      }
+
+      // GET PURCHASED PARTS BY PLANT ID
+      const purPart: PurchasedPart[] | null = await ServerData.getRepository(PurchasedPart).find({
+        where: {
+          plantID: plantIdentification
+        }
+      });
+
+      if(!purPart)
+      {
+        res.status(404).json({
+          message: `Purchased Parts with Plant ID ${plantIdentification} not found`
+        });
+      }
+      else
+      {
+        const partIDs: number[] = purPart.map((part) => part.partID);
+        /*res.json(purPart);*/
+        const parts: Part[] | null = await ServerData.getRepository(Part).find({
+          where: {
+            partId: In(partIDs)
+          }
+        });
+
+        if (!parts) {
+          res.status(404).json({
+            message: `Parts with Plant ID ${plantIdentification} not found`
+          });
+        }
+        else{
+          res.json(parts);
+        }
+      }
+    });
+
+    // Employees can only view vendors that supplied parts in their plant - DONE
+    app.get('/our-vendors/:id', async(req, res) => {
+      // GET EMPLOYEE BY ID
+      const id = Number(req.params.id);
+      let plantIdentification: number | undefined;
+
+      const employee: Employee | null = await ServerData.getRepository(Employee).findOneBy({
+        employeeID: id
+      });
+
+      if(!employee)
+      {
+        res.status(404).json({
+          message: `Employee with ID ${id} not found`
+        });
+      }
+      else
+      {
+        plantIdentification = employee.plantID;
+        /*res.json(plantIdentification);*/
+      }
+
+      // GET PURCHASED PARTS BY PLANT ID
+      const purPart: PurchasedPart[] | null = await ServerData.getRepository(PurchasedPart).find({
+        where: {
+          plantID: plantIdentification
+        }
+      });
+
+      if(!purPart)
+      {
+        res.status(404).json({
+          message: `Purchased Parts with Plant ID ${plantIdentification} not found`
+        });
+      }
+      else
+      {
+        const partIDs: number[] = purPart.map((part) => part.partID);
+        /*res.json(purPart);*/
+        const parts: Part[] | null = await ServerData.getRepository(Part).find({
+          where: {
+            partId: In(partIDs)
+          }
+        });
+
+        if (!parts) {
+          res.status(404).json({
+            message: `Parts with Plant ID ${plantIdentification} not found`
+          });
+        }
+        else{
+          /*res.json(parts);*/
+            const vendorIDs: (number | null)[] = parts.map((part) => part.vendorId);
+            const vendors: Vendor[] | null = await ServerData.getRepository(Vendor).find({
+              where: {
+                vendorID: In(vendorIDs)
+              }
+            });
+
+            if(!vendors)
+            {
+              res.status(404).json({
+                message: `Vendors with Plant ID ${plantIdentification} not found`
+              });
+            }
+            else{
+              res.json(vendors);
+            }
+        }
+      }
+    });
+
+    // Employees can only view their own role - DONE
+    app.get('/my-role/:id', async(req, res) => {
+      const id = Number(req.params.id);
+      const employee: Employee | null = await ServerData.getRepository(Employee).findOneBy({
+        employeeID: id
+      });
+      if(!employee)
+      {
+        res.status(404).json({
+            message: `Employee with ID ${id} not found`
+        });
+      }
+      else{
+        const emp_roleID = employee.roleID;
+        const role: Roles | null = await ServerData.getRepository(Roles).findOneBy({
+          roleId: emp_roleID
+        });
+
+        if(!role)
+        {
+          res.status(404).json({
+            message: `Role with ID ${emp_roleID} not found`
+          });
+        }
+        else{
+          res.json([role]);
+        }
+      }
+
+    });
+
+
     // Employees can only view their own permission level
     // Employees can view departments with employees from their plant.
   })
