@@ -1,22 +1,16 @@
 import {Component, OnInit} from '@angular/core';
 import {PartModel} from '../../models/part.model';
 import {PartService} from '../../services/part.service';
-import {CompanyModel} from '../../models/company.model';
 import {DepartmentModel} from '../../models/department.model';
 import {EmployeeModel} from '../../models/employee.model';
-import {MicrocomponentModel} from '../../models/microcomponent.model';
-import {OrderModel} from '../../models/order.model';
 import {PermissionLevelModel} from '../../models/permission-level.model';
 import {PlantModel} from '../../models/plant.model';
 import {PurchasedPartModel} from '../../models/purchased-part.model';
 import {RoleModel} from '../../models/role.model';
 import {VendorModel} from '../../models/vendor.model';
 import {VendorService} from '../../services/vendor.service';
-import {CompanyService} from '../../services/company.service';
 import {DepartmentService} from '../../services/department.service';
 import {EmployeeService} from '../../services/employee.service';
-import {MicrocomponentService} from '../../services/microcomponent.service';
-import {OrderService} from '../../services/order.service';
 import {PermissionLevelService} from '../../services/permission-level.service';
 import {PlantService} from '../../services/plant.service';
 import {PurchasedPartService} from '../../services/purchased-part.service';
@@ -35,11 +29,8 @@ import {Router} from '@angular/router';
   styleUrl: './database-table.component.css'
 })
 export class DatabaseTableComponent implements OnInit {
-  companies: CompanyModel[] = [];
   departments: DepartmentModel[] = [];
-  employees: EmployeeModel[] = [];
-  microcomponents: MicrocomponentModel[] = [];
-  orders: OrderModel[] = [];
+  employees: EmployeeModel[] = []; // Good
   parts: PartModel[] = [];
   permissionLevels: PermissionLevelModel[] = [];
   plants: PlantModel[] = [];
@@ -53,11 +44,8 @@ export class DatabaseTableComponent implements OnInit {
   errorMessage: string = '';
 
   // We inject services via a constructor.
-  constructor(private companyService: CompanyService,
-              private departmentService: DepartmentService,
+  constructor(private departmentService: DepartmentService,
               private employeeService: EmployeeService,
-              private microcomponentService: MicrocomponentService,
-              private orderService: OrderService,
               private partService: PartService,
               private permissionLevelService: PermissionLevelService,
               private plantService: PlantService,
@@ -74,10 +62,7 @@ export class DatabaseTableComponent implements OnInit {
     this.empID = parseInt(getCookie('employee-id'));
     // Depending on table selection, display the database and then when it changes, call the correct function.
     this.getEmployees();
-    this.getCompanies();
     this.getDepartments();
-    this.getMicrocomponents();
-    this.getOrders();
     this.getParts();
     this.getPermissionLevels();
     this.getPlants();
@@ -102,11 +87,8 @@ export class DatabaseTableComponent implements OnInit {
   }
 
   getTableName(): string {
-    if (this.selectedTable === this.companies) return 'companies';
     if (this.selectedTable === this.departments) return 'departments';
     if (this.selectedTable === this.employees) return 'employees';
-    if (this.selectedTable === this.microcomponents) return 'micro-components';
-    if (this.selectedTable === this.orders) return 'orders';
     if (this.selectedTable === this.parts) return 'parts';
     if (this.selectedTable === this.permissionLevels) return 'permission-levels';
     if (this.selectedTable === this.plants) return 'plants';
@@ -132,21 +114,9 @@ export class DatabaseTableComponent implements OnInit {
     this.router.navigate(['/record']);
   }
 
-  /* I need to invent my own language where you can use variable values in variable names because this is ridiculous*/
-  getCompanies() {
-    this.companyService.getCompanies().subscribe({
-      next: (data) => {
-        this.companies = [...data];
-        console.log("Companies", this.companies);
-      },
-      error:(error) => {
-        this.errorMessage = 'Error fetching companies';
-        console.error(`${this.errorMessage}`, error);
-      }
-    })
-  }
+
   getDepartments() {
-    this.departmentService.getDepartments().subscribe({
+    this.departmentService.getDepartments(this.empID).subscribe({
       next: (data) => {
         this.departments = [...data];
         console.log("Departments", this.departments);
@@ -169,32 +139,10 @@ export class DatabaseTableComponent implements OnInit {
       }
     })
   }
-  getMicrocomponents() {
-    this.microcomponentService.getMicrocomponents().subscribe({
-      next: (data) => {
-        this.microcomponents = [...data];
-        console.log("Microcomponents", this.microcomponents);
-      },
-      error:(error) => {
-        this.errorMessage = 'Error fetching microcomponents';
-        console.error(`${this.errorMessage}`, error);
-      }
-    })
-  }
-  getOrders() {
-    this.orderService.getOrders().subscribe({
-      next: (data) => {
-        this.orders = [...data];
-        console.log("Orders", this.orders);
-      },
-      error:(error) => {
-        this.errorMessage = 'Error fetching orders';
-        console.error(`${this.errorMessage}`, error);
-      }
-    })
-  }
+
+
   getParts() {
-    this.partService.getParts().subscribe({
+    this.partService.getParts(this.empID).subscribe({
       next: (data) => {
         this.parts = [...data];
         console.log("Parts", this.parts);
@@ -206,7 +154,7 @@ export class DatabaseTableComponent implements OnInit {
     })
   }
   getPermissionLevels() {
-    this.permissionLevelService.getPermissionLevels().subscribe({
+    this.permissionLevelService.getPermissionLevels(this.empID).subscribe({
       next: (data) => {
         this.permissionLevels = [...data];
         console.log("Permission Levels", this.permissionLevels);
@@ -218,7 +166,7 @@ export class DatabaseTableComponent implements OnInit {
     })
   }
   getPlants() {
-    this.plantService.getPlants().subscribe({
+    this.plantService.getPlants(this.empID).subscribe({
       next: (data) => {
         this.plants = [...data];
         console.log("Plants", this.plants);
@@ -230,7 +178,7 @@ export class DatabaseTableComponent implements OnInit {
     })
   }
   getPurchasedParts() {
-    this.purchasedPartService.getPurchasedParts().subscribe({
+    this.purchasedPartService.getPurchasedParts(this.empID).subscribe({
       next: (data) => {
         this.purchasedParts = [...data];
         console.log("Purchased Parts", this.purchasedParts);
@@ -242,7 +190,7 @@ export class DatabaseTableComponent implements OnInit {
     })
   }
   getRoles() {
-    this.roleService.getRoles().subscribe({
+    this.roleService.getRoles(this.empID).subscribe({
       next: (data) => {
         this.roles = [...data];
         console.log("Roles", this.roles);
@@ -254,7 +202,7 @@ export class DatabaseTableComponent implements OnInit {
     })
   }
   getVendors() {
-    this.vendorService.getVendors().subscribe({
+    this.vendorService.getVendors(this.empID).subscribe({
       next: (data) => {
         this.vendors = [...data];
         console.log("Vendors", this.vendors);

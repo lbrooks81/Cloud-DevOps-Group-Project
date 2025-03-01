@@ -2,20 +2,18 @@ import express from "express"
 import cors from 'cors';
 import bodyParser from "body-parser";
 import {ServerData} from "./data-source";
-import {Company} from './entities/company';
 import {Employee} from './entities/employee';
 import {PurchasedPart} from './entities/purchased-part';
 import {PermissionLevel} from './entities/permission-level';
 import {Plant} from './entities/plant';
 import {Vendor} from './entities/vendor';
 import {Department} from './entities/department';
-import {MicroComponent} from './entities/micro-component';
 import {Part} from './entities/part';
-import {Orders} from './entities/orders';
 import {Roles} from './entities/roles';
 import fs from "fs";
 import https from "https";
 import bcrypt from "bcrypt";
+import {In} from "typeorm";
 
 
 const app = express();
@@ -45,101 +43,6 @@ app.use(function(req, res, next) {
 ServerData.initialize()
   .then(()=>{
     console.log("Data source has been initialized");
-//================================= COMPANY =================================
-    // pass into void function request and response
-    // get all companies
-    app.get('/companies', async (req, res)=> {
-      const companies = await ServerData.getRepository(Company).find();
-      res.json(companies);
-    });
-
-    // get company by id
-    app.get('/companies/:id', async(req,res) =>
-    {
-      const id = Number(req.params.id);
-      console.log(id);
-
-      const company = await ServerData.getRepository(Company).findOneBy({
-        companyID: id
-      });
-
-      if(!company)
-      {
-        res.status(404).json({
-          message: `Company with ID ${id} not found`
-        });
-      }
-      else
-      {
-        res.json(company);
-      }
-    });
-
-    // update a specific company based on an id
-    app.put('/companies/:id', async(req,res) => {
-      const id = Number(req.params.id);
-      const companyData = req.body;
-
-      const companyRepository = ServerData.getRepository(Company);
-      const company = await companyRepository.findOneBy({
-        companyID: id
-      });
-
-      if(!company)
-      {
-        res.status(404).json({
-          message: `Company with ID ${id} not found`
-        });
-      }
-      else
-      {
-        company.companyName = companyData.companyName;
-        company.companyLocation = companyData.companyLocation;
-
-        await companyRepository.save(company);
-
-        res.json(company);
-      }
-    });
-
-    // delete a specific company based on an id
-    app.delete('/companies/:id', async(req,res) => {
-      const id = Number(req.params.id);
-      const companyRepository = ServerData.getRepository(Company);
-      const company = await companyRepository.findOneBy({
-        companyID: id
-      });
-
-      if(!company)
-      {
-        res.status(404).json({
-          message: `Company with ID ${id} not found`
-        });
-      }
-      else
-      {
-        await companyRepository.delete(company);
-        res.json({
-          message: `Company with ID ${id} has been deleted`
-        });
-      }
-    });
-
-    // create a new company
-    app.post('/companies', async(req,res) => {
-      const companyData = req.body;
-
-      const companyRepository = ServerData.getRepository(Company);
-      const newCompany = companyRepository.create({
-        companyID: companyData.companyID,
-        companyName: companyData.companyName,
-        companyLocation: companyData.companyLocation
-      });
-
-      await companyRepository.save(newCompany);
-
-      res.json(newCompany);
-    });
 
     //================================= DEPARTMENT =================================
 
@@ -451,191 +354,6 @@ ServerData.initialize()
       res.json(newPurchasedPart);
     });
 
-    //================================= MICRO COMPONENT =================================
-
-    // get all micro components
-    app.get('/micro-components', async(req,res) => {
-      const microComponents = await ServerData.getRepository(MicroComponent).find();
-      res.json(microComponents);
-    });
-
-    // get micro component by id
-    app.get('/micro-components/:id', async(req,res) => {
-      const id = Number(req.params.id);
-
-      const microComponent = await ServerData.getRepository(MicroComponent).findOneBy({
-        microComponentSKU: id
-      });
-
-      if(!microComponent)
-      {
-        res.status(404).json({
-          message: `Micro Component with ID ${id} not found`
-        });
-      }
-      else
-      {
-        res.json(microComponent);
-      }
-    });
-
-    // update a specific micro component based on an id
-
-    app.put('/micro-components/:id', async(req,res) => {
-      const id = Number(req.params.id);
-      const microComponentData = req.body;
-
-      const microComponentRepository = ServerData.getRepository(MicroComponent);
-      const microComponent = await microComponentRepository.findOneBy({
-        microComponentSKU: id
-      });
-
-      if(!microComponent)
-      {
-        res.status(404).json({
-          message: `Micro Component with ID ${id} not found`
-        });
-      }
-      else
-      {
-        microComponent.microComponentSKU = microComponentData.microComponentSKU;
-        microComponent.microComponentName = microComponentData.microComponentName;
-        microComponent.microComponentDescript = microComponentData.microComponentDescript;
-        microComponent.microComponentCost = microComponentData.microComponentCost;
-        microComponent.microComponentQoh = microComponentData.microComponentQoh;
-
-        await microComponentRepository.save(microComponent);
-        res.json(microComponent);
-      }
-    });
-
-    // delete a specific micro component based on an id
-    app.delete('/micro-components/:id', async(req,res) => {
-      const SKU = Number(req.params.id);
-      const microComponentRepository = ServerData.getRepository(MicroComponent);
-      const microComponent = await ServerData.getRepository(MicroComponent).findOne({
-        where: {
-          microComponentSKU: SKU
-        }
-      });
-
-      if(!microComponent)
-      {
-        res.status(404).json({
-          message: `Micro Component with ID ${SKU} not found`
-        });
-      }
-      else
-      {
-        await microComponentRepository.delete({ microComponentSKU: SKU });
-        res.json({
-          message: `Micro Component with ID ${SKU} has been deleted`
-        });
-      }
-    });
-
-    //================================= ORDERS =================================
-    // if you need help getting the composite key to work, take a look at PURCHASED PART
-
-    // get all orders
-    app.get('/orders', async(req,res) => {
-      const orders = await ServerData.getRepository(Orders).find();
-      res.json(orders);
-    });
-
-    // get order by composite key {microComponentSKU, companyId}
-    app.get('/orders/:microComponentSKU/:companyId', async(req,res) => {
-      const microComponentSKU = Number(req.params.microComponentSKU);
-      const companyId = Number(req.params.companyId);
-
-      const order = await ServerData.getRepository(Orders).findOneBy({
-        microComponentSKU: microComponentSKU,
-        companyId: companyId
-      });
-
-      if(!order)
-      {
-        res.status(404).json({
-          message: `Order with Micro Component SKU ${microComponentSKU} and Company ID ${companyId} not found`
-        });
-      }
-      else
-      {
-        res.json(order);
-      }
-    });
-
-    // update a specific order based on an id
-    app.put('/orders/:microComponentSKU/:companyId', async(req,res) => {
-      const microComponentSKU = Number(req.params.microComponentSKU);
-      const companyId = Number(req.params.companyId);
-      const orderData = req.body;
-
-      const orderRepository = ServerData.getRepository(Orders);
-      const order = await ServerData.getRepository(Orders).findOneBy({
-        microComponentSKU: microComponentSKU,
-        companyId: companyId
-      });
-
-      if(!order)
-      {
-        res.status(404).json({
-          message: `Order with Micro Component SKU ${microComponentSKU} and Company ID ${companyId} not found`
-        });
-      }
-      else
-      {
-        order.microComponentSKU = orderData.microComponentSKU;
-        order.companyId = orderData.companyId;
-        order.orderDate = orderData.orderDate;
-        order.orderQuantity = orderData.orderQuantity;
-
-        await orderRepository.save(order);
-        res.json(order);
-      }
-    });
-
-    // delete a specific order based on an id
-    app.delete('/orders/:microComponentSKU/:companyId', async(req,res) => {
-      const microComponentSKU = Number(req.params.microComponentSKU);
-      const companyId = Number(req.params.companyId);
-
-      const orderRepository = ServerData.getRepository(Orders);
-      const order = await ServerData.getRepository(Orders).findOneBy({
-        microComponentSKU: microComponentSKU,
-        companyId: companyId
-      });
-
-      if(!order)
-      {
-        res.status(404).json({
-          message: `Order with Micro Component SKU ${microComponentSKU} and Company ID ${companyId} not found`
-        });
-      }
-      else
-      {
-        await orderRepository.delete({ microComponentSKU: microComponentSKU, companyId: companyId });
-        res.json({
-          message: `Order with Micro Component SKU ${microComponentSKU} and Company ID ${companyId} has been deleted`
-        });
-      }
-    });
-
-    // create a new order
-    app.post('/orders', async(req,res) => {
-      const orderData = req.body;
-
-      const orderRepository = ServerData.getRepository(Orders);
-      const newOrder = orderRepository.create({
-        microComponentSKU: orderData.microComponentSKU,
-        companyId: orderData.companyId,
-        orderDate: orderData.orderDate,
-        orderQuantity: orderData.orderQuantity
-      });
-
-      await orderRepository.save(newOrder);
-      res.json(newOrder);
-    });
 
     //================================= PART =================================
 
@@ -1145,7 +863,8 @@ ServerData.initialize()
         const employees = await ServerData.getRepository(Employee).find({
           where: {
             plantID: plantIdentification
-          }
+          },
+          select: ["employeeID", "firstName", "lastName", "email", "phoneNum", "plantID", "roleID", "departmentID"]
         });
         if(!employees)
         {
@@ -1159,14 +878,327 @@ ServerData.initialize()
       }
     });
 
-    // Employees can view all the plants
+    // Employees can view only their plant - DONE
+    app.get('/myplant/:id', async(req, res) => {
+      // GET EMPLOYEE BY ID
+      const id = Number(req.params.id);
+      let plantIdentification: number | undefined;
 
-    // Employees can only view purchased parts from their plant
-    // Employees can only view parts from their plant
-    // Employees can only view vendors that supplied parts in their plant
-    // Employees can only view their own role
-    // Employees can only view their own permission level
+      const employee: Employee | null = await ServerData.getRepository(Employee).findOneBy({
+        employeeID: id
+      });
+
+      if(!employee)
+      {
+        res.status(404).json({
+          message: `Employee with ID ${id} not found`
+        });
+      }
+      else
+      {
+        plantIdentification = employee.plantID;
+        /*res.json(plantIdentification);*/
+      }
+
+      // GET PLANTS BY PLANT ID
+      if(plantIdentification) {
+        const plants = await ServerData.getRepository(Plant).find({
+          where: { plantId: plantIdentification }
+
+        });
+        if(!plants)
+        {
+          res.status(404).json({
+            message: 'Plant not found'
+          })
+        }
+        else{
+          res.json(plants);
+        }
+      }
+    });
+
+    // Employees can only view purchased parts from their plant - DONE
+    app.get('/our-purchased-parts/:id', async(req, res) => {
+      // GET EMPLOYEE BY ID
+      const id = Number(req.params.id);
+      let plantIdentification: number | undefined;
+
+      const employee: Employee | null = await ServerData.getRepository(Employee).findOneBy({
+        employeeID: id
+      });
+
+      if(!employee)
+      {
+        res.status(404).json({
+          message: `Employee with ID ${id} not found`
+        });
+      }
+      else
+      {
+        plantIdentification = employee.plantID;
+        /*res.json(plantIdentification);*/
+      }
+
+      // GET PURCHASED PARTS BY PLANT ID
+      const purPart: PurchasedPart[] | null = await ServerData.getRepository(PurchasedPart).find({
+        where: {
+          plantID: plantIdentification
+        }
+      });
+
+      if(!purPart)
+      {
+        res.status(404).json({
+          message: `Purchased Parts with Plant ID ${plantIdentification} not found`
+        });
+      }
+      else
+      {
+        res.json(purPart);
+      }
+    });
+
+    // Employees can only view parts from their plant - DONE
+    app.get('/our-parts/:id', async(req, res) => {
+      // GET EMPLOYEE BY ID
+      const id = Number(req.params.id);
+      let plantIdentification: number | undefined;
+
+      const employee: Employee | null = await ServerData.getRepository(Employee).findOneBy({
+        employeeID: id
+      });
+
+      if(!employee)
+      {
+        res.status(404).json({
+          message: `Employee with ID ${id} not found`
+        });
+      }
+      else
+      {
+        plantIdentification = employee.plantID;
+        /*res.json(plantIdentification);*/
+      }
+
+      // GET PURCHASED PARTS BY PLANT ID
+      const purPart: PurchasedPart[] | null = await ServerData.getRepository(PurchasedPart).find({
+        where: {
+          plantID: plantIdentification
+        }
+      });
+
+      if(!purPart)
+      {
+        res.status(404).json({
+          message: `Purchased Parts with Plant ID ${plantIdentification} not found`
+        });
+      }
+      else
+      {
+        const partIDs: number[] = purPart.map((part) => part.partID);
+        /*res.json(purPart);*/
+        const parts: Part[] | null = await ServerData.getRepository(Part).find({
+          where: {
+            partId: In(partIDs)
+          }
+        });
+
+        if (!parts) {
+          res.status(404).json({
+            message: `Parts with Plant ID ${plantIdentification} not found`
+          });
+        }
+        else{
+          res.json(parts);
+        }
+      }
+    });
+
+    // Employees can only view vendors that supplied parts in their plant - DONE
+    app.get('/our-vendors/:id', async(req, res) => {
+      // GET EMPLOYEE BY ID
+      const id = Number(req.params.id);
+      let plantIdentification: number | undefined;
+
+      const employee: Employee | null = await ServerData.getRepository(Employee).findOneBy({
+        employeeID: id
+      });
+
+      if(!employee)
+      {
+        res.status(404).json({
+          message: `Employee with ID ${id} not found`
+        });
+      }
+      else
+      {
+        plantIdentification = employee.plantID;
+        /*res.json(plantIdentification);*/
+      }
+
+      // GET PURCHASED PARTS BY PLANT ID
+      const purPart: PurchasedPart[] | null = await ServerData.getRepository(PurchasedPart).find({
+        where: {
+          plantID: plantIdentification
+        }
+      });
+
+      if(!purPart)
+      {
+        res.status(404).json({
+          message: `Purchased Parts with Plant ID ${plantIdentification} not found`
+        });
+      }
+      else
+      {
+        const partIDs: number[] = purPart.map((part) => part.partID);
+        /*res.json(purPart);*/
+        const parts: Part[] | null = await ServerData.getRepository(Part).find({
+          where: {
+            partId: In(partIDs)
+          }
+        });
+
+        if (!parts) {
+          res.status(404).json({
+            message: `Parts with Plant ID ${plantIdentification} not found`
+          });
+        }
+        else{
+          /*res.json(parts);*/
+            const vendorIDs: (number | null)[] = parts.map((part) => part.vendorId);
+            const vendors: Vendor[] | null = await ServerData.getRepository(Vendor).find({
+              where: {
+                vendorID: In(vendorIDs)
+              }
+            });
+
+            if(!vendors)
+            {
+              res.status(404).json({
+                message: `Vendors with Plant ID ${plantIdentification} not found`
+              });
+            }
+            else{
+              res.json(vendors);
+            }
+        }
+      }
+    });
+
+    // Employees can only view their own role - DONE
+    app.get('/my-role/:id', async(req, res) => {
+      const id = Number(req.params.id);
+      const employee: Employee | null = await ServerData.getRepository(Employee).findOneBy({
+        employeeID: id
+      });
+      if(!employee)
+      {
+        res.status(404).json({
+            message: `Employee with ID ${id} not found`
+        });
+      }
+      else{
+        const emp_roleID = employee.roleID;
+        const role: Roles | null = await ServerData.getRepository(Roles).findOneBy({
+          roleId: emp_roleID
+        });
+
+        if(!role)
+        {
+          res.status(404).json({
+            message: `Role with ID ${emp_roleID} not found`
+          });
+        }
+        else{
+          res.json([role]);
+        }
+      }
+
+    });
+
+
+    // Employees can only view their own permission level - DONE
+    app.get('/my-permission-level/:id', async(req, res) => {
+      const id = Number(req.params.id);
+      const employee: Employee | null = await ServerData.getRepository(Employee).findOneBy({
+        employeeID: id
+      });
+      if(!employee)
+      {
+        res.status(404).json({
+          message: `Employee with ID ${id} not found`
+        });
+      }
+      else{
+        const emp_roleID = employee.roleID;
+        const role: Roles | null = await ServerData.getRepository(Roles).findOneBy({
+          roleId: emp_roleID
+        });
+
+        if(!role)
+        {
+          res.status(404).json({
+            message: `Role with ID ${emp_roleID} not found`
+          });
+        }
+        else{
+          /*res.json([role]);*/
+            const role_permissionLevelID = role.permissionLevelId;
+            const permissionLevel: PermissionLevel | null = await ServerData.getRepository(PermissionLevel).findOneBy({
+              permissionLevelID: role_permissionLevelID
+            });
+
+            if(!permissionLevel)
+            {
+              res.status(404).json({
+                message: `Permission Level with ID ${role_permissionLevelID} not found`
+              });
+            }
+            else{
+              res.json([permissionLevel]);
+            }
+        }
+      }
+
+    });
+
     // Employees can view departments with employees from their plant.
+    app.get('/our-departments/:id', async(req, res) => {
+      const id = Number(req.params.id);
+      let plantid: number | undefined;
+
+      const employee: Employee | null = await ServerData.getRepository(Employee).findOneBy({
+        employeeID: id
+      });
+
+      if(!employee)
+      {
+        res.status(404).json({
+          message: `Employee with ID ${id} not found`
+        });
+      }
+      else
+      {
+        plantid = employee.plantID;
+        if(plantid) {
+          const departments: Department[] = await ServerData.getRepository(Department).find({
+              where: {plantID: plantid}
+          });
+
+            if(!departments)
+            {
+                res.status(404).json({
+                message: 'Department not found'
+                })
+            }
+            else{
+                res.json(departments);
+            }
+        }
+      }
+    });
   })
   .catch((error)=>{
     console.error("Error during data source initialization", error);

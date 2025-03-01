@@ -7,11 +7,11 @@ import {Observable} from 'rxjs';
   providedIn: 'root'
 })
 export class PermissionLevelService {
-  private apiUrl = 'https://localhost:3000/permission-levels';
+  private apiUrl = 'https://localhost:3000/my-permission-level';
 
   constructor(private http: HttpClient) { }
 
-  getPermissionLevels(): Observable<PermissionLevelModel[]> {
-    return this.http.get<PermissionLevelModel[]>(this.apiUrl);
+  getPermissionLevels(id: number): Observable<PermissionLevelModel[]> {
+    return this.http.get<PermissionLevelModel[]>(`${this.apiUrl}/${id}`);
   }
 }
