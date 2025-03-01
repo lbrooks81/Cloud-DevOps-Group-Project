@@ -30,7 +30,7 @@ class Employee
   username!: string | undefined;
 
   @Column({name: "EMP_HASH", type: "varchar", length: 256, nullable: true})
-  password!: string | undefined;
+  password!: string;
 
   @Column({name: "EMP_PHONE_NUM", type: "int", unsigned: true, nullable: true})
   phoneNum!: number | undefined;
