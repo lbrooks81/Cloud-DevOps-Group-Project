@@ -16,7 +16,8 @@ import {Observable} from 'rxjs';
 })
 export class IndividualProfileComponent  {
 
-  employeeData$!: Observable<EmployeeModel>;
+  public employees: EmployeeModel | undefined;
+  errorMessage: string = '';
 
   constructor(private employeeService: EmployeeService)
     {
@@ -24,7 +25,20 @@ export class IndividualProfileComponent  {
     }
 
     ngOnInit(): void {
-        this.employeeData$ = this.employeeService.getOneEmployee(100);
+      this.getOneEmployees(100);
     }
+
+  getOneEmployees(id: number) {
+    this.employeeService.getOneEmployee(id).subscribe({
+      next: (data) => {
+        this.employees = data;
+        console.log("Employees", this.employees);
+      },
+      error:(error) => {
+        this.errorMessage = 'Error fetching employees';
+        console.error(`${this.errorMessage}`, error);
+      }
+    })
+  }
 
 }
