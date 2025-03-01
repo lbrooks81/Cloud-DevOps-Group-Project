@@ -464,7 +464,7 @@ ServerData.initialize()
       }
     });
 
-/*  // update a specific permission level based on an id
+  // update a specific permission level based on an id
     app.put('/permission-levels/:id', async(req,res) => {
       const id = Number(req.params.id);
       const permissionLevelData = req.body;
@@ -525,7 +525,7 @@ ServerData.initialize()
 
       await permissionLevelRepository.save(newPermissionLevel);
       res.json(newPermissionLevel);
-    });*/
+    });
 
     //================================= PLANT =================================
     // get all plants
@@ -663,6 +663,7 @@ ServerData.initialize()
       } else {
         role.roleId = roleData.roleId;
         role.roleTitle = roleData.roleTitle;
+        role.permissionLevelId = roleData.permissionLevelId;
 
         await roleRepository.save(role);
         res.json(role);
