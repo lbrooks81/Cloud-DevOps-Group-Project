@@ -15,6 +15,7 @@ import {Orders} from './entities/orders';
 import {Roles} from './entities/roles';
 import fs from "fs";
 import https from "https";
+import bcrypt from "bcrypt";
 
 
 const app = express();
@@ -23,6 +24,7 @@ const options = {
   key: fs.readFileSync("key.pem"),
   cert: fs.readFileSync("cert.pem")
 }
+const PEPPER = "theW0rld3nd5n0tW1thAB@ngButAWh1mp3r"
 
 https.createServer(options, app).listen(port, () => {
     console.log(`Server is running on https://localhost:${port}`);
@@ -247,6 +249,7 @@ ServerData.initialize()
       res.status(200).json(employees);
     });
 
+
     // get employee by id
     app.get('/employees/:id', async(req,res) => {
       const id = Number(req.params.id);
@@ -284,13 +287,16 @@ ServerData.initialize()
         });
       }
       else {
+        let bcryptPassword = bcrypt.hashSync(employeeData.password + PEPPER, 5);
+
         employee.employeeID = employeeData.employeeID;
         employee.firstName = employeeData.firstName;
         employee.lastName = employeeData.lastName;
         employee.email = employeeData.email;
         employee.username = employeeData.username;
-        employee.password = employeeData.password;
+        employee.password = bcryptPassword;
         employee.phoneNum = employeeData.phoneNum;
+        employee.plantID = employeeData.plantID;
         employee.roleID = employeeData.roleID;
         employee.departmentID = employeeData.departmentID;
 
@@ -325,24 +331,29 @@ ServerData.initialize()
 
     // create a new employee
     app.post('/employees', async(req,res) => {
-      const employeeData = req.body;
+      try{
+        const employeeData = req.body;
 
-      const employeeRepository = ServerData.getRepository(Employee);
-      const newEmployee = employeeRepository.create({
-        employeeID: employeeData.employeeID,
-        firstName: employeeData.firstName,
-        lastName: employeeData.lastName,
-        email: employeeData.email,
-        username: employeeData.username,
-        password: employeeData.password,
-        phoneNum: employeeData.phoneNum,
-        roleID: employeeData.roleID,
-        departmentID: employeeData.departmentID
-      });
+        const employeeRepository = ServerData.getRepository(Employee);
+        const newEmployee = employeeRepository.create({
+          employeeID: employeeData.employeeID,
+          firstName: employeeData.firstName,
+          lastName: employeeData.lastName,
+          email: employeeData.email,
+          username: employeeData.username,
+          password: bcrypt.hashSync(employeeData.password + PEPPER, 5),
+          phoneNum: employeeData.phoneNum,
+          plantID: employeeData.plantID,
+          roleID: employeeData.roleID,
+          departmentID: employeeData.departmentID
+        });
 
-      await employeeRepository.save(newEmployee);
-
-      res.json(newEmployee);
+        await employeeRepository.save(newEmployee);
+        res.json(newEmployee);
+      } catch (error) {
+        console.error("Error creating new employee:", error);
+        res.status(500).json({ message: "Internal Server Error" });
+      }
     });
 
     //================================= PURCHASED PART =================================
@@ -1068,25 +1079,42 @@ ServerData.initialize()
     });
 
     //================================= IGNORE THIS BUT DON'T DELETE =================================
-    app.get('/emp-info', async(req, res) => {
-      const thisUsername = req.query.body;
-/*
-        const thisPassword = req.query.body[1];
-*/
-      try{
+    app.put('/emp-info', async(req, res) => {
+      const [thisUsername, thisPassword] = req.body;
+      console.log(thisUsername);
+      try {
         const user = await ServerData.getRepository(Employee).findOneBy({
-          // @ts-ignore
-          username: thisUsername
+          username: thisUsername,
         });
 
-        let heresAnObjectB = {
-            empId: user?.employeeID,
-        };
-
-        res.json(heresAnObjectB);
+        if (user) {
+          const valid = bcrypt.compareSync(thisPassword + PEPPER, user.password);
+          if(valid) {
+            res.json({
+              validLogin: true,
+              empId: user.employeeID
+            });
+          }
+          else{
+            res.json({
+              validLogin: false,
+              empId: null
+            });
+          }
+        } else {
+          res.json({
+            validLogin: false,
+            empId: null
+          });
+        }
       }
-      catch (e) {
+      catch(e) {
         console.log(e);
+        res.status(500).json({
+          validLogin: false,
+          empId: null,
+          error: 'Internal Server Error'
+        });
       }
     });
   })
