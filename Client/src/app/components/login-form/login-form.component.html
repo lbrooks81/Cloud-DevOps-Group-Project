@@ -1,6 +1,6 @@
 <div class="form-container">
   <h2 id="company-name">Technickal Industries</h2>
-  <div>
+  <div (keydown.enter)="this.setEmployeeInformation()">
     <div class="form-floating mb-3">
       <input [(ngModel)]="username" type="text" class="form-control" id="username" placeholder="Username" required>
       <label for="username">Username</label>

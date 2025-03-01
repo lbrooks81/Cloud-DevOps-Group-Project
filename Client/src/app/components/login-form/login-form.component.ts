@@ -16,9 +16,7 @@ import {EmpInfoModel} from '../../models/emp-info.model';
   styleUrl: './login-form.component.css'
 })
 export class LoginFormComponent implements OnInit{
-  private octokit = new Octokit({});
   public username: string = "";
-  public userEmail: string = "";
   public userID: string = "";
   public password: string = "";
   public empInfo: EmpInfoModel[] = [];
@@ -38,6 +36,9 @@ export class LoginFormComponent implements OnInit{
   }
 
   async getUserInformation() {
+    this.username = "";
+    this.password = "";
+
     this.empInfoService.getEmployeeInfo(this.username, this.password).subscribe({
       next: (data) => {
         this.empInfo = data;
@@ -45,7 +46,8 @@ export class LoginFormComponent implements OnInit{
         // @ts-ignore
         if(!this.empInfo["validLogin"])
         {
-          console.log("Invalid Login");
+
+          alert("Invalid Login");
         }
         else {
           // @ts-ignore
