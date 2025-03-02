@@ -69,7 +69,9 @@ export class DatabaseTableComponent implements OnInit {
     this.getPurchasedParts();
     this.getRoles();
     this.getVendors();
+    // When the component loads, choose Employees from the drop down TODO
   }
+
 
   /*I have an array of objects. I need the name of every one of the keys*/
   setDataBeingViewed(event: Event){
@@ -100,18 +102,24 @@ export class DatabaseTableComponent implements OnInit {
 
 
   onRowClick(record: any) {
-    console.log(JSON.stringify(record));
+    if(this.permissionLevels[0]["permissionLevelId"] === 6) {
+
+      console.log(JSON.stringify(record));
 
 
-    const tableName = this.getTableName();
-    const recordString = JSON.stringify(record);
+      const tableName = this.getTableName();
+      const recordString = JSON.stringify(record);
 
-    setCookie('table-name', tableName.replace(/\s+/g, '-').toLowerCase());
-    setCookie('record', recordString);
-    console.log("Table name cookie:", getCookie('table-name'));
-    console.log("Record id cookie:", getCookie('record'));
+      setCookie('table-name', tableName.replace(/\s+/g, '-').toLowerCase());
+      setCookie('record', recordString);
+      console.log("Table name cookie:", getCookie('table-name'));
+      console.log("Record id cookie:", getCookie('record'));
 
-    this.router.navigate(['/record']);
+      this.router.navigate(['/record']);
+    }
+    else{
+      alert("You do not have write permissions");
+    }
   }
 
 
