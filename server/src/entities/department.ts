@@ -13,6 +13,4 @@ class Department
   @Column({name: 'EMP_ID', type: 'int', unsigned: true, nullable: true})
   employeeID!: number
 
- @Column({name: 'PLANT_ID', type: 'int', unsigned: true, nullable: true})
- plantID!: number
 }

@@ -64,13 +64,15 @@ export class DatabaseTableComponent implements OnInit {
     this.getEmployees();
     this.getDepartments();
     this.getParts();
-    this.getPermissionLevels();
+    this.getRoles();
+
     this.getPlants();
     this.getPurchasedParts();
-    this.getRoles();
     this.getVendors();
     // When the component loads, choose Employees from the drop down TODO
+
   }
+
 
 
   /*I have an array of objects. I need the name of every one of the keys*/
@@ -173,6 +175,18 @@ export class DatabaseTableComponent implements OnInit {
       }
     })
   }
+  getPermissionLevelsHigher() {
+    this.permissionLevelService.getPermissionLevelHigher().subscribe({
+      next: (data) => {
+        this.permissionLevels = [...data];
+        console.log("Permission Levels", this.permissionLevels);
+      },
+      error:(error) => {
+        this.errorMessage = 'Error fetching permission levels';
+        console.error(`${this.errorMessage}`, error);
+      }
+    })
+  }
   getPlants() {
     this.plantService.getPlants(this.empID).subscribe({
       next: (data) => {
@@ -199,6 +213,26 @@ export class DatabaseTableComponent implements OnInit {
   }
   getRoles() {
     this.roleService.getRoles(this.empID).subscribe({
+      next: (data) => {
+        this.roles = [...data];
+        console.log("Roles", this.roles);
+        if([4, 8, 11, 12].includes(this.roles[0]["roleId"])) {
+          this.getRolesHigher();
+          this.getPermissionLevelsHigher();
+        }
+        else{
+          this.getPermissionLevels();
+        }
+      },
+      error:(error) => {
+        this.errorMessage = 'Error fetching roles';
+        console.error(`${this.errorMessage}`, error);
+      }
+    })
+  }
+
+  getRolesHigher() {
+    this.roleService.getRolesHigher().subscribe({
       next: (data) => {
         this.roles = [...data];
         console.log("Roles", this.roles);
