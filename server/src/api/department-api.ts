@@ -47,7 +47,6 @@ async function departmentRequests(){
         } else {
             department.departmentName = departmentData.departmentName;
             department.employeeID = departmentData.employeeID;
-            department.plantID = departmentData.plantID;
 
             await departmentRepository.save(department);
 
@@ -86,7 +85,6 @@ async function departmentRequests(){
             departmentId: departmentData.departmentId,
             departmentName: departmentData.departmentName,
             employeeID: departmentData.employeeID,
-            plantID: departmentData.plantID
         });
 
         await departmentRepository.save(newDepartment);
@@ -109,10 +107,10 @@ async function departmentRequests(){
                 message: `Employee with ID ${id} not found`
             });
         } else {
-            plantid = employee.plantID;
+            plantid = employee.departmentID;
             if (plantid) {
                 const departments: Department[] = await ServerData.getRepository(Department).find({
-                    where: {plantID: plantid}
+                    where: {departmentId: plantid}
                 });
 
                 if (!departments) {

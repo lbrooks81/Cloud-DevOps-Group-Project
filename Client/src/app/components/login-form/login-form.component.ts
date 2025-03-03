@@ -41,20 +41,22 @@ export class LoginFormComponent implements OnInit{
     this.empInfoService.getEmployeeInfo(this.username, this.password).subscribe({
       next: (data) => {
         this.empInfo = data;
-
+        console.log(this.empInfo);
         // @ts-ignore
-        if(!this.empInfo["validLogin"])
+        if(this.empInfo["validLogin"])
         {
-          this.username = "";
-          this.password = "";
-          alert("Invalid Login");
-        }
-        else {
           // @ts-ignore
           this.userID = this.empInfo["empId"] as string;
           console.log("Emp Info: ", this.userID);
           setCookie('employee-id', this.userID.toString());
           this.router.navigate(['/database']);
+        }
+        else {
+          // @ts-ignore
+
+          this.username = "";
+          this.password = "";
+          alert("Invalid Login");
         }
       },
       error: (error) => {

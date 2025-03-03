@@ -80,6 +80,24 @@ async function partRequests() {
         }
     });
 
+    // create a new part
+    app.post('/parts', async (req, res) => {
+        const partData = req.body;
+
+        const partRepository = ServerData.getRepository(Part);
+        const newPart = partRepository.create({
+            partId: partData.partId,
+            partName: partData.partName,
+            partDescription: partData.partDescription,
+            partCost: partData.partCost,
+            partQoh: partData.partQoh,
+            vendorId: partData.vendorId
+        });
+
+        await partRepository.save(newPart);
+        res.json(newPart);
+    });
+
     // Employees can only view parts from their plant
     app.get('/our-parts/:id', async (req, res) => {
         // GET EMPLOYEE BY ID
