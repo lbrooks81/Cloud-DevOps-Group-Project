@@ -1,13 +1,11 @@
 import {Component, OnInit} from '@angular/core';
-import {Router, RouterLink, RouterLinkActive} from '@angular/router';
+import {Router} from '@angular/router';
 import {getCookie} from '../../cookieShtuff';
 import {NgForOf} from '@angular/common';
 
 @Component({
   selector: 'app-record-form',
   imports: [
-    RouterLink,
-    RouterLinkActive,
     NgForOf
   ],
   templateUrl: './record-form.component.html',

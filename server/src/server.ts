@@ -22,7 +22,7 @@ const options = {
   key: fs.readFileSync("key.pem"),
   cert: fs.readFileSync("cert.pem")
 }
-const PEPPER = "theW0rld3nd5n0tW1thAB@ngButAWh1mp3r"
+const PEPPER = "theW0rld3nd5n0tW1thAB@ngButAWh1mp3r";
 
 https.createServer(options, app).listen(port, () => {
     console.log(`Server is running on https://localhost:${port}`);
