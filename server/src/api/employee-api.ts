@@ -118,10 +118,11 @@ async function employeeRequests() {
             const user = await ServerData.getRepository(Employee).findOneBy({
                 username: thisUsername
             });
+            // TODO THIS IS A QUICK FIX TO LOG IN WHILE DATABASE IS DOWN> DELETE ONCE DATABASE WORKS
             res.json({
                 validLogin: true,
                 empId: 105
-            })
+            });
 
             if (user) {
                 const valid = bcrypt.compareSync(thisPassword + PEPPER, user.password);
