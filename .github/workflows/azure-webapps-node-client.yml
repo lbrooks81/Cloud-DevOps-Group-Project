@@ -23,8 +23,8 @@ on:
   workflow_dispatch:
 
 env:
-  AZURE_WEBAPP_NAME: TechnickalIndustries2    # set this to your application's name
-  AZURE_WEBAPP_PACKAGE_PATH: './server'      # set this to the path to your web app project, defaults to the repository root
+  AZURE_WEBAPP_NAME: TechnickalIndustries    # set this to your application's name
+  AZURE_WEBAPP_PACKAGE_PATH: './Client/dist'      # set this to the path to your web app project, defaults to the repository root
   NODE_VERSION: '22.x'                # set this to the node version to use
 
 permissions:
@@ -39,17 +39,13 @@ jobs:
     - name: Set up Node.js
       uses: actions/setup-node@v4
       with:
-        cache-dependency-path: server/package-lock.json
+        cache-dependency-path: Client/package-lock.json
         node-version: ${{ env.NODE_VERSION }}
         cache: 'npm'
 
-    - name: sanity
-      run: |
-        echo helloooooo
-
     - name: npm install, build, and test
       run: |
-        cd server
+        cd Client
         npm install
         npm run build --if-present 
       # npm run test --if-present
@@ -80,5 +76,5 @@ jobs:
       uses: azure/webapps-deploy@v2
       with:
         app-name: ${{ env.AZURE_WEBAPP_NAME }}
-        publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+        publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE_CLIENT }}
         package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
