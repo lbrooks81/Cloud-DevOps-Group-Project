@@ -44,7 +44,9 @@ jobs:
 
     - name: npm install, build, and test
       run: |
+        pwd
         cd Client
+        pwd
         npm install
         npm run build --if-present
         npm run test --if-present
