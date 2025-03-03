@@ -113,36 +113,42 @@ async function employeeRequests() {
 
     // Validates employee login and returns employee ID
     app.put('/emp-info', async (req, res) => {
-        const [thisUsername, thisPassword] = req.body;
+        const {thisUsername, thisPassword} = req.body;
         try {
+            let vl;
+            let empId;
             const user = await ServerData.getRepository(Employee).findOneBy({
                 username: thisUsername
             });
-            // TODO THIS IS A QUICK FIX TO LOG IN WHILE DATABASE IS DOWN> DELETE ONCE DATABASE WORKS
-            res.json({
-                validLogin: true,
-                empId: 105
-            });
 
-            if (user) {
-                const valid = bcrypt.compareSync(thisPassword + PEPPER, user.password);
-                if (valid) {
-                    res.json({
-                        validLogin: true,
-                        empId: user.employeeID
-                    });
-                } else {
-                    res.json({
-                        validLogin: false,
-                        empId: null
-                    });
+
+
+            if(user){
+                vl = true;
+                empId = user.employeeID;
+/*
+                const hashing = bcrypt.hashSync(thisPassword + PEPPER, 5);
+
+*/
+
+                console.log(user)
+                const match = bcrypt.compareSync(thisPassword + PEPPER, user.password);
+                if(!match){
+                    vl = false;
+                    empId = null;
                 }
-            } else {
-                res.json({
-                    validLogin: false,
-                    empId: null
-                });
             }
+            else{
+                vl = false;
+                empId = null;
+            }
+
+
+
+            res.json({
+                validLogin: vl,
+                empId: empId
+            });
         } catch (e) {
             console.log(e);
             res.status(500).json({
