@@ -1,20 +1,18 @@
 import {Component, OnInit} from '@angular/core';
-import {AsyncPipe, NgOptimizedImage} from '@angular/common';
+import { NgOptimizedImage} from '@angular/common';
 import {EmployeeService} from '../../services/employee.service';
 import {EmployeeModel} from '../../models/employee.model';
-import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-individual-profile',
   imports: [
-    NgOptimizedImage,
-    AsyncPipe
+    NgOptimizedImage
   ],
   templateUrl: './individual-profile.component.html',
   standalone: true,
   styleUrl: './individual-profile.component.css'
 })
-export class IndividualProfileComponent  {
+export class IndividualProfileComponent implements OnInit {
 
   public employees: EmployeeModel | undefined;
   errorMessage: string = '';

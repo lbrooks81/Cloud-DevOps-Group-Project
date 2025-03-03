@@ -88,7 +88,7 @@ async function employeeRequests() {
     app.post('/employees', async (req, res) => {
         try {
             const employeeData = req.body;
-
+            const bcryptPassword = bcrypt.hashSync(employeeData.password + PEPPER, 5);
             const employeeRepository = ServerData.getRepository(Employee);
             const newEmployee = employeeRepository.create({
                 employeeID: employeeData.employeeID,
@@ -96,7 +96,7 @@ async function employeeRequests() {
                 lastName: employeeData.lastName,
                 email: employeeData.email,
                 username: employeeData.username,
-                password: bcrypt.hashSync(employeeData.password + PEPPER, 5),
+                password: bcryptPassword,
                 phoneNum: employeeData.phoneNum,
                 plantID: employeeData.plantID,
                 roleID: employeeData.roleID,
@@ -123,7 +123,7 @@ async function employeeRequests() {
                 empId: 105
             })
 
-            /*if (user) {
+            if (user) {
                 const valid = bcrypt.compareSync(thisPassword + PEPPER, user.password);
                 if (valid) {
                     res.json({
@@ -141,7 +141,7 @@ async function employeeRequests() {
                     validLogin: false,
                     empId: null
                 });
-            }*/
+            }
         } catch (e) {
             console.log(e);
             res.status(500).json({
