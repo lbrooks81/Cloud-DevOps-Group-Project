@@ -33,7 +33,7 @@ This program is a secure and streamlined platform that will enhance both product
 - Finally, click on the provided localhost link. If it works and you see a login screen, you've successfully run the project!
 - On the login screen, use the following credentials for testing purposes:\
 Username: admin\
-Password: password\
+Password: password
 - If you're able to login, you're all good for using and testing the project on your local machine.
 
   
