@@ -104,7 +104,8 @@ export class DatabaseTableComponent implements OnInit {
 
 
   onRowClick(record: any) {
-    if(this.permissionLevels[0]["permissionLevelId"] === 6) {
+    console.log(this.permissionLevels);
+    /*if(this.permissionLevels[0]["permissionLevelId"] === 6) {*/
 
       console.log(JSON.stringify(record));
 
@@ -118,10 +119,12 @@ export class DatabaseTableComponent implements OnInit {
       console.log("Record id cookie:", getCookie('record'));
 
       this.router.navigate(['/record']);
+/*
     }
-    else{
+*/
+/*    else{
       alert("You do not have write permissions");
-    }
+    }*/
   }
 
 

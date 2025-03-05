@@ -1,10 +1,31 @@
 @import "bootstrap/dist/css/bootstrap.min.css";
+
+@font-face {
+  font-family: "BlackSword";
+  src: url('./assets/blacksword/Blacksword.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Mono_Cozy";
+  src: url('./assets/BrassMono/regular_cozy.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Sunshine";;
+  src: url('./assets/sunshine-state/Sunshine State.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
 body {
   background-color: var(--background) !important;
 }
 :root{
   /***********COLORS************/
   --dark-magenta: #a30052;
+  --medium-magenta: #b2015a;
+
   --light-magenta: #fd8dc6;
   --dark-teal: #519da8;
   --ultraviolet-glow: #1900f8;
