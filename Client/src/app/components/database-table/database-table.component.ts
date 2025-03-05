@@ -104,27 +104,26 @@ export class DatabaseTableComponent implements OnInit {
 
 
   onRowClick(record: any) {
-    console.log(this.permissionLevels);
-    /*if(this.permissionLevels[0]["permissionLevelId"] === 6) {*/
+      console.log(this.permissionLevels);
+    if(this.permissionLevels.length > 1) {
 
       console.log(JSON.stringify(record));
 
 
-      const tableName = this.getTableName();
+      const tableName = this.getTableName().replace(/\s+/g, '-').toLowerCase();
       const recordString = JSON.stringify(record);
 
-      setCookie('table-name', tableName.replace(/\s+/g, '-').toLowerCase());
+      setCookie('table-name', tableName);
       setCookie('record', recordString);
-      console.log("Table name cookie:", getCookie('table-name'));
-      console.log("Record id cookie:", getCookie('record'));
+      console.log("Table name cookie:", tableName);
+      console.log("Record id cookie:", recordString);
 
-      this.router.navigate(['/record']);
-/*
+
+      this.router.navigate(['/record']).then(() => {console.log(`Navigated to ${tableName}, record=${recordString}`)});
     }
-*/
-/*    else{
+    else{
       alert("You do not have write permissions");
-    }*/
+    }
   }
 
 
