@@ -68,7 +68,7 @@
           },
           "defaultConfiguration": "development",
           "options": {
-            "port": 4912,
+            "port": 4909,
             "sslKey": "key.pem",
             "sslCert": "cert.pem",
             "ssl": true
