@@ -43,8 +43,8 @@ This program is a secure and streamlined platform that will enhance both product
 - We will first download the needed dependencies for the server. Type "cd server" in the terminal and hit enter. Ensure the end of the directory your terminal is located in is "\server". If so, use the command "npm install". This may take a minute.
 - Now we will repeat this with the client. Type "cd .." to return to the root of the project in the terminal, then type "cd Client" to enter the client directory. Run the same "npm install" command here and wait for it to complete.
 - Becasue the Client project automatically runs both the client and the server, all we need to do is type "npm start" in the terminal to start the project.
-- Wait for the project to build, you should see a link like this once it completes. Click on the link and you're in the app!
-[0]   ➜  Local:   https://localhost:4909/
+- Wait for the project to build, you should see a link like this once it completes. Click on the link and you're in the app!\
+[0]   ➜  Local:   https://localhost:4909\
 - On the login screen, use the following credentials for testing purposes:\
 Username: admin\
 Password: password
