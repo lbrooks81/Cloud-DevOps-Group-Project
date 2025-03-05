@@ -13,6 +13,6 @@ export class EmpInfoService {
   getEmployeeInfo(username: string, password: string): Observable<EmpInfoModel[]> {
     const escapedUsername = encodeURIComponent(username);
     const escapedPassword = encodeURIComponent(password);
-    return this.http.put<EmpInfoModel[]>(this.apiUrl, [escapedUsername, escapedPassword]);
+    return this.http.put<EmpInfoModel[]>(this.apiUrl, {escapedUsername, escapedPassword});
   }
 }
