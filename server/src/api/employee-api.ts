@@ -7,150 +7,164 @@ export {employeeRequests};
 async function employeeRequests() {
 //================================= EMPLOYEE =================================
     // get all employees
+    // BUTTS
     app.get('/employees', async (req, res) => {
-        const employees = await ServerData.getRepository(Employee).find();
-        res.status(200).json(employees);
+        try {
+            const employees = await ServerData.getRepository(Employee).find();
+            res.status(200).json(employees);
+        } catch (error) {
+            console.error("Error fetching employees:", error);
+            res.status(500).json({ message: "Internal Server Error" });
+        }
     });
 
-
     // get employee by id
+    // BUTTS
     app.get('/employees/:id', async (req, res) => {
-        const id = Number(req.params.id);
-
-        const employee = await ServerData.getRepository(Employee).findOneBy({
-            employeeID: id
-        });
-
-        if (!employee) {
-            res.status(404).json({
-                message: `Employee with ID ${id} not found`
+        try {
+            const id = Number(req.params.id);
+            const employee = await ServerData.getRepository(Employee).findOneBy({
+                employeeID: id
             });
-        } else {
-            res.json(employee);
+
+            if (!employee) {
+                res.status(404).json({
+                    message: `Employee with ID ${id} not found`
+                });
+            } else {
+                res.json(employee);
+            }
+        } catch (error) {
+            console.error(`Error fetching employee with ID ${req.params.id}:`, error);
+            res.status(500).json({ message: "Internal Server Error" });
         }
     });
 
     // update a specific employee based on an id
+    // BUTTS
     app.put('/employees/:id', async (req, res) => {
-        const id = Number(req.params.id);
-        const employeeData = req.body;
+            try {
+                const id = Number(req.params.id);
+                const employeeData = req.body;
 
-        const employeeRepository = ServerData.getRepository(Employee);
-        const employee = await employeeRepository.findOneBy({
-            employeeID: id
+                const employeeRepository = ServerData.getRepository(Employee);
+                const employee = await employeeRepository.findOneBy({
+                    employeeID: id
+                });
+
+                if (!employee) {
+                    res.status(404).json({
+                        message: `Employee with ID ${id} not found`
+                    });
+                } else {
+                    let bcryptPassword = bcrypt.hashSync(employeeData.password + PEPPER, 5);
+
+                    employee.employeeID = employeeData.employeeID;
+                    employee.firstName = employeeData.firstName;
+                    employee.lastName = employeeData.lastName;
+                    employee.email = employeeData.email;
+                    employee.username = employeeData.username;
+                    employee.password = bcryptPassword;
+                    employee.phoneNum = employeeData.phoneNum;
+                    employee.plantID = employeeData.plantID;
+                    employee.roleID = employeeData.roleID;
+                    employee.departmentID = employeeData.departmentID;
+
+                    await employeeRepository.save(employee);
+
+                    res.json(employee);
+                }
+            } catch (error) {
+                console.error(`Error updating employee with ID ${req.params.id}:`, error);
+                res.status(500).json({ message: "Internal Server Error" });
+            }
         });
-
-        if (!employee) {
-            res.status(404).json({
-                message: `Employee with ID ${id} not found`
-            });
-        } else {
-            let bcryptPassword = bcrypt.hashSync(employeeData.password + PEPPER, 5);
-
-            employee.employeeID = employeeData.employeeID;
-            employee.firstName = employeeData.firstName;
-            employee.lastName = employeeData.lastName;
-            employee.email = employeeData.email;
-            employee.username = employeeData.username;
-            employee.password = bcryptPassword;
-            employee.phoneNum = employeeData.phoneNum;
-            employee.plantID = employeeData.plantID;
-            employee.roleID = employeeData.roleID;
-            employee.departmentID = employeeData.departmentID;
-
-            await employeeRepository.save(employee);
-
-            res.json(employee);
-        }
-    });
 
     // delete a specific employee based on an id
+    // BUTTS
     app.delete('/employees/:id', async (req, res) => {
-        const id = Number(req.params.id);
-        const employeeRepository = ServerData.getRepository(Employee);
-        const employee = await employeeRepository.findOneBy({
-            employeeID: id
-        });
+        try {
+            const id = Number(req.params.id);
+            const employeeRepository = ServerData.getRepository(Employee);
+            const employee = await employeeRepository.findOneBy({
+                employeeID: id
+            });
 
-        if (!employee) {
-            res.status(404).json({
-                message: `Employee with ID ${id} not found`
-            });
-        } else {
-            await employeeRepository.delete(employee);
-            res.json({
-                message: `Employee with ID ${id} has been deleted`
-            });
+            if (!employee) {
+                res.status(404).json({
+                    message: `Employee with ID ${id} not found`
+                });
+            } else {
+                await employeeRepository.delete(employee);
+                res.json({
+                    message: `Employee with ID ${id} has been deleted`
+                });
+            }
+        } catch (error) {
+            console.error(`Error deleting employee with ID ${req.params.id}:`, error);
+            res.status(500).json({ message: "Internal Server Error" });
         }
     });
 
     // create a new employee
+    // BUTTS
     app.post('/employees', async (req, res) => {
-        try {
-            const employeeData = req.body;
-            const bcryptPassword = bcrypt.hashSync(employeeData.password + PEPPER, 5);
-            const employeeRepository = ServerData.getRepository(Employee);
-            const newEmployee = employeeRepository.create({
-                employeeID: employeeData.employeeID,
-                firstName: employeeData.firstName,
-                lastName: employeeData.lastName,
-                email: employeeData.email,
-                username: employeeData.username,
-                password: bcryptPassword,
-                phoneNum: employeeData.phoneNum,
-                plantID: employeeData.plantID,
-                roleID: employeeData.roleID,
-                departmentID: employeeData.departmentID
-            });
+            try {
+                const employeeData = req.body;
+                const bcryptPassword = bcrypt.hashSync(employeeData.password + PEPPER, 5);
+                const employeeRepository = ServerData.getRepository(Employee);
+                const newEmployee = employeeRepository.create({
+                    employeeID: employeeData.employeeID,
+                    firstName: employeeData.firstName,
+                    lastName: employeeData.lastName,
+                    email: employeeData.email,
+                    username: employeeData.username,
+                    password: bcryptPassword,
+                    phoneNum: employeeData.phoneNum,
+                    plantID: employeeData.plantID,
+                    roleID: employeeData.roleID,
+                    departmentID: employeeData.departmentID
+                });
 
-            await employeeRepository.save(newEmployee);
-            res.json(newEmployee);
-        } catch (error) {
-            console.error("Error creating new employee:", error);
-            res.status(500).json({message: "Internal Server Error"});
-        }
-    });
+                await employeeRepository.save(newEmployee);
+                res.json(newEmployee);
+            } catch (error) {
+                console.error("Error creating new employee:", error);
+                res.status(500).json({ message: "Internal Server Error" });
+            }
+        });
 
     // Validates employee login and returns employee ID
+    // BUTTS
     app.put('/emp-info', async (req, res) => {
-        const {thisUsername, thisPassword} = req.body;
         try {
+            const { thisUsername, thisPassword } = req.body;
             let vl;
             let empId;
             const user = await ServerData.getRepository(Employee).findOneBy({
                 username: thisUsername
             });
 
-
-
-            if(user){
+            if (user) {
                 vl = true;
                 empId = user.employeeID;
-/*
-                const hashing = bcrypt.hashSync(thisPassword + PEPPER, 5);
 
-*/
-
-                console.log(user)
                 const match = bcrypt.compareSync(thisPassword + PEPPER, user.password);
-                if(!match){
+                if (!match) {
                     vl = false;
                     empId = null;
                 }
-            }
-            else{
+            } else {
                 vl = false;
                 empId = null;
             }
-
-
 
             res.json({
                 validLogin: vl,
                 empId: empId
             });
-        } catch (e) {
-            console.log(e);
+        } catch (error) {
+            console.error("Error validating employee login:", error);
             res.status(500).json({
                 validLogin: false,
                 empId: null,
@@ -160,38 +174,42 @@ async function employeeRequests() {
     });
 
     // Employees can only view employees at their own plant (employee, not manager)
+    // BUTTS
     app.get('/myplantemployees/:id', async (req, res) => {
-        // GET EMPLOYEE BY ID
-        const id = Number(req.params.id);
-        let plantIdentification: number | undefined;
+        try {
+            const id = Number(req.params.id);
+            let plantIdentification: number | undefined;
 
-        const employee: Employee | null = await ServerData.getRepository(Employee).findOneBy({
-            employeeID: id
-        });
+            const employee: Employee | null = await ServerData.getRepository(Employee).findOneBy({
+                employeeID: id
+            });
 
-        if (!employee) {
-            res.status(404).json({
-                message: `Employee with ID ${id} not found`
-            });
-        } else {
-            plantIdentification = employee.plantID;
-            /*res.json(plantIdentification);*/
-        }
-        // GET EMPLOYEES BY PLANT ID
-        if (plantIdentification) {
-            const employees = await ServerData.getRepository(Employee).find({
-                where: {
-                    plantID: plantIdentification
-                },
-                select: ["employeeID", "firstName", "lastName", "email", "phoneNum", "plantID", "roleID", "departmentID"]
-            });
-            if (!employees) {
+            if (!employee) {
                 res.status(404).json({
-                    message: 'Employees not found from this plant'
-                })
+                    message: `Employee with ID ${id} not found`
+                });
             } else {
-                res.json(employees);
+                plantIdentification = employee.plantID;
             }
+
+            if (plantIdentification) {
+                const employees = await ServerData.getRepository(Employee).find({
+                    where: {
+                        plantID: plantIdentification
+                    },
+                    select: ["employeeID", "firstName", "lastName", "email", "phoneNum", "plantID", "roleID", "departmentID"]
+                });
+                if (!employees) {
+                    res.status(404).json({
+                        message: 'Employees not found from this plant'
+                    });
+                } else {
+                    res.json(employees);
+                }
+            }
+        } catch (error) {
+            console.error(`Error fetching employees for plant ID ${req.params.id}:`, error);
+            res.status(500).json({ message: "Internal Server Error" });
         }
     });
 }
