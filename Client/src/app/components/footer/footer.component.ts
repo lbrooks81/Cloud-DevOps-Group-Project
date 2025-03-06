@@ -12,24 +12,5 @@ import {Component} from '@angular/core';
 export class FooterComponent {
   protected readonly alert = alert;
   constructor(private snackBar: MatSnackBar) {}
-
-
-  // TODO could?
-  /*sendEmail() {
-    this.emailService.sendEmail('npage@southhills.edu', 'Subject', 'Message body').subscribe({
-      next: () => {
-        this.snackBar.open('Email sent successfully!', 'Close', {
-          duration: 3000,
-        });
-      },
-      error: () => {
-        this.snackBar.open('Failed to send email.', 'Close', {
-          duration: 3000,
-        });
-      }
-    });
-  }*/
-
-
-
 }
+  

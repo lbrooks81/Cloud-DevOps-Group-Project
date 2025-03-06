@@ -131,24 +131,23 @@ async function microComponentRequests() {
         }
     });
 
-    // Employees can only get microComponents their part supplies
-    // @ts-ignore
+    // Employees can only get microComponents from their plant
     // BUTTS
     app.get('/my-micro-components/:id', async (req, res) => {
         try {
             const id = Number(req.params.id);
-            const employee = await ServerData.getRepository(Employee).findOneBy({employeeID: id});
+            const employee: Employee | null = await ServerData.getRepository(Employee).findOneBy({employeeID: id});
 
             if (!employee) {
-                return res.status(404).json({message: `Employee with ID ${id} not found`});
+                res.status(404).json({message: `Employee with ID ${id} not found`});
             }
 
             const microComps = await ServerData.getRepository(MicroComponent).find({
-                where: {microCompPlantId: employee.plantID}
+                where: {microCompPlantId: employee?.plantID}
             });
 
             if (!microComps || microComps.length === 0) {
-                return res.status(404).json({message: `Micro-Components with plantID ${employee.plantID} not found`});
+                res.status(404).json({message: `Micro-Components with plantID ${employee?.plantID} not found`});
             }
 
             res.json(microComps);

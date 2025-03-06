@@ -16,7 +16,6 @@ import {microComponentRequests} from "./api/micro-component-api";
 
 export {app, PEPPER};
 
-
 const app = express();
 const port: number = 3000;
 const options = {

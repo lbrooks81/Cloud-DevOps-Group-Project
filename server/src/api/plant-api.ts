@@ -148,7 +148,6 @@ async function plantRequests() {
                 });
             } else {
                 plantIdentification = employee.plantID;
-                /*res.json(plantIdentification);*/
             }
 
             // GET PLANTS BY PLANT ID

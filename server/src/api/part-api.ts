@@ -154,14 +154,8 @@ async function partRequests() {
             if (!employee) {
                 found = false;
                 message = `Employee with ID ${id} not found`;
-                /*
-                res.status(404).json({
-                    message: `Employee with ID ${id} not found`
-                });*/
             } else {
                 plantIdentification = employee.plantID;
-                /*res.json(plantIdentification);*/
-
 
                 // GET PURCHASED PARTS BY PLANT ID
                 const purPart: PurchasedPart[] | null = await ServerData.getRepository(PurchasedPart).find({
@@ -173,9 +167,6 @@ async function partRequests() {
                 if (!purPart) {
                     found = false;
                     message = `Purchased Parts with Plant ID ${plantIdentification} not found`;
-                    /*res.status(404).json({
-                        message: `Purchased Parts with Plant ID ${plantIdentification} not found`
-                    });*/
                 } else {
                     const partIDs: number[] = purPart.map((part) => part.partID);
                     const parts: Part[] | null = await ServerData.getRepository(Part).find({
@@ -187,18 +178,11 @@ async function partRequests() {
                     if (!parts) {
                         found = false;
                         message = `Parts with Plant ID ${plantIdentification} not found`;
-                        /*res.status(404).json({
-                            message: `Parts with Plant ID ${plantIdentification} not found`
-                        });*/
                     } else {
                         message = parts;
-/*
-                        res.json(parts);
-*/
                     }
                 }
             }
-
             if (found) {
                 res.status(200).json(message);
             } else {

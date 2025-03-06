@@ -149,7 +149,6 @@ async function permissionLevelRequests() {
                         message: `Role with ID ${emp_roleID} not found`
                     });
                 } else {
-                    /*res.json([role]);*/
                     const role_permissionLevelID = role.permissionLevelId;
                     const permissionLevel: PermissionLevel | null = await ServerData.getRepository(PermissionLevel).findOneBy({
                         permissionLevelID: role_permissionLevelID
@@ -170,6 +169,5 @@ async function permissionLevelRequests() {
                 message: "Error getting permission level by ID for this employee's permissions"
             });
         }
-
     });
 }
