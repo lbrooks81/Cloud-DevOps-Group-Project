@@ -11,7 +11,7 @@ async function plantRequests() {
     app.get('/plants', async (req, res) => {
         try {
             const plants = await ServerData.getRepository(Plant).find();
-            res.json(plants);
+            res.status(200).json(plants);
         }
         catch (e) {
             res.status(500).json({
@@ -35,7 +35,7 @@ async function plantRequests() {
                     message: `Plant with ID ${id} not found`
                 });
             } else {
-                res.json(plant);
+                res.status(200).json(plant);
             }
         }
         catch (e) {
@@ -68,7 +68,7 @@ async function plantRequests() {
                 plant.managerID = plantData.managerID;
 
                 await plantRepository.save(plant);
-                res.json(plant);
+                res.status(204).json(plant);
             }
         }
         catch (e) {
@@ -94,7 +94,7 @@ async function plantRequests() {
                 });
             } else {
                 await plantRepository.delete(plant);
-                res.json({
+                res.status(204).json({
                     message: `Plant with ID ${id} has been deleted`
                 });
             }
@@ -121,7 +121,7 @@ async function plantRequests() {
             });
 
             await plantRepository.save(newPlant);
-            res.json(newPlant);
+            res.status(201).json(newPlant);
         }
         catch (e) {
             res.status(500).json({
@@ -162,7 +162,7 @@ async function plantRequests() {
                         message: 'Plant not found'
                     })
                 } else {
-                    res.json(plants);
+                    res.status(200).json(plants);
                 }
             }
         }
