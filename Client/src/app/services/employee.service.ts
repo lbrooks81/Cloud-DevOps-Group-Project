@@ -8,7 +8,7 @@ import {ProfileModel} from '../models/profile.model';
   providedIn: 'root'
 })
 export class EmployeeService {
-  private apiUrl = 'https://localhost:3000';
+  private apiUrl = 'http://localhost:8080';
   constructor(private http: HttpClient) { }
   getEmployees(id: number): Observable<EmployeeModel[]> {
     return this.http.get<EmployeeModel[]>(`${this.apiUrl}/myplantemployees/${id}`)
