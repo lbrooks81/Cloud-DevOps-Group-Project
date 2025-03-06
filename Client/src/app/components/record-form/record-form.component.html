@@ -1,13 +1,5 @@
+
 <main class="container readable">
- <!-- @if(product || isNewProduct)
-  {
-    @if(isNewProduct)
-    {
-      <h1 class="mb-4">New Product</h1>
-    } @else if(product)
-    {
-      <h1 class="mb-4">Product Details: {{ product.description }}</h1>
-    } -->
 
     <form #recordForm="ngForm" (keyup)="submitFakeForm($event)" class="row g-3">
       <div *ngFor="let key of this.recordKeys" class="col-4 form-floating">
@@ -17,26 +9,10 @@
       </div>
       <div class="w-100"></div>
       <div class="wtf">
-      <button class="btn w-25" type="button" id="save-record" (click)="this.putRecord($event)" [disabled]="!recordForm.dirty">OVERWRITE</button>
-        <button class="btn w-25" type="button" id="delete-record" (click)="this.deleteRecord($event)" [disabled]="!recordForm.pristine">DELETE</button>
+      <button class="btn-primary btnnnn w-25" type="button" id="save-record" (click)="this.putRecord($event)" [disabled]="!recordForm.dirty">OVERWRITE</button>
+        <button class="btn-primary btnnnn w-25" type="button" id="delete-record" (click)="this.deleteRecord($event)" [disabled]="!recordForm.pristine">DELETE</button>
 
       </div>
-    </form> <!--Why are we using material. i said no to using material when u asked me, gah-->
-
-<!--
-    <div class="toast-container position-fixed bottom-0 end-0 p-3">
-      <div id="toast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-        <div class="toast-header">
-          <strong class="me-auto"></strong>
-          <small>Now</small>
-          <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-        </div>
-        <div class="toast-body">
-
-        </div>
-      </div>
-    </div>
-
--->
+    </form>
 
 </main>

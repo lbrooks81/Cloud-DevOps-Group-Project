@@ -53,11 +53,11 @@ thead th{
 }
 
 #table-container{
-  height: calc(100vh - var(--top-most-point) - (5 * var(--classic-margin)) - var(--bottom-most-point) - 100px);
+  height: calc(100vh - var(--top-most-point) - (6 * var(--classic-margin)) - var(--bottom-most-point) - 100px);
   width: calc(100vw - 4 * var(--classic-margin));
   overflow-y: scroll;
   overflow-x: scroll;
-  margin-top: calc(2 * var(--classic-margin));
+  margin-top: calc(1 * var(--classic-margin));
   mask-image: linear-gradient(to bottom, black calc(100% - 48px), transparent 100%);
   /*
   border: 2px solid teal;
@@ -154,4 +154,12 @@ select, input{
   justify-content: center;
   height: 100px;
 }
+.add-button{
+  border-radius: 50%;
+
+  background-color: inherit;
+  width: 55px;
+  height: 55px;
+}
+
 

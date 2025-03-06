@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
-import {RouterLink, RouterLinkActive} from '@angular/router';
+import {RouterLink} from '@angular/router';
 import {LogoComponent} from '../logo/logo.component';
-import {MatRipple} from '@angular/material/core';
 import {NgOptimizedImage} from '@angular/common';
 
 @Component({
@@ -16,5 +15,4 @@ import {NgOptimizedImage} from '@angular/common';
   styleUrl: './header.component.css'
 })
 export class HeaderComponent {
-  myColor: string = "white";
 }
