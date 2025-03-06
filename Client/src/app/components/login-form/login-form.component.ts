@@ -1,8 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {Router, RouterLink} from '@angular/router';
+import {Router} from '@angular/router';
 import {getCookie, setCookie} from '../../cookieShtuff';
 import {FormsModule} from '@angular/forms';
-import {Octokit} from 'octokit';
 import {EmpInfoService} from '../../services/emp-info.service';
 import {EmpInfoModel} from '../../models/emp-info.model';
 
@@ -16,6 +15,13 @@ import {EmpInfoModel} from '../../models/emp-info.model';
   styleUrl: './login-form.component.css'
 })
 export class LoginFormComponent implements OnInit{
+  submitFakeForm(event: KeyboardEvent) {
+    if (event.key === "Enter") {
+      this.setEmployeeInformation().then(() => {
+      });
+    }
+  }
+
   public username: string = "";
   public userID: string = "";
   public password: string = "";

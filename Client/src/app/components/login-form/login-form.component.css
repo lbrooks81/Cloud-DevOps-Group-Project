@@ -7,10 +7,11 @@
 }
 
 #company-name{
-  font-style: italic;
-  font-variant: small-caps;
+  font-family: "Sunshine", sans-serif;
+  letter-spacing: 2px;
+  font-size: 2.75em;
   padding-top: 0;
-  color: var(--indigogo)
+  color: var(--dark-magenta)
 }
 
 .form-floating.mb-3:nth-child(2) {
@@ -18,36 +19,38 @@
 }
 
 .form-control {
-  background-color: var(--indigogo);
-  color: var(--midnight);
-  border: 1px solid var(--indigogo);
+  background-color: inherit;
+  color: var(--dark-magenta);
+  border: 1px solid var(--dark-magenta);
 }
 
 
 .form-control::placeholder {
-  color: var(--greyrocking);
+  opacity: 0;
+  color: var(--dark-magenta);
 }
 
 .form-control:focus {
   border-color: var(--dark-magenta);
-  box-shadow: 0 0 0 0.2rem rgba(var(--ultraviolet-glow-rgb), 0.25);
+  box-shadow: 0 0 0 0.2rem var(--ultraviolet-glow);
 }
 label::after {
   display: none;
 }
 .btn-primary {
-  background-color: var(--dark-magenta);
-  border-color: var(--dark-magenta);
-  color: white;
+  background-color: var(--background);
+  border-color: var(--medium-magenta);
+  color: var(--dark-magenta);
   display: block;
   width: 100%;
   margin-top: 20px;
 }
 
 .btn-primary:hover {
-  background-color: var(--light-magenta);
-  border-color: var(--light-magenta);
-  color: var(--midnight);
+  background-color: var(--background);
+  border-color: var(--medium-magenta);
+  color: var(--dark-magenta);
+  box-shadow: 0px 0px 10px 2px var(--dark-magenta);
 }
 .login-link {
   margin-top: 15px;
@@ -61,4 +64,19 @@ label::after {
 
 .login-link a:hover {
   text-decoration: underline;
+}
+
+.form-floating > label::after {
+  background-color: transparent !important;
+  color: var(--dark-magenta) !important;
+  font-family: "Mono_Cozy", sans-serif;
+
+}
+.form-floating input{
+  font-family: "Mono_Cozy", sans-serif;
+
+}
+.form-floating label{
+  font-family: "Mono_Cozy", sans-serif;
+  color: var(--dark-magenta);
 }

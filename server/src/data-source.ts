@@ -7,6 +7,7 @@ import {Vendor} from './entities/vendor';
 import {Part} from './entities/part';
 import {PurchasedPart} from './entities/purchased-part';
 import {Employee} from './entities/employee';
+import {MicroComponent} from "./entities/micro-component";
 
 export { ServerData };
 
@@ -20,7 +21,7 @@ const ServerData = new DataSource({
   database: 'DevOps239',
   synchronize: false,
   logging: true,
-  entities: [Employee, Department, Plant, PermissionLevel, Roles, Vendor, Part, PurchasedPart],
+  entities: [Employee, Department, Plant, PermissionLevel, MicroComponent, Roles, Vendor, Part, PurchasedPart],
   subscribers: [],
   migrations: []
 });

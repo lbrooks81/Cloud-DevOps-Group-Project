@@ -5,14 +5,15 @@
     <div id="whole-name" class="readable name">
       <p id="last-name">{{ employees["lastName"] }}, {{ employees["firstName"] }}</p>
     </div>
-    <p id="role-title" class="readable">Role: {{ employees["roleID"] }}</p>
-    <p id="department-name" class="readable">Department: {{ employees["departmentID"] }}</p>
+    <p id="role-title" class="readable">Role: {{ employees["roleTitle"] }}</p>
+    <p id="department-name" class="readable">Department: {{ employees["departmentName"] }}</p>
   </div>
   <div class="emp">
-    <img id="profile-pic" alt="user profile pic" ngSrc="/place-holder.png" height="240" width="240"/>
+    <img id="profile-pic" alt="user profile pic" ngSrc="/profile.png" height="240" width="240"/>
     <p id="emp-username" class="readable">Username: {{ employees["username"] }}</p>
     <p id="emp-email" class="readable">Email: {{ employees["email"] }}</p>
     <p id="emp-phone" class="readable">Phone: {{ employees["phoneNum"] }}</p>
+    <button class="btn btn-primary" type="button" (click)="this.logYourselfOut()">Log Out</button>
   </div>
     }
 </div>

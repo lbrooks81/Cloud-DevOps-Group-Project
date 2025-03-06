@@ -17,7 +17,9 @@ import {Router} from '@angular/router';
   standalone: true,
   styleUrl: './individual-record-view.component.css'
 })
-export class IndividualRecordViewComponent{
+export class IndividualRecordViewComponent implements OnInit{
+  ngOnInit() {
+  }
 
 
 }

@@ -1,100 +1,18 @@
+
 <main class="container readable">
- <!-- @if(product || isNewProduct)
-  {
-    @if(isNewProduct)
-    {
-      <h1 class="mb-4">New Product</h1>
-    } @else if(product)
-    {
-      <h1 class="mb-4">Product Details: {{ product.description }}</h1>
-    } -->
 
-    <form class="row g-3">
-      <div *ngFor="let key of this.recordKeys" class="col-4">
+    <form #recordForm="ngForm" (keyup)="submitFakeForm($event)" class="row g-3">
+      <div *ngFor="let key of this.recordKeys" class="col-4 form-floating">
+        <input class="form-control" [id]="key" [name]="key" [(ngModel)]="this.record[key]">
+
         <label [for]="key" class="form-label">{{ key }}</label>
-        <input class="form-control" [id]="key" [name]="key" [value]="this.record[key]">
+      </div>
+      <div class="w-100"></div>
+      <div class="wtf">
+      <button class="btn-primary btnnnn w-25" type="button" id="save-record" (click)="this.putRecord($event)" [disabled]="!recordForm.dirty">OVERWRITE</button>
+        <button class="btn-primary btnnnn w-25" type="button" id="delete-record" (click)="this.deleteRecord($event)" [disabled]="!recordForm.pristine">DELETE</button>
+
       </div>
     </form>
-
-
-
-
-
-  <!--
-      <div class="col-8">
-        <label for="product-description" class="form-label">Product Description</label>
-        <input class="form-control" id="product-description"
-               name="description" >
-              &lt;!&ndash; [(ngModel)]="modifiedProduct!.description"> &ndash;&gt;
-      </div>
-      <div class="col-3">
-        <label for="product-indate" class="form-label">Product Intake Date</label>
-        <input class="form-control" id="product-indate"
-               name="inDate" type="date" >
-                &lt;!&ndash;[(ngModel)]="modifiedProduct!.inDate"> &ndash;&gt;
-      </div>
-      <div class="col-3">
-        <label for="product-qoh" class="form-label">Product Quantity On Hand</label>
-        <input class="form-control" id="product-qoh"
-               name="quantityOnHand" type="number" min="0">
-               &lt;!&ndash;[(ngModel)]="modifiedProduct!.quantityOnHand" &ndash;&gt;
-      </div>
-      <div class="col-3">
-        <label for="product-min" class="form-label">Product Minimum Stock</label>
-        <input class="form-control" id="product-min"
-               name="minimumQuantity" type="number" min="0">
-              &lt;!&ndash; [(ngModel)]="modifiedProduct!.minimumQuantity"> &ndash;&gt;
-      </div>
-      <div class="col-3">
-        <label for="product-price" class="form-label">Product Price (USD)</label>
-        <input class="form-control" id="product-price"
-               name="price" type="number" min="0" step="0.01">
-              &lt;!&ndash; [(ngModel)]="modifiedProduct!.price" &ndash;&gt;
-      </div>
-      <div class="col-3">
-        <label for="product-discount" class="form-label">Product Price Discount</label>
-        <input class="form-control" id="product-discount"
-               name="discount" type="number" min="0" step="0.01">
-               &lt;!&ndash; [(ngModel)]="modifiedProduct!.discount" &ndash;&gt;
-      </div>
-      <div class="col-4">
-        <label for="product-vendor" class="form-label">Product Vendor</label>
-        <input class="form-control" id="product-vendor"
-               name="vendorCode">
-              &lt;!&ndash; [(ngModel)]="modifiedProduct!.vendorCode" &ndash;&gt;
-      </div>
-
-      <hr class="my-1" />
-
-      <h3 class="text-body readable">Actions</h3>
-
-      <div>
-        <button type="button" class="btn btn-success m-2"> Save or Create
-               &lt;!&ndash; (click)="saveChanges()">{{ isNewProduct ? 'Create Product' : 'Save Changes'}} &ndash;&gt;</button>
-       &lt;!&ndash; @if(!isNewProduct)
-        { &ndash;&gt;
-          <button type="button" class="btn btn-danger m-2"> &lt;!&ndash;(click)="deleteProduct()"&ndash;&gt;Delete Product</button>
-
-        <button type="button" class="btn btn-warning m-2">Discard Changes</button>
-        <a routerLink="/database" routerLinkActive="active"
-           [routerLinkActiveOptions]="{ exact: true }"
-           class="btn btn-secondary m-2">Go Back</a>
-      </div>
-    </form>
--->
-
-    <div class="toast-container position-fixed bottom-0 end-0 p-3">
-      <div id="toast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-        <div class="toast-header">
-          <strong class="me-auto"></strong>
-          <small>Now</small>
-          <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-        </div>
-        <div class="toast-body">
-
-        </div>
-      </div>
-    </div>
-
 
 </main>

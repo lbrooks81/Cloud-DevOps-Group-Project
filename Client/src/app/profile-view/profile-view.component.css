@@ -4,10 +4,10 @@
           var(--classic-margin) /*both sides*/
           calc(var(--classic-margin) + var(--bottom-most-point)) /*bottom*/;
 
-  border: 5px solid var(--indigogo);
 }
 
 #profile-formsies{
     position: relative;
     margin: var(--classic-margin);
+    padding: 20px;
 }

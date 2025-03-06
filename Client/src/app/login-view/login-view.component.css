@@ -4,14 +4,14 @@
   bottom: 0;
   transform-origin: left;
   -ms-transform: rotate(180deg);
-  transform: rotate(180deg) scale(50%);
+  transform: rotate(180deg) scale(55%);
   z-index: 1;
 }
 #circuit-left-top-login{
   position: fixed;
   left: 0;
   top: 0;
-  transform: scale(50%);
+  transform: scale(55%);
   z-index: 1;
 }
 #login-form-area{
@@ -25,7 +25,10 @@
   height: auto;
   padding: 20px;
   border-radius: 5px;
-  border: 3px solid var(--periwinkle);
+  border-width: 2px;
+  border-color: var(--dark-magenta);
+  background-color: var(--background);
+  border-style: groove;
   box-sizing: border-box;
   z-index: 2;
 }

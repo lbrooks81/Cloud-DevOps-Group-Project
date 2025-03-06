@@ -7,11 +7,26 @@ import {PartModel} from '../models/part.model';
   providedIn: 'root'
 })
 export class PartService {
-  private apiUrl = 'http://localhost:8080/our-parts';
+  private apiUrl = 'https://localhost:3000/parts';
   constructor(private http: HttpClient) { }
 
-  getParts(id: number): Observable<PartModel[]> {
-    return this.http.get<PartModel[]>(`${this.apiUrl}/${id}`);
+  getParts(): Observable<PartModel[]> {
+    return this.http.get<PartModel[]>(`${this.apiUrl}`);
+  }
+  getPartById(id: number): Observable<PartModel> {
+    return this.http.get<PartModel>(`${this.apiUrl}/${id}`);
+  }
+
+  createPart(part: PartModel): Observable<PartModel> {
+    return this.http.post<PartModel>(`${this.apiUrl}`, part);
+  }
+
+  updatePart(id: number, part: PartModel): Observable<PartModel> {
+    return this.http.put<PartModel>(`${this.apiUrl}/${id}`, part);
+  }
+
+  deletePart(id: number): Observable<PartModel>{
+    return this.http.delete<PartModel>(`${this.apiUrl}/${id}`);
   }
 }
 /*

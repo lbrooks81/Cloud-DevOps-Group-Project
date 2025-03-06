@@ -12,27 +12,24 @@ import {permissionLevelRequests} from "./api/permission-level-api";
 import {plantRequests} from "./api/plant-api";
 import {roleRequests} from "./api/role-api";
 import {vendorRequests} from "./api/vendor-api";
-import compression from 'compression';
+import {microComponentRequests} from "./api/micro-component-api";
 
 export {app, PEPPER};
 
-const app = express();
-//const port: number =  normalizePort(process.env.PORT || '3000');
-const port: number =  8080;
-app.set('port', port);
 
+const app = express();
+const port: number = 3000;
 const options = {
   key: fs.readFileSync("key.pem"),
   cert: fs.readFileSync("cert.pem")
 }
 const PEPPER = "theW0rld3nd5n0tW1thAB@ngButAWh1mp3r";
 
-app.listen(port, () => {
-    console.log(`Server is running on http://localhost:${port}`);
+https.createServer(options, app).listen(port, () => {
+    console.log(`Server is running on https://localhost:${port}`);
 });
 
 app.use(cors());
-app.use(compression());
 
 app.use(bodyParser.json()); // take a request body and turn it into a json object
 app.use(function(req, res, next) {
@@ -56,6 +53,7 @@ ServerData.initialize()
     await plantRequests();
     await roleRequests();
     await vendorRequests();
+    await microComponentRequests();
 
       /* GET home page. */
       app.get('/', function(req, res, next) {

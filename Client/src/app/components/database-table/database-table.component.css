@@ -53,30 +53,34 @@ thead th{
 }
 
 #table-container{
-  height: calc(100vh - var(--top-most-point) - (5 * var(--classic-margin)) - var(--bottom-most-point) - 100px);
+  height: calc(100vh - var(--top-most-point) - (6 * var(--classic-margin)) - var(--bottom-most-point) - 100px);
   width: calc(100vw - 4 * var(--classic-margin));
   overflow-y: scroll;
   overflow-x: scroll;
-  margin-top: calc(2 * var(--classic-margin));
+  margin-top: calc(1 * var(--classic-margin));
   mask-image: linear-gradient(to bottom, black calc(100% - 48px), transparent 100%);
   /*
   border: 2px solid teal;
   */
 }
-
+label {
+  color: var(--dark-magenta);
+}
 th, td{
   z-index: 4;
   text-align: center;
   border-radius: 5px;
+  color: var(--dark-magenta);
 }
 
 .breathing-room-table-th-td, .breathing-room-table-rows {
   background-color: var(--background);
   opacity: 0;
+  border: none !important;
 }
 
 th{
-  background-color: var(--midnight);
+  background-color: var(--background);
   font-style: italic;
 }
 
@@ -91,6 +95,12 @@ th{
   justify-content: flex-start;
   flex-direction: column;
   align-content: flex-start;
+}
+
+#test{
+  width: calc(11vw - 4 * var(--classic-margin));
+  height: 105px;
+
 }
 
 #database-choice-dropdown{
@@ -108,24 +118,29 @@ select{
 }
 
 tr:nth-child(2n) td{
-  background-color: var(--indigogo);
+  background-color: var(--background);
+  /*background-color: var(--indigogo);*/
+  border: 1px solid var(--dark-magenta);
   cursor: pointer;
 }
 
 tr:nth-child(4n) td{
-  background-color: var(--periwinkle);
-  color: var(--midnight);
+  background-color: var(--background);
   cursor: pointer;
+}
+
+tr:hover td {
+  border: 3px solid var(--dark-magenta);
 }
 
 select, input{
   border: var(--bs-border-width) solid var(--dark-magenta) !important;
-  color: var(--periwinkle);
+  color: var(--dark-magenta);
   background-color: var(--background);
 }
 
 .form-select:focus, .form-control:focus {
-  box-shadow: inset 0 1px 1px rgba(163, 0, 82, 0.075), 0 0 8px rgb(111, 116, 213) !important;
+  box-shadow: inset 0 1px 1px rgba(163, 0, 82, 0.075), 0 0 8px rgb(163, 0, 82) !important;
 }
 .form-control:focus {
   background-color: var(--background) !important;
@@ -133,4 +148,18 @@ select, input{
 .form-floating > label::after {
   background-color: transparent !important;
 }
+
+#i-hate{
+  flex-direction: row;
+  justify-content: center;
+  height: 100px;
+}
+.add-button{
+  border-radius: 50%;
+
+  background-color: inherit;
+  width: 55px;
+  height: 55px;
+}
+
 

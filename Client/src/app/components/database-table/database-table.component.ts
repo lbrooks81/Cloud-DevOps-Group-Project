@@ -18,6 +18,9 @@ import {RoleService} from '../../services/role.service';
 import {FormsModule} from '@angular/forms';
 import {getCookie, setCookie} from '../../cookieShtuff';
 import {Router} from '@angular/router';
+import {MicroComponentModel} from '../../models/micro-component.model';
+import {MicroComponentService} from '../../services/micro-component.service';
+import {NgOptimizedImage} from '@angular/common';
 
 @Component({
   selector: 'app-database-table',
@@ -30,7 +33,8 @@ import {Router} from '@angular/router';
 })
 export class DatabaseTableComponent implements OnInit {
   departments: DepartmentModel[] = [];
-  employees: EmployeeModel[] = []; // Good
+  employees: EmployeeModel[] = [];
+  microComponents: MicroComponentModel[] = [];
   parts: PartModel[] = [];
   permissionLevels: PermissionLevelModel[] = [];
   plants: PlantModel[] = [];
@@ -46,6 +50,7 @@ export class DatabaseTableComponent implements OnInit {
   // We inject services via a constructor.
   constructor(private departmentService: DepartmentService,
               private employeeService: EmployeeService,
+              private microComponentService: MicroComponentService,
               private partService: PartService,
               private permissionLevelService: PermissionLevelService,
               private plantService: PlantService,
@@ -65,14 +70,18 @@ export class DatabaseTableComponent implements OnInit {
     this.getDepartments();
     this.getParts();
     this.getRoles();
-
+    this.getMicroComponents();
     this.getPlants();
     this.getPurchasedParts();
     this.getVendors();
     // When the component loads, choose Employees from the drop down TODO
-
   }
 
+  async addNewRecord() {
+    setCookie('record', 'add');
+    await this.router.navigate(['/record']);
+
+  }
 
 
   /*I have an array of objects. I need the name of every one of the keys*/
@@ -93,37 +102,55 @@ export class DatabaseTableComponent implements OnInit {
   getTableName(): string {
     if (this.selectedTable === this.departments) return 'departments';
     if (this.selectedTable === this.employees) return 'employees';
+    if (this.selectedTable === this.microComponents) return 'micro-components';
     if (this.selectedTable === this.parts) return 'parts';
     if (this.selectedTable === this.permissionLevels) return 'permission-levels';
     if (this.selectedTable === this.plants) return 'plants';
     if (this.selectedTable === this.purchasedParts) return 'purchased-parts';
-    if (this.selectedTable === this.roles) return 'Roles';
-    if (this.selectedTable === this.vendors) return 'Vendors';
-    return '';
+    if (this.selectedTable === this.roles) return 'roles';
+    if (this.selectedTable === this.vendors) return 'vendors';
+    else {
+      return "";
+    }
   }
 
 
   onRowClick(record: any) {
-    if(this.permissionLevels[0]["permissionLevelId"] === 6) {
+      console.log(this.permissionLevels);
+    if(this.permissionLevels.length > 1) {
 
       console.log(JSON.stringify(record));
 
 
-      const tableName = this.getTableName();
+      const tableName = this.getTableName().replace(/\s+/g, '-').toLowerCase();
       const recordString = JSON.stringify(record);
 
-      setCookie('table-name', tableName.replace(/\s+/g, '-').toLowerCase());
+      setCookie('table-name', tableName);
       setCookie('record', recordString);
-      console.log("Table name cookie:", getCookie('table-name'));
-      console.log("Record id cookie:", getCookie('record'));
+      console.log("Table name cookie:", tableName);
+      console.log("Record id cookie:", recordString);
 
-      this.router.navigate(['/record']);
+
+      this.router.navigate(['/record']).then(() => {console.log(`Navigated to ${tableName}, record=${recordString}`)});
     }
     else{
       alert("You do not have write permissions");
     }
   }
 
+
+  getMicroComponents(){
+    this.microComponentService.getMicroComponents(this.empID).subscribe(({
+      next: (data) => {
+        this.microComponents = [...data];
+        console.log("Micro Components", this.microComponents);
+      },
+      error:(error) => {
+        this.errorMessage = 'Error fetching micro components';
+        console.error(`${this.errorMessage}`, error);
+      }
+    }))
+  }
 
   getDepartments() {
     this.departmentService.getDepartments(this.empID).subscribe({
@@ -152,7 +179,7 @@ export class DatabaseTableComponent implements OnInit {
 
 
   getParts() {
-    this.partService.getParts(this.empID).subscribe({
+    this.partService.getParts().subscribe({
       next: (data) => {
         this.parts = [...data];
         console.log("Parts", this.parts);
