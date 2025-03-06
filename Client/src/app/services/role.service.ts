@@ -9,8 +9,7 @@ import {Observable} from 'rxjs';
 export class RoleService {
   private apiUrl = 'http://localhost:8080/';
 
-  constructor(private http: HttpClient) {
-  }
+  constructor(private http: HttpClient) {}
 
   getRoles(id: number): Observable<RoleModel[]> {
     return this.http.get<RoleModel[]>(`${this.apiUrl}my-role/${id}`);

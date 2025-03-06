@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import {CircuitAnimationComponent} from '../circuit-animation/circuit-animation.component';
 import {CircuitForLogoComponent} from '../circuit-for-logo/circuit-for-logo.component';
 
 @Component({
@@ -12,5 +11,4 @@ import {CircuitForLogoComponent} from '../circuit-for-logo/circuit-for-logo.comp
   styleUrl: './logo.component.css'
 })
 export class LogoComponent {
-
 }

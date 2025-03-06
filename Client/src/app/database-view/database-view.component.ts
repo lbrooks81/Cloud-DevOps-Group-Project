@@ -17,7 +17,6 @@ import {getCookie} from '../cookieShtuff';
   styleUrl: './database-view.component.css'
 })
 export class DatabaseViewComponent implements OnInit{
-
   constructor(private router: Router ) {  }
 
   ngOnInit() {
@@ -25,7 +24,7 @@ export class DatabaseViewComponent implements OnInit{
 
     if(!getCookie('employee-id'))
     {
-      this.router.navigate(['/login']);
+      this.router.navigate(['/login']).then(() => {});
     }
   }
 }

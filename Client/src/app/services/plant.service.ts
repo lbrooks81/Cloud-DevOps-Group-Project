@@ -3,8 +3,6 @@ import {HttpClient} from '@angular/common/http';
 import {PlantModel} from '../models/plant.model';
 import {Observable} from 'rxjs';
 
-// TODO - Make the port a global so it can be easily changed.
-
 @Injectable({
   providedIn: 'root'
 })

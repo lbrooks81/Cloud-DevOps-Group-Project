@@ -15,13 +15,6 @@ import {EmpInfoModel} from '../../models/emp-info.model';
   styleUrl: './login-form.component.css'
 })
 export class LoginFormComponent implements OnInit{
-  submitFakeForm(event: KeyboardEvent) {
-    if (event.key === "Enter") {
-      this.setEmployeeInformation().then(() => {
-      });
-    }
-  }
-
   public username: string = "";
   public userID: string = "";
   public password: string = "";
@@ -32,18 +25,22 @@ export class LoginFormComponent implements OnInit{
   ngOnInit() {
     if(getCookie('employee-id'))
     {
-      this.router.navigate(['/database']);
+      this.router.navigate(['/database']).then(() => {});
+    }
+  }
+
+  submitFakeForm(event: KeyboardEvent) {
+    if (event.key === "Enter") {
+      this.setEmployeeInformation().then(() => {
+      });
     }
   }
 
   async setEmployeeInformation() {
-
     await this.getUserInformation();
   }
 
   async getUserInformation() {
-
-
     this.empInfoService.getEmployeeInfo(this.username, this.password).subscribe({
       next: (data) => {
         this.empInfo = data;
@@ -58,8 +55,6 @@ export class LoginFormComponent implements OnInit{
           this.router.navigate(['/database']);
         }
         else {
-          // @ts-ignore
-
           this.username = "";
           this.password = "";
           alert("Invalid Login");

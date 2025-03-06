@@ -5,6 +5,8 @@ import bcrypt from "bcrypt";
 import {Department} from "../entities/department";
 import {Roles} from "../entities/roles";
 export {employeeRequests};
+import {Department} from '../entities/department';
+import {Roles} from '../entities/roles';
 
 async function employeeRequests() {
 //================================= EMPLOYEE =================================
@@ -252,7 +254,7 @@ async function employeeRequests() {
         }
         catch (e)
         {
-           res.status(500).json({ message: "Internal Server Error"});
+            res.status(500).json({ message: "Internal Server Error"});
         }
     });
 }

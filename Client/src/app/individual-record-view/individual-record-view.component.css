@@ -1,17 +1,18 @@
 #record-container{
   width: calc(100vw - (2 * var(--classic-margin)));
   height: calc(100vh - 230px);
-  margin: calc(var(--top-most-point) + var(--classic-margin)) /*top*/
+  margin: calc(var(--top-most-point) + var(--classic-margin))
           var(--classic-margin) /*both sides*/
-          calc(var(--classic-margin) + var(--bottom-most-point)) /*bottom*/;
-
+          calc(var(--classic-margin) + var(--bottom-most-point));
 }
+
 #record-formsies{
   position: relative;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
 }
+
 .add-button{
   display: none;
 }
