@@ -72,6 +72,7 @@ export class DatabaseTableComponent implements OnInit {
     this.getPlants();
     this.getPurchasedParts();
     this.getVendors();
+
     // When the component loads, choose Employees from the drop down TODO
   }
 
@@ -125,6 +126,8 @@ export class DatabaseTableComponent implements OnInit {
       next: (data) => {
         this.microComponents = [...data];
         console.log("Micro Components", this.microComponents);
+        this.errorMessage = '';
+
       },
       error:(error) => {
         this.errorMessage = 'Error fetching micro components';
@@ -138,6 +141,7 @@ export class DatabaseTableComponent implements OnInit {
       next: (data) => {
         this.departments = [...data];
         console.log("Departments", this.departments);
+        this.errorMessage = '';
       },
       error:(error) => {
         this.errorMessage = 'Error fetching departments';
@@ -151,6 +155,8 @@ export class DatabaseTableComponent implements OnInit {
       next: (data) => {
         this.employees = [...data];
         console.log("Employees", this.employees);
+        this.errorMessage = '';
+
       },
       error:(error) => {
         this.errorMessage = 'Error fetching employees';
@@ -164,6 +170,8 @@ export class DatabaseTableComponent implements OnInit {
       next: (data) => {
         this.parts = [...data];
         console.log("Parts", this.parts);
+        this.errorMessage = '';
+
       },
       error:(error) => {
         this.errorMessage = 'Error fetching parts';
@@ -177,6 +185,8 @@ export class DatabaseTableComponent implements OnInit {
       next: (data) => {
         this.permissionLevels = [...data];
         console.log("Permission Levels", this.permissionLevels);
+        this.errorMessage = '';
+
       },
       error:(error) => {
         this.errorMessage = 'Error fetching permission levels';
@@ -190,6 +200,8 @@ export class DatabaseTableComponent implements OnInit {
       next: (data) => {
         this.permissionLevels = [...data];
         console.log("Permission Levels", this.permissionLevels);
+        this.errorMessage = '';
+
       },
       error:(error) => {
         this.errorMessage = 'Error fetching permission levels';
@@ -203,6 +215,8 @@ export class DatabaseTableComponent implements OnInit {
       next: (data) => {
         this.plants = [...data];
         console.log("Plants", this.plants);
+        this.errorMessage = '';
+
       },
       error:(error) => {
         this.errorMessage = 'Error fetching plants';
@@ -216,6 +230,8 @@ export class DatabaseTableComponent implements OnInit {
       next: (data) => {
         this.purchasedParts = [...data];
         console.log("Purchased Parts", this.purchasedParts);
+        this.errorMessage = '';
+
       },
       error:(error) => {
         this.errorMessage = 'Error fetching purchased parts';
@@ -236,6 +252,8 @@ export class DatabaseTableComponent implements OnInit {
         else{
           this.getPermissionLevels();
         }
+        this.errorMessage = '';
+
       },
       error:(error) => {
         this.errorMessage = 'Error fetching roles';
@@ -249,6 +267,8 @@ export class DatabaseTableComponent implements OnInit {
       next: (data) => {
         this.roles = [...data];
         console.log("Roles", this.roles);
+        this.errorMessage = '';
+
       },
       error:(error) => {
         this.errorMessage = 'Error fetching roles';
@@ -262,6 +282,8 @@ export class DatabaseTableComponent implements OnInit {
       next: (data) => {
         this.vendors = [...data];
         console.log("Vendors", this.vendors);
+        this.errorMessage = '';
+
       },
       error:(error) => {
         this.errorMessage = 'Error fetching vendors';
