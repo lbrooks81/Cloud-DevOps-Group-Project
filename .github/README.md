@@ -53,4 +53,8 @@ Username: noperm\
 Password: password
 - If you're able to login, you're all good for using and testing the project on your local machine.
 
+
+### Running the Project Remotely
+URL CLIENT: [http://technickalindustriesclient-hdgkf6g7h4hbdabt.canadacentral-01.azurewebsites.net](http://technickalindustriesclient-hdgkf6g7h4hbdabt.canadacentral-01.azurewebsites.net/)\
+URL SERVER: [http://technickalindustries2-ece8cjfmbth5fpfj.canadacentral-01.azurewebsites.net](http://technickalindustries2-ece8cjfmbth5fpfj.canadacentral-01.azurewebsites.net/)
   
