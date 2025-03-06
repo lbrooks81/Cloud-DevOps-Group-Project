@@ -1,3 +1,26 @@
 .readable{
   color: ghostwhite !important;
 }
+/*
+button disabled*/
+.btn-primary :disabled{
+    color: var(--background);
+    cursor: auto;
+    background-color: var(--background);
+    border-color: var(--bs-btn-hover-border-color);
+}
+[type="button"]:disabled {
+  color: white;
+  border-color: var(--background);
+}
+.btn :disabled:hover {
+  color: white;
+  border-color: white
+}
+
+/*
+[type="button"]:disabled {
+  color: white
+}
+*/
+

@@ -3,11 +3,14 @@ import {Router} from '@angular/router';
 import {getCookie} from '../../cookieShtuff';
 import {NgForOf} from '@angular/common';
 import {HttpClient} from '@angular/common/http';
+import {FormsModule} from '@angular/forms';
+import {disableDebugTools} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-record-form',
   imports: [
-    NgForOf
+    NgForOf,
+    FormsModule
   ],
   templateUrl: './record-form.component.html',
   standalone: true,
@@ -111,5 +114,6 @@ export class RecordFormComponent implements OnInit{
     console.log(response);
   }*/
 
+  protected readonly disableDebugTools = disableDebugTools;
 }
 
