@@ -11,11 +11,11 @@ export class EmployeeService {
   private apiUrl = 'http://localhost:8080';
   constructor(private http: HttpClient) { }
   getEmployees(id: number): Observable<EmployeeModel[]> {
-    return this.http.get<EmployeeModel[]>(`${this.apiUrl}/myplantemployees/${id}`)
+      return this.http.get<EmployeeModel[]>(`https://localhost:3000/myplantemployees/${id}`)
   }
   getOneEmployee(id: number): Observable<EmployeeModel>
   {
-    return this.http.get<EmployeeModel>(`${this.apiUrl}/employees/${id}`);
+         return this.http.get<EmployeeModel>(`${this.apiUrl}/employees/${id}`);
   }
 
   getProfileInfo(id: number): Observable<ProfileModel>{

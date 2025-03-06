@@ -1,17 +1,12 @@
-
-
-
 .navbar-block:hover, .home-button:hover, .add-button:hover{
   transform: scale(1.2);
   opacity: 1;
   border-radius: 50%;
-
   -webkit-box-shadow:0px 0px 13px 3px var(--dark-magenta);
   -moz-box-shadow: 0px 0px 13px 3px var(--dark-magenta);
   box-shadow: 0px 0px 13px 3px var(--dark-magenta);
-
-
 }
+
 .navbar-block, .home-button{
   border-radius: 50%;
   position: absolute;
@@ -21,6 +16,7 @@
   width: 55px;
   height: 55px;
 }
+
 .home-button{
   left: 40px;
 }

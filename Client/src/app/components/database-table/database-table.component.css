@@ -1,52 +1,3 @@
-/*
-
-.form-select, option, input, input:focus {
-  border: var(--bs-border-width) solid var(--dark-magenta) !important;
-  color: var(--periwinkle);
-  background-color: var(--indigogo);
-}
-label{
-  color: var(--periwinkle);
-}
-option:focus{
-  box-shadow: 0 0 10px 100px var(--indigogo) inset;
-}
-
-#database-choice-dropdown{
-  width: calc((95vw) / 12);
-  float: left;
-  height: calc(3.5rem + calc(var(--bs-border-width) * 2))
-}
-#attribute-choice-dropdown{
-  width: calc((95vw) / 12);
-  float: left;
-  margin-left: calc(((95vw) / 12) * 9);
-  height: calc(3.5rem + calc(var(--bs-border-width) * 2))
-}
-#attribute-search{
-  width: calc((95vw) / 12);
-  float: left;
-  margin-left: 0;
-}
-
-
-.odd > td:not(.breathing-room-table-th-td){
-  background-color: var(--indigogo);
-}
-.even > td:not(.breathing-room-table-th-td){
-  background-color: var(--periwinkle);
-}
-
-.form-floating > label::after {
-  background-color: transparent !important;
-  color: var(--periwinkle);
-
-}
-
- */
-
-
-
 thead th{
   position: sticky;
   top: 0;
@@ -59,13 +10,12 @@ thead th{
   overflow-x: scroll;
   margin-top: calc(1 * var(--classic-margin));
   mask-image: linear-gradient(to bottom, black calc(100% - 48px), transparent 100%);
-  /*
-  border: 2px solid teal;
-  */
 }
+
 label {
   color: var(--dark-magenta);
 }
+
 th, td{
   z-index: 4;
   text-align: center;
@@ -85,9 +35,6 @@ th{
 }
 
 #searching-container{
-  /*
-  border: 2px solid teal;
-  */
   width: calc(100vw - 4 * var(--classic-margin));
   height: 105px;
   display: flex;
@@ -100,7 +47,6 @@ th{
 #test{
   width: calc(11vw - 4 * var(--classic-margin));
   height: 105px;
-
 }
 
 #database-choice-dropdown{
@@ -119,7 +65,6 @@ select{
 
 tr:nth-child(2n) td{
   background-color: var(--background);
-  /*background-color: var(--indigogo);*/
   border: 1px solid var(--dark-magenta);
   cursor: pointer;
 }
@@ -142,9 +87,11 @@ select, input{
 .form-select:focus, .form-control:focus {
   box-shadow: inset 0 1px 1px rgba(163, 0, 82, 0.075), 0 0 8px rgb(163, 0, 82) !important;
 }
+
 .form-control:focus {
   background-color: var(--background) !important;
 }
+
 .form-floating > label::after {
   background-color: transparent !important;
 }
@@ -154,9 +101,9 @@ select, input{
   justify-content: center;
   height: 100px;
 }
+
 .add-button{
   border-radius: 50%;
-
   background-color: inherit;
   width: 55px;
   height: 55px;

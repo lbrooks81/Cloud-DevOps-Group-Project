@@ -6,26 +6,29 @@
   font-weight: normal;
   font-style: normal;
 }
+
 @font-face {
   font-family: "Mono_Cozy";
   src: url('./assets/BrassMono/regular_cozy.otf') format('opentype');
   font-weight: normal;
   font-style: normal;
 }
+
 @font-face {
   font-family: "Sunshine";;
   src: url('./assets/sunshine-state/Sunshine State.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
+
 body {
   background-color: var(--background) !important;
 }
+
 :root{
   /***********COLORS************/
   --dark-magenta: #a30052;
   --medium-magenta: #b2015a;
-
   --light-magenta: #fd8dc6;
   --dark-teal: #519da8;
   --ultraviolet-glow: #a30052;
@@ -36,8 +39,6 @@ body {
   --background: #0d0d13;
   --gatorade: #a6fa42;
 
-
-
   /********PIXELS*********/
   --top-most-point: 120px;
   --bottom-most-point: 45px;
@@ -47,6 +48,7 @@ body {
 .form-select:hover{
   background-color: var(--background);
 }
+
 select option:hover{
   background-color: var(--background);
 }
@@ -73,9 +75,11 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   border-color: var(--dark-magenta);
   box-shadow: 0 0 0 0.2rem var(--ultraviolet-glow);
 }
+
 label::after {
   display: none;
 }
+
 .btn-primary {
   background-color: var(--background);
   border-color: var(--medium-magenta);
@@ -91,20 +95,22 @@ label::after {
   color: var(--dark-magenta);
   box-shadow: 0px 0px 10px 2px var(--dark-magenta);
 }
+
 .form-floating > label::after {
   background-color: transparent !important;
   color: var(--dark-magenta) !important;
   font-family: "Mono_Cozy", sans-serif;
-
 }
+
 .form-floating input{
   font-family: "Mono_Cozy", sans-serif;
-
 }
+
 .form-floating label{
   font-family: "Mono_Cozy", sans-serif;
   color: var(--dark-magenta);
 }
+
 .btn:disabled{
   border-color: var(--background);
   color: var(--background);
@@ -114,6 +120,7 @@ label::after {
 .btn:hover{
   scale: 1.1 !important;
 }
+
 .btn{
   font-size: 1rem;
   border: 1px solid var(--dark-magenta);
@@ -122,12 +129,12 @@ label::after {
 .form-floating.mb-3:nth-child(2) {
   margin-top: 10px; /* Adjust the margin to stagger the input */
 }
+
 .form-control {
   background-color: inherit;
   color: var(--dark-magenta);
   border: 1px solid var(--dark-magenta);
 }
-
 
 .form-control::placeholder {
   opacity: 0;
@@ -143,16 +150,18 @@ label::after {
   background-color: transparent !important;
   color: var(--dark-magenta) !important;
   font-family: "Mono_Cozy", sans-serif;
-
 }
+
 .form-floating input{
   font-family: "Mono_Cozy", sans-serif;
   color: var(--dark-magenta);
 }
+
 .form-floating label{
   font-family: "Mono_Cozy", sans-serif;
   color: var(--dark-magenta);
 }
+
 .btn-primary {
   --bs-btn-color: var(--dark-magenta) !important;
   --bs-btn-bg: var(--background) !important;
@@ -177,5 +186,4 @@ label::after {
 
 .form-floating > label::after{
   color: var(--dark-magenta) !important;
-
 }

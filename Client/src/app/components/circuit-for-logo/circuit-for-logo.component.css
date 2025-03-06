@@ -1,18 +1,18 @@
 *{
   --light-magenta: #a6fa42;
   position: absolute;
-
 }
+
 img{
   position: absolute;
   top: 0;
   left: 0;
   filter: blur(5px);
 }
+
 .electric-pulses{
   border-radius: 50%;
 }
-
 
 .thick-line{
   width: 9px;
@@ -21,8 +21,6 @@ img{
   -moz-box-shadow: 0 0 20px var(--ultraviolet-glow);
   box-shadow:0 0 20px var(--ultraviolet-glow);
 }
-
-
 
 /*=====LINE 2=====*/
 .line-2 {
