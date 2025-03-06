@@ -89,7 +89,7 @@ export class RecordFormComponent implements OnInit{
 
   async putRecord(event: MouseEvent) {
     try {
-      const response = await this.http.put(`https://localhost:3000/${this.table}/${this.record[Object.keys(this.record)[0]]}`, this.record).toPromise();
+      const response = await this.http.put(`http://technickalindustries2-ece8cjfmbth5fpfj.canadacentral-01.azurewebsites.net/${this.table}/${this.record[Object.keys(this.record)[0]]}`, this.record).toPromise();
       console.log(response);
     } catch (error) {
       console.error("Error saving record:", error);
@@ -100,8 +100,8 @@ export class RecordFormComponent implements OnInit{
     console.log("Delete Record");
     console.log(this.record);
     console.log(this.record[Object.keys(this.record)[0]]);
-    console.log("DELETE REQUEST", `https://localhost:3000/${this.table}/${this.record[Object.keys(this.record)[0]]}`);
-    this.http.delete(`https://localhost:3000/${this.table}/${this.record[Object.keys(this.record)[0]]}`).subscribe({
+    console.log("DELETE REQUEST", `http://technickalindustries2-ece8cjfmbth5fpfj.canadacentral-01.azurewebsites.net/${this.table}/${this.record[Object.keys(this.record)[0]]}`);
+    this.http.delete(`http://technickalindustries2-ece8cjfmbth5fpfj.canadacentral-01.azurewebsites.net/${this.table}/${this.record[Object.keys(this.record)[0]]}`).subscribe({
       next: (data) => {
         console.log(data);
 /*
@@ -120,8 +120,8 @@ export class RecordFormComponent implements OnInit{
   postRecord(event: MouseEvent) {
     console.log("Post Record");
     console.log(this.record);
-    console.log("POST REQUEST", `https://localhost:3000/${this.table}`);
-    this.http.post(`https://localhost:3000/${this.table}`, this.record).subscribe({
+    console.log("POST REQUEST", `http://technickalindustries2-ece8cjfmbth5fpfj.canadacentral-01.azurewebsites.net/${this.table}`);
+    this.http.post(`http://technickalindustries2-ece8cjfmbth5fpfj.canadacentral-01.azurewebsites.net/${this.table}`, this.record).subscribe({
       next: (data) => {
         console.log(data);
       }
@@ -135,9 +135,9 @@ export class RecordFormComponent implements OnInit{
 
     console.log(this.record);
     console.log(this.record[Object.keys(this.record)[0]]);
-    console.log("PUT REQUEST", `https://localhost:3000/${this.table}/${this.record[Object.keys(this.record)[0]]}`);
+    console.log("PUT REQUEST", `http://technickalindustries2-ece8cjfmbth5fpfj.canadacentral-01.azurewebsites.net/${this.table}/${this.record[Object.keys(this.record)[0]]}`);
     console.log("REQUEST BODY", this.record);
-    let response = await this.http.put(`https://localhost:3000/${this.table}/${this.record[Object.keys(this.record)[0]]}`, this.record);
+    let response = await this.http.put(`http://technickalindustries2-ece8cjfmbth5fpfj.canadacentral-01.azurewebsites.net/${this.table}/${this.record[Object.keys(this.record)[0]]}`, this.record);
     console.log(response);
   }*/
 

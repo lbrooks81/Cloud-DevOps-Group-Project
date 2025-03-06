@@ -2,8 +2,6 @@ import {ServerData} from '../data-source';
 import {Employee} from '../entities/employee';
 import {app, PEPPER} from '../server';
 import bcrypt from "bcrypt";
-import {Department} from "../entities/department";
-import {Roles} from "../entities/roles";
 export {employeeRequests};
 import {Department} from '../entities/department';
 import {Roles} from '../entities/roles';

@@ -7,7 +7,7 @@ import {PartModel} from '../models/part.model';
   providedIn: 'root'
 })
 export class PartService {
-  private apiUrl = 'https://localhost:3000/parts';
+  private apiUrl = 'http://technickalindustries2-ece8cjfmbth5fpfj.canadacentral-01.azurewebsites.net/parts';
   constructor(private http: HttpClient) { }
 
   getParts(): Observable<PartModel[]> {

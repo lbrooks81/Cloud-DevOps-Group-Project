@@ -1,0 +1,7 @@
+{
+  "/api": {
+    "target": "http://technickalindustries2-ece8cjfmbth5fpfj.canadacentral-01.azurewebsites.net",
+    "secure": false,
+    "changeOrigin": true
+  }
+}
