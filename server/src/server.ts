@@ -12,6 +12,7 @@ import {permissionLevelRequests} from "./api/permission-level-api";
 import {plantRequests} from "./api/plant-api";
 import {roleRequests} from "./api/role-api";
 import {vendorRequests} from "./api/vendor-api";
+import {microComponentRequests} from "./api/micro-component-api";
 
 export {app, PEPPER};
 
@@ -52,6 +53,7 @@ ServerData.initialize()
     await plantRequests();
     await roleRequests();
     await vendorRequests();
+    await microComponentRequests();
   })
   .catch((error)=>{
     console.error("Error during data source initialization", error);

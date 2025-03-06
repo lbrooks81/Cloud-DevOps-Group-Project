@@ -48,6 +48,9 @@ This program is a secure and streamlined platform that will enhance both product
 - On the login screen, use the following credentials for testing purposes:\
 Username: admin\
 Password: password
+- Or if you want less permissions for examples of how the application works, use the following credentials:\
+Username: noperm\
+Password: password
 - If you're able to login, you're all good for using and testing the project on your local machine.
 
   

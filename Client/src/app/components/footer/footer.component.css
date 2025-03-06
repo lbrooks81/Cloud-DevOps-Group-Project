@@ -6,7 +6,7 @@
   position: absolute;
   left: 0;
   bottom: 0;
-  color: var(--periwinkle);
+  color: var(--dark-magenta);
   display: inline-flex;
   justify-content: space-between;
 }
@@ -20,5 +20,8 @@
   top: 50%;
   transform: translate(-50%, -50%);
   z-index: 1000;
+}
+a{
+  text-decoration: none;
 }
 
