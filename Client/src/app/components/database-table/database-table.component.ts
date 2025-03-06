@@ -97,12 +97,13 @@ export class DatabaseTableComponent implements OnInit {
   getTableName(): string {
     if (this.selectedTable === this.departments) return 'departments';
     if (this.selectedTable === this.employees) return 'employees';
+    if (this.selectedTable === this.microComponents) return 'micro-components';
     if (this.selectedTable === this.parts) return 'parts';
     if (this.selectedTable === this.permissionLevels) return 'permission-levels';
     if (this.selectedTable === this.plants) return 'plants';
     if (this.selectedTable === this.purchasedParts) return 'purchased-parts';
-    if (this.selectedTable === this.roles) return 'Roles';
-    if (this.selectedTable === this.vendors) return 'Vendors';
+    if (this.selectedTable === this.roles) return 'roles';
+    if (this.selectedTable === this.vendors) return 'vendors';
     return '';
   }
 

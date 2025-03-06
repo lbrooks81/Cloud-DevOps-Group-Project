@@ -1,77 +1,24 @@
 <main class="container readable">
-  @if(part || isNewPart)
+ <!-- @if(product || isNewProduct)
   {
-    @if(isNewPart)
+    @if(isNewProduct)
     {
       <h1 class="mb-4">New Product</h1>
-    } @else if(part)
+    } @else if(product)
     {
-      <h1 class="mb-4">Product Details: {{ part.partDescription }}</h1>
-    }
+      <h1 class="mb-4">Product Details: {{ product.description }}</h1>
+    } -->
 
-
-    <form [formGroup]="recordForm">
-      <div class="col-8">
-        <mat-form-field>
-          <mat-label> Part ID</mat-label>
-          <input matInput formControlName="partId">
-          @if(recordForm.get("partId")?.hasError("required")){<mat-error>Part ID is required</mat-error>}
-        </mat-form-field>
+    <form (keyup)="submitFakeForm($event)" class="row g-3">
+      <div *ngFor="let key of this.recordKeys" class="col-4">
+        <label [for]="key" class="form-label">{{ key }}</label>
+        <input class="form-control" [id]="key" [name]="key" [value]="this.record[key]">
       </div>
-      <div class="col-3">
-        <mat-form-field>
-          <mat-label> Part Name</mat-label>
-          <input matInput formControlName="partName">
-          @if(recordForm.get("partName")?.hasError("required")){<mat-error>Part Name is required</mat-error>}
-        </mat-form-field>
-      </div>
-      <div class="col-3">
-        <mat-form-field>
-          <mat-label> Part Descriotion</mat-label>
-          <input matInput formControlName="partDescription">
-        </mat-form-field>
-      </div>
-      <div class="col-3">
-        <mat-form-field>
-          <mat-label> Part Cost</mat-label>
-          <input matInput formControlName="partCost">
-          @if(recordForm.get("partCost")?.hasError("min")){<mat-error>Part Cost cannot be less than 0</mat-error>}
-        </mat-form-field>
-      </div>
-      <div class="col-3">
-        <mat-form-field>
-          <mat-label> Part QOH</mat-label>
-          <input matInput formControlName="partQOH">
-          @if(recordForm.get("partCost")?.hasError("min")){<mat-error>Part Quantity on Hand cannot be less than 0</mat-error>}
-        </mat-form-field>
-      </div>
-
-      <div class="col-4">
-        <mat-form-field>
-          <mat-label> Vendor ID</mat-label>
-          <input matInput formControlName="vendorId">
-        </mat-form-field>
-      </div>
-
-      <hr class="my-1" />
-
-      <h3 class="text-body readable">Actions</h3>
-
-      <div>
-        <button type="button" class="btn btn-success m-2" [disabled]="recordForm.invalid || !recordForm.dirty"
-               (click)="saveChanges()">{{ isNewPart ? 'Create Product' : 'Save Changes'}} </button>
-        @if(!isNewPart)
-        {
-          <button type="button" class="btn btn-danger m-2"> (click)="deleteProduct()Delete Product</button>
-
-        }
-        <button type="button" class="btn btn-warning m-2">Discard Changes</button>
-        <a routerLink="/database" routerLinkActive="active"
-           [routerLinkActiveOptions]="{ exact: true }"
-           class="btn btn-secondary m-2">Go Back</a>
-      </div>
+      <button class="btn" type="button" id="save-record" (click)="this.putRecord($event)">OVERWRITE</button>
+      <button class="btn" type="button" id="delete-record" (click)="this.deleteRecord($event)">DELETE</button>
     </form>
 
+<!--
     <div class="toast-container position-fixed bottom-0 end-0 p-3">
       <div id="toast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
         <div class="toast-header">
@@ -79,9 +26,12 @@
           <small>Now</small>
           <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
         </div>
-        <div class="toast-body">{{toastMessage}}</div>
+        <div class="toast-body">
+
+        </div>
       </div>
     </div>
-  }
+
+-->
 
 </main>

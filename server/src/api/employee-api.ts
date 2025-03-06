@@ -57,14 +57,16 @@ async function employeeRequests() {
                         message: `Employee with ID ${id} not found`
                     });
                 } else {
+/*
                     let bcryptPassword = bcrypt.hashSync(employeeData.password + PEPPER, 5);
+*/
 
                     employee.employeeID = employeeData.employeeID;
                     employee.firstName = employeeData.firstName;
                     employee.lastName = employeeData.lastName;
                     employee.email = employeeData.email;
                     employee.username = employeeData.username;
-                    employee.password = bcryptPassword;
+                    employee.password = "password";
                     employee.phoneNum = employeeData.phoneNum;
                     employee.plantID = employeeData.plantID;
                     employee.roleID = employeeData.roleID;
