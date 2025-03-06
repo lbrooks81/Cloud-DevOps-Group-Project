@@ -7,8 +7,8 @@ import {Observable} from 'rxjs';
   providedIn: 'root'
 })
 export class PermissionLevelService {
-  private apiUrl = 'https://localhost:3000/my-permission-level';
-  private apiUrlHigher = 'https://localhost:3000/permission-levels';
+  private apiUrl = 'http://localhost:8080/my-permission-level';
+  private apiUrlHigher = 'https://localhost:8080/permission-levels';
 
   constructor(private http: HttpClient) { }
 

@@ -3,6 +3,7 @@ import {NgOptimizedImage} from '@angular/common';
 import {EmployeeService} from '../../services/employee.service';
 import {ProfileModel} from '../../models/profile.model';
 import {Router} from '@angular/router';
+import {ProfileModel} from '../../models/profile.model';
 
 @Component({
   selector: 'app-individual-profile',
@@ -14,6 +15,7 @@ import {Router} from '@angular/router';
   styleUrl: './individual-profile.component.css'
 })
 export class IndividualProfileComponent implements OnInit {
+
   public employees: ProfileModel | undefined;
   errorMessage: string = '';
 

@@ -21,6 +21,5 @@ export class EmployeeService {
   getProfileInfo(id: number): Observable<ProfileModel>{
     return this.http.get<ProfileModel>(`${this.apiUrl}/profile/${id}`)
   }
-
 }
 

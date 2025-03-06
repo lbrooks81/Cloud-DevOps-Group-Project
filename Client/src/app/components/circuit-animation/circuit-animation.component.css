@@ -1,7 +1,5 @@
 *{
-
   position: absolute;
-
 }
 img{
   position: absolute;
@@ -47,25 +45,21 @@ img{
     left: 294px;
     top: 109px;
     background-color: var(--dark-magenta)
-
   }
   50.91%{
     left: 294px;
     top: 194px;
     background-color: var(--light-magenta)
-
   }
   69.23%{
     left: 393px;
     top: 292px;
     background-color: var(--dark-magenta)
-
   }
   to{
     left: 628px;
     top: 292px;
     background-color: var(--light-magenta)
-
   }
 }
 
@@ -101,42 +95,34 @@ img{
   43%{
     background-color: var(--dark-teal);
     transition: ease-out;
-
   }
   45%{
     background-color: var(--dark-magenta);
     transition: ease-in;
-
   }
   47%{
     background-color: var(--dark-teal);
     transition: ease-out;
-
   }
   49%{
     background-color: var(--dark-magenta);
     transition: ease-in;
-
   }
   51%{
     background-color: var(--dark-teal);
     transition: ease-out;
-
   }
   53%{
     background-color: var(--dark-magenta);
     transition: ease-in;
-
   }
   55%{
     background-color: var(--dark-teal);
     transition: ease-out;
-
   }
   57%{
     background-color: var(--dark-magenta);
     transition: ease-in;
-
   }
   59%{
     background-color: var(--dark-teal);
@@ -145,7 +131,6 @@ img{
   61%{
     background-color: var(--dark-magenta);
     transition: ease-in;
-
   }
   63.92%{
     left: 256px;

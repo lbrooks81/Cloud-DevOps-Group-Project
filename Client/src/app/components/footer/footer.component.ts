@@ -12,3 +12,4 @@ export class FooterComponent {
   protected readonly alert = alert;
   constructor() {}
 }
+  

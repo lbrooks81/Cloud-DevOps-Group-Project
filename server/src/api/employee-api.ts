@@ -2,6 +2,8 @@ import {ServerData} from '../data-source';
 import {Employee} from '../entities/employee';
 import {app, PEPPER} from '../server';
 import bcrypt from "bcrypt";
+import {Department} from "../entities/department";
+import {Roles} from "../entities/roles";
 export {employeeRequests};
 import {Department} from '../entities/department';
 import {Roles} from '../entities/roles';
@@ -61,7 +63,6 @@ async function employeeRequests() {
                 } else {
 
                     let bcryptPassword = bcrypt.hashSync(employeeData.password + PEPPER, 5);
-
 
                     employee.employeeID = employeeData.employeeID;
                     employee.firstName = employeeData.firstName;
@@ -138,8 +139,6 @@ async function employeeRequests() {
             }
         });
 
-
-    // TODO
     // Validates employee login and returns employee ID
     // BUTTS
     app.put('/emp-info', async (req, res) => {
@@ -164,7 +163,6 @@ async function employeeRequests() {
                 vl = false;
                 empId = null;
             }
-
             res.json({
                 validLogin: vl,
                 empId: empId

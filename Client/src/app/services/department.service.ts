@@ -7,7 +7,7 @@ import {Observable} from 'rxjs';
   providedIn: 'root'
 })
 export class DepartmentService {
-  private apiUrl = 'https://localhost:3000/our-departments';
+  private apiUrl = 'http://localhost:8080/our-departments';
 
   constructor(private http: HttpClient) { }
   getDepartments(id: number): Observable<DepartmentModel[]> {

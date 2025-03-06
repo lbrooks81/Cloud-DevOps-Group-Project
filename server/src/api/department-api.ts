@@ -112,7 +112,6 @@ async function departmentRequests(){
         try {
             const departmentData = req.body;
 
-
             const departmentRepository = ServerData.getRepository(Department);
             const newDepartment = departmentRepository.create({
                 departmentId: departmentData.departmentId,
@@ -131,13 +130,12 @@ async function departmentRequests(){
         }
     });
 
-
     // Employees can view departments with employees from their plant.
     // BUTTS
     app.get('/our-departments/:id', async (req, res) => {
         try {
             const id = Number(req.params.id);
-            let plantid: number | undefined;
+            let plantId: number | undefined;
 
             const employee: Employee | null = await ServerData.getRepository(Employee).findOneBy({
                 employeeID: id
@@ -148,10 +146,10 @@ async function departmentRequests(){
                     message: `Employee with ID ${id} not found`
                 });
             } else {
-                plantid = employee.departmentID;
-                if (plantid) {
+                plantId = employee.departmentID;
+                if (plantId) {
                     const departments: Department[] = await ServerData.getRepository(Department).find({
-                        where: {departmentId: plantid}
+                        where: {departmentId: plantId}
                     });
 
                     if (!departments) {
