@@ -171,7 +171,7 @@ export class DatabaseTableComponent implements OnInit {
 
 
   getParts() {
-    this.partService.getParts(this.empID).subscribe({
+    this.partService.getParts().subscribe({
       next: (data) => {
         this.parts = [...data];
         console.log("Parts", this.parts);
