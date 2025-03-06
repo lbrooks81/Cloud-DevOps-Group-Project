@@ -14,7 +14,7 @@ async function vendorRequests() {
     app.get('/vendors', async (req, res) => {
         try {
             const vendors = await ServerData.getRepository(Vendor).find();
-            res.json(vendors);
+            res.status(200).json(vendors);
         }
         catch (e) {
             res.status(500).json({
@@ -38,7 +38,7 @@ async function vendorRequests() {
                     message: `Vendor with ID ${id} not found`
                 });
             } else {
-                res.json(vendor);
+                res.status(200).json(vendor);
             }
         }
         catch (e) {
@@ -71,7 +71,7 @@ async function vendorRequests() {
                 vendor.vendorZipcode = vendorData.vendorZipcode;
 
                 await vendorRepository.save(vendor);
-                res.json(vendor);
+                res.status(204).json(vendor);
             }
         }
         catch (e) {
@@ -97,7 +97,7 @@ async function vendorRequests() {
                 });
             } else {
                 await vendorRepository.delete(vendor);
-                res.json({
+                res.status(204).json({
                     message: `Vendor with ID ${id} has been deleted`
                 });
             }
@@ -124,7 +124,7 @@ async function vendorRequests() {
             });
 
             await vendorRepository.save(newVendor);
-            res.json(newVendor);
+            res.status(201).json(newVendor);
         }
         catch (e) {
             res.status(500).json({
@@ -210,7 +210,7 @@ async function vendorRequests() {
             }
 
             if (found) {
-                res.json(message);
+                res.status(200).json(message);
             } else {
                 res.status(404).json({
                     message: message
