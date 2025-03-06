@@ -3,6 +3,8 @@ import {Employee} from '../entities/employee';
 import {app, PEPPER} from '../server';
 import bcrypt from "bcrypt";
 export {employeeRequests};
+import {Department} from '../entities/department';
+import {Roles} from '../entities/roles';
 
 async function employeeRequests() {
 //================================= EMPLOYEE =================================
@@ -214,6 +216,47 @@ async function employeeRequests() {
         } catch (error) {
             console.error(`Error fetching employees for plant ID ${req.params.id}:`, error);
             res.status(500).json({ message: "Internal Server Error" });
+        }
+    });
+
+    // Returns information used for the profile page
+    app.get('/profile/:id', async (req, res) => {
+        try
+        {
+            const id = Number(req.params.id);
+
+            const employee: Employee | null = await ServerData.getRepository(Employee).findOneBy({
+                employeeID: id
+            });
+
+            const department: Department | null = await ServerData.getRepository(Department).findOneBy({
+                departmentId: employee?.departmentID
+            })
+
+            const role: Roles | null = await ServerData.getRepository(Roles).findOneBy({
+                roleId: employee?.roleID
+            })
+
+            const profileView = {
+                employeeId: employee?.employeeID,
+                firstName: employee?.firstName,
+                lastName: employee?.lastName,
+                email: employee?.email,
+                username: employee?.username,
+                password: employee?.password,
+                phoneNum: employee?.phoneNum,
+                plantID: employee?.plantID,
+                roleId: role?.roleId,
+                roleTitle: role?.roleTitle,
+                departmentId: department?.departmentId,
+                departmentName: department?.departmentName
+            }
+
+            res.status(200).json(profileView);
+        }
+        catch (e)
+        {
+            res.status(500).json({ message: "Internal Server Error"});
         }
     });
 }
