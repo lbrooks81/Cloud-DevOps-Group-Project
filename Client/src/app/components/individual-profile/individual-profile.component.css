@@ -1,9 +1,7 @@
-
 #name-goes-here{
   font-size: 35px;
 
 }
-
 
 .readable{
   color: var(--dark-magenta);
@@ -23,11 +21,9 @@
   padding-top: 60px;
 }
 
-
 .name{
   font-size: 45px;
 }
-
 
 .emp{
   display: flex;

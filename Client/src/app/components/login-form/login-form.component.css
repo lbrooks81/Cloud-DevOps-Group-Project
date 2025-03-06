@@ -34,9 +34,11 @@
   border-color: var(--dark-magenta);
   box-shadow: 0 0 0 0.2rem var(--ultraviolet-glow);
 }
+
 label::after {
   display: none;
 }
+
 .btn-primary {
   background-color: var(--background);
   border-color: var(--medium-magenta);
@@ -52,6 +54,7 @@ label::after {
   color: var(--dark-magenta);
   box-shadow: 0px 0px 10px 2px var(--dark-magenta);
 }
+
 .login-link {
   margin-top: 15px;
   text-align: center;
@@ -70,7 +73,6 @@ label::after {
   background-color: transparent !important;
   color: var(--dark-magenta) !important;
   font-family: "Mono_Cozy", sans-serif;
-
 }
 .form-floating input{
   font-family: "Mono_Cozy", sans-serif;

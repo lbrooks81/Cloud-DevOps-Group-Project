@@ -11,5 +11,3 @@ export const routes: Routes = [
   {path: 'record', component: IndividualRecordViewComponent},
   {path: '', redirectTo: '/login', pathMatch: 'full'},
 ];
-// TODO - Protect these routes via rerouting to /login if the user is not logged in.
-// TODO - 404 Error Page

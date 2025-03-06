@@ -2,9 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {HeaderComponent} from '../components/header/header.component';
 import {FooterComponent} from '../components/footer/footer.component';
 import {RecordFormComponent} from '../components/record-form/record-form.component';
-import {getCookie} from '../cookieShtuff';
-import {Router} from '@angular/router';
-
 
 @Component({
   selector: 'app-individual-record-view',

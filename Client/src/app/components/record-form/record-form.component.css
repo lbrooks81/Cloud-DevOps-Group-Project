@@ -11,18 +11,14 @@
 .btnnnn:hover{
   scale: 1.1 !important;
 }
+
 .btnnnn{
   border-radius: 10px;
 }
-/*
-[type="button"]:disabled {
-  color: white
-}
-*/
+
 *{
   --bs-btn-color: var(--dark-magenta) !important;
 }
-
 
 .wtf{
   display: flex;
@@ -31,13 +27,11 @@
   align-content: space-around;
 }
 
-
 .form-control {
   background-color: inherit;
   color: var(--dark-magenta);
   border: 1px solid var(--dark-magenta);
 }
-
 
 .form-control::placeholder {
   opacity: 0;
@@ -48,20 +42,21 @@
   border-color: var(--dark-magenta);
   box-shadow: 0 0 0 0.2rem var(--ultraviolet-glow);
 }
+
 label::after {
   display: none;
 }
+
 .form-floating > label::after {
   background-color: transparent !important;
   color: var(--dark-magenta) !important;
   font-family: "Mono_Cozy", sans-serif;
-
 }
 
 .form-floating input{
   font-family: "Mono_Cozy", sans-serif;
-
 }
+
 .form-floating label{
   font-family: "Mono_Cozy", sans-serif;
   color: var(--dark-magenta);

@@ -9,5 +9,4 @@ import {NgOptimizedImage} from '@angular/common';
   styleUrl: './circuit-animation.component.css'
 })
 export class CircuitAnimationComponent {
-
 }
