@@ -1,61 +1,37 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, Router, RouterLink, RouterLinkActive} from '@angular/router';
+import {Router} from '@angular/router';
 import {getCookie} from '../../cookieShtuff';
-import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
-import {MatError, MatFormField, MatLabel} from '@angular/material/form-field';
-import {MatInput} from '@angular/material/input';
-import {PartService} from '../../services/part.service';
-import {PartModel} from '../../models/part.model';
+import {NgForOf} from '@angular/common';
+import {HttpClient} from '@angular/common/http';
 
 @Component({
   selector: 'app-record-form',
   imports: [
-    ReactiveFormsModule,
-    MatError,
-    MatFormField,
-    MatInput,
-    RouterLink,
-    RouterLinkActive,
-    MatLabel
+    NgForOf
   ],
   templateUrl: './record-form.component.html',
   standalone: true,
   styleUrl: './record-form.component.css'
 })
-export class RecordFormComponent implements OnInit
-{
-  errorMessage: string = "";
-  isNewPart: boolean = false;
-  part: PartModel | null = null;
-  modifiedPart: PartModel = {} as PartModel;
+export class RecordFormComponent implements OnInit{
+  errorMessage: any;
   record: any;
-  id: string = '';
-  table: string = '';
-  recordKeys: any[] = [];
-  recordForm: FormGroup = new FormGroup({
-    partId: new FormControl("", [Validators.required]),
-    partName: new FormControl("", [Validators.required]),
-    partDescription: new FormControl(""),
-    partCost: new FormControl("", [Validators.min(0)]),
-    partQOH: new FormControl("", [Validators.min(0)]),
-    vendorId: new FormControl("")
-  });
-  toastMessage: string = "";
 
-  constructor(private router: Router, private route: ActivatedRoute, private partService: PartService)
-  {
+
+  public id: string = '';
+  public table: string = '';
+  public recordKeys: any[] = [];
+
+  constructor(private router: Router, private http: HttpClient) {
   }
 
   //Get cookie ('record') and turn into object
-  ngOnInit()
-  {
-    if (!getCookie('employee-id'))
-    {
+  ngOnInit() {
+    if (!getCookie('employee-id')) {
       this.router.navigate(['/']);
     }
     // This makes sure they have chosen a row from the database to view.
-    if (!getCookie('record') || !getCookie('table-name'))
-    {
+    if (!getCookie('record') || !getCookie('table-name')) {
       this.router.navigate(['/database']);
     }
 
@@ -64,75 +40,76 @@ export class RecordFormComponent implements OnInit
     // This is the table they clicked on
     this.table = getCookie('table-name');
     this.record = JSON.parse(getCookie('record'));
+    console.log("TABBBLLLLLLEEEEE NAMMMMMMMEEEEE: ", this.table);
     console.log("Record Clicked: ", this.record);
     this.getRecordKeys();
-
-    const partId = this.route.snapshot.paramMap.get('partId');
-    if (partId)
-    {
-      this.isNewPart = false;
-      this.partService.getPartById(+partId).subscribe({
-        next: (data) =>
-        {
-          this.part = data;
-          this.modifiedPart = {...data};
-          this.recordForm.get("partId")?.setValue(`${data.partId}`);
-          this.recordForm.get("partName")?.setValue(data.partName);
-          this.recordForm.get("partDescription")?.setValue(`${data.partDescription}`);
-          this.recordForm.get("partCost")?.setValue(data.partCost);
-          this.recordForm.get("partQOH")?.setValue(data.partQOH);
-          this.recordForm.get("vendorId")?.setValue(data.vendorId);
-
-        },
-        error: (error) =>
-        {
-          this.errorMessage = "Error fetching product";
-        }
-      });
-    }
   }
 
-  getRecordKeys()
-  {
+  getRecordKeys() {
     this.recordKeys = Object.keys(this.record);
     console.log(this.recordKeys);
   }
 
-  saveChanges(): void
-  {
-    this.modifiedPart.partId = this.recordForm.value.partId;
-    this.modifiedPart.partName = this.recordForm.value.partName;
-    this.modifiedPart.partDescription = this.recordForm.value.partDescription;
-    this.modifiedPart.partCost = this.recordForm.value.partCost;
-    this.modifiedPart.partQOH = this.recordForm.value.partQOH;
-    this.modifiedPart.vendorId = this.recordForm.value.vendorId;
-    if (this.isNewPart)
-    {
-      this.partService.createPart(this.modifiedPart).subscribe({
-        next: () =>
-        {
-          this.toastMessage = "Changes have been saved. Have a TechNickal Day!";
-        },
-        error: (error) =>
-        {
-          this.toastMessage = "Changes not saved. Do not have a TechNickal Day.";
-        }
-      });
+  submitFakeForm(event: KeyboardEvent) {
+    console.log(event.key)
+    console.log(event.target)
+    // event.target.id is the attribute name
+    // record[event.target.id] is the value
+    try {
+      console.log((event.target as HTMLElement).id);
+      console.log(this.record[(event.target as HTMLElement).id]);
+
+      this.record[(event.target as HTMLElement).id] = (event.target as HTMLInputElement).value;
     }
-    else
-    {
-      this.partService.updatePart(this.part!.partId, this.modifiedPart).subscribe({
-        next: () =>
-        {
-          this.toastMessage = "Updates have been saved. Have a TechNickal Day!";
-        },
-        error: (error) =>
-        {
-          this.toastMessage = "Updates not saved. Do not have a TechNickal Day.";
-        }
-      });
+    catch (e) {
+      console.log("Error: ", e);
+    }
+
+
+  }
+
+  async putRecord(event: MouseEvent) {
+    try {
+      const response = await this.http.put(`https://localhost:3000/${this.table}/${this.record[Object.keys(this.record)[0]]}`, this.record).toPromise();
+      console.log(response);
+    } catch (error) {
+      console.error("Error saving record:", error);
     }
   }
+
+  deleteRecord(event: MouseEvent) {
+    console.log("Delete Record");
+    console.log(this.record);
+    console.log(this.record[Object.keys(this.record)[0]]);
+    console.log("DELETE REQUEST", `https://localhost:3000/${this.table}/${this.record[Object.keys(this.record)[0]]}`);
+    this.http.delete(`https://localhost:3000/${this.table}/${this.record[Object.keys(this.record)[0]]}`).subscribe({
+      next: (data) => {
+        console.log(data);
+/*
+        this.router.navigate(['/database']);
+*/
+      },
+      error: (error) => {
+        console.error("Error deleting record:", error);
+
+
+        // TODO IF YOU CAN DATABASE ERROR OCCURS HERE. - KACI 3/6/2025 12:45 am
+      }
+    });
+  }
+
+
+
+  /*async saveRecord(event: MouseEvent) {
+    console.log("Overwrite Record");
+
+    console.log(this.record);
+    console.log(this.record[Object.keys(this.record)[0]]);
+    console.log("PUT REQUEST", `https://localhost:3000/${this.table}/${this.record[Object.keys(this.record)[0]]}`);
+    console.log("REQUEST BODY", this.record);
+    let response = await this.http.put(`https://localhost:3000/${this.table}/${this.record[Object.keys(this.record)[0]]}`, this.record);
+    console.log(response);
+  }*/
 
 }
 
