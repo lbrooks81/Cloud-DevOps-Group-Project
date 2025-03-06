@@ -6,8 +6,9 @@
 
 
 .readable{
-  color: ghostwhite;
-  border: 2px solid #6F779D;
+  color: var(--dark-magenta);
+  font-family: "Mono_Cozy", sans-serif;
+  border: 2px solid var(--dark-magenta);
   border-radius: 5px;
   margin-top: 15px;
   margin-left: 25px;
@@ -19,6 +20,7 @@
   font-size: 25px;
   display: flex;
   flex-direction: row;
+  padding-top: 60px;
 }
 
 

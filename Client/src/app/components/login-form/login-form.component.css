@@ -32,7 +32,7 @@
 
 .form-control:focus {
   border-color: var(--dark-magenta);
-  box-shadow: 0 0 0 0.2rem rgba(var(--ultraviolet-glow-rgb), 0.25);
+  box-shadow: 0 0 0 0.2rem var(--ultraviolet-glow);
 }
 label::after {
   display: none;
