@@ -10,7 +10,7 @@ async function purchasedPartRequests() {
     app.get('/purchased-parts', async (req, res) => {
         try {
             const purchasedParts = await ServerData.getRepository(PurchasedPart).find();
-            res.status(200).json(purchasedParts);
+            res.json(purchasedParts);
         }
         catch (e) {
             res.status(500).json({
@@ -36,7 +36,7 @@ async function purchasedPartRequests() {
                     message: `Purchased Part with Part ID ${partID} and Plant ID ${plantID} not found`
                 });
             } else {
-                res.status(200).json(purchasedPart);
+                res.json(purchasedPart);
             }
         }
         catch (e) {
@@ -70,7 +70,7 @@ async function purchasedPartRequests() {
                 purchasedPart.date = purchasedPartData.date;
 
                 await purchasedPartRepository.save(purchasedPart);
-                res.status(204).json(purchasedPart);
+                res.json(purchasedPart);
             }
         }
         catch (e) {
@@ -99,7 +99,7 @@ async function purchasedPartRequests() {
                 });
             } else {
                 await purchasedPartRepository.delete(purchasedPart);
-                res.status(204).json({
+                res.json({
                     message: `Purchased Part with partID ${partID} and plantID ${plantID} has been deleted`
                 });
             }
@@ -125,7 +125,7 @@ async function purchasedPartRequests() {
             });
 
             await purchasedPartRepository.save(newPurchasedPart);
-            res.status(201).json(newPurchasedPart);
+            res.json(newPurchasedPart);
         }
         catch (e) {
             res.status(500).json({
@@ -178,7 +178,7 @@ async function purchasedPartRequests() {
             }
 
             if (found) {
-                res.status(200).json(message);
+                res.json(message);
             } else {
                 res.status(404).json({
                     message: message

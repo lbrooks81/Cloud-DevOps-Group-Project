@@ -32,7 +32,7 @@ async function employeeRequests() {
                     message: `Employee with ID ${id} not found`
                 });
             } else {
-                res.status(200).json(employee);
+                res.json(employee);
             }
         } catch (error) {
             console.error(`Error fetching employee with ID ${req.params.id}:`, error);
@@ -72,7 +72,7 @@ async function employeeRequests() {
 
                     await employeeRepository.save(employee);
 
-                    res.status(204).json(employee);
+                    res.json(employee);
                 }
             } catch (error) {
                 console.error(`Error updating employee with ID ${req.params.id}:`, error);
@@ -96,7 +96,7 @@ async function employeeRequests() {
                 });
             } else {
                 await employeeRepository.delete(employee);
-                res.status(204).json({
+                res.json({
                     message: `Employee with ID ${id} has been deleted`
                 });
             }
@@ -127,15 +127,13 @@ async function employeeRequests() {
                 });
 
                 await employeeRepository.save(newEmployee);
-                res.status(201).json(newEmployee);
+                res.json(newEmployee);
             } catch (error) {
                 console.error("Error creating new employee:", error);
                 res.status(500).json({ message: "Internal Server Error" });
             }
         });
 
-
-    // TODO
     // Validates employee login and returns employee ID
     // BUTTS
     app.put('/emp-info', async (req, res) => {
@@ -206,7 +204,7 @@ async function employeeRequests() {
                         message: 'Employees not found from this plant'
                     });
                 } else {
-                    res.status(200).json(employees);
+                    res.json(employees);
                 }
             }
         } catch (error) {

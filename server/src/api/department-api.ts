@@ -35,7 +35,7 @@ async function departmentRequests(){
                     message: `Department with ID ${id} not found`
                 });
             } else {
-                res.status(200).json(department);
+                res.json(department);
             }
         }
         catch (e) {
@@ -68,7 +68,7 @@ async function departmentRequests(){
 
                 await departmentRepository.save(department);
 
-                res.status(200).json(department);
+                res.json(department);
             }
         }
         catch (e) {
@@ -94,7 +94,7 @@ async function departmentRequests(){
                 });
             } else {
                 await ServerData.getRepository(Department).delete(department);
-                res.status(200).json({
+                res.json({
                     message: `Department with ID ${id} has been deleted`
                 });
             }
@@ -122,7 +122,7 @@ async function departmentRequests(){
 
             await departmentRepository.save(newDepartment);
 
-            res.status(201).json(newDepartment);
+            res.json(newDepartment);
         }
         catch (e) {
             res.status(500).json({
@@ -159,7 +159,7 @@ async function departmentRequests(){
                             message: 'Department not found'
                         })
                     } else {
-                        res.status(200).json(departments);
+                        res.json(departments);
                     }
                 }
             }
