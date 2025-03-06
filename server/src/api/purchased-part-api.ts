@@ -151,10 +151,6 @@ async function purchasedPartRequests() {
             if (!employee) {
                 found = false;
                 message = `Employee with ID ${id} not found`;
-
-/*                res.status(404).json({
-                    message: message
-                });*/
             } else {
                 plantIdentification = employee.plantID;
 
@@ -167,13 +163,9 @@ async function purchasedPartRequests() {
 
                 if (!purPart) {
                     found = false;
-                    message = `Purchased Parts with Plant ID ${plantIdentification} not found`
-                    /*                res.status(404).json({
-                                        message: `Purchased Parts with Plant ID ${plantIdentification} not found`
-                                    });*/
+                    message = `Purchased Parts with Plant ID ${plantIdentification} not found`;
                 } else {
                     message = purPart;
-                    /*res.json(purPart);*/
                 }
             }
 

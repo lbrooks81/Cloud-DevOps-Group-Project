@@ -1,5 +1,4 @@
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { EmailService } from '../../services/email.service.service';
 import {Component} from '@angular/core';
 
 @Component({
@@ -12,5 +11,6 @@ import {Component} from '@angular/core';
 })
 export class FooterComponent {
   protected readonly alert = alert;
-  constructor(private snackBar: MatSnackBar, private emailService: EmailService) {}
+  constructor(private snackBar: MatSnackBar) {}
 }
+  

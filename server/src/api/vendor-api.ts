@@ -150,12 +150,8 @@ async function vendorRequests() {
             if (!employee) {
                 message = `Employee with ID ${id} not found`;
                 found = false;
-/*                res.status(404).json({
-                    message: `Employee with ID ${id} not found`
-                });*/
             } else {
                 plantIdentification = employee.plantID;
-
 
                 // GET PURCHASED PARTS BY PLANT ID
                 const purPart: PurchasedPart[] | null = await ServerData.getRepository(PurchasedPart).find({
@@ -167,9 +163,6 @@ async function vendorRequests() {
                 if (!purPart) {
                     found = false;
                     message = `Purchased Parts with Plant ID ${plantIdentification} not found`;
-                    /*                res.status(404).json({
-                                        message: `Purchased Parts with Plant ID ${plantIdentification} not found`
-                                    });*/
                 } else {
                     const partIDs: number[] = purPart.map((part) => part.partID);
                     const parts: Part[] | null = await ServerData.getRepository(Part).find({
@@ -181,11 +174,7 @@ async function vendorRequests() {
                     if (!parts) {
                         found = false;
                         message = `Parts with Plant ID ${plantIdentification} not found`;
-                        /*                    res.status(404).json({
-                                                message: `Parts with Plant ID ${plantIdentification} not found`
-                                            });*/
                     } else {
-                        /*res.json(parts);*/
                         const vendorIDs: (number | null)[] = parts.map((part) => part.vendorId);
                         const vendors: Vendor[] | null = await ServerData.getRepository(Vendor).find({
                             where: {
@@ -196,14 +185,8 @@ async function vendorRequests() {
                         if (!vendors) {
                             found = false;
                             message = `Vendors with Plant ID ${plantIdentification} not found`;
-                            /*              res.status(404).json({
-                                              message: `Vendors with Plant ID ${plantIdentification} not found`
-                                          });*/
                         } else {
                             message = vendors;
-                            /*
-                                                    res.json(vendors);
-                            */
                         }
                     }
                 }

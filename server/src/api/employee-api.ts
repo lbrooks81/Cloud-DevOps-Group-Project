@@ -62,7 +62,6 @@ async function employeeRequests() {
 
                     let bcryptPassword = bcrypt.hashSync(employeeData.password + PEPPER, 5);
 
-
                     employee.employeeID = employeeData.employeeID;
                     employee.firstName = employeeData.firstName;
                     employee.lastName = employeeData.lastName;
@@ -138,8 +137,6 @@ async function employeeRequests() {
             }
         });
 
-
-    // TODO
     // Validates employee login and returns employee ID
     // BUTTS
     app.put('/emp-info', async (req, res) => {
@@ -164,7 +161,6 @@ async function employeeRequests() {
                 vl = false;
                 empId = null;
             }
-
             res.json({
                 validLogin: vl,
                 empId: empId
