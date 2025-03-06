@@ -7,10 +7,10 @@ import {Observable} from 'rxjs';
   providedIn: 'root'
 })
 export class EmployeeService {
-  private apiUrl = 'https://localhost:3000/employees';
+  private apiUrl = 'http://localhost:8080/employees';
   constructor(private http: HttpClient) { }
   getEmployees(id: number): Observable<EmployeeModel[]> {
-    return this.http.get<EmployeeModel[]>(`https://localhost:3000/myplantemployees/${id}`)
+    return this.http.get<EmployeeModel[]>(`http://localhost:8080/myplantemployees/${id}`)
   }
   getOneEmployee(id: number): Observable<EmployeeModel>
   {
