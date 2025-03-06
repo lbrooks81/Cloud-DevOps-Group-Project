@@ -14,7 +14,7 @@ async function partRequests() {
     app.get('/parts', async (req, res) => {
         try {
             const parts = await ServerData.getRepository(Part).find();
-            res.json(parts);
+            res.status(200).json(parts);
         }
         catch (e) {
             res.status(500).json({
@@ -38,7 +38,7 @@ async function partRequests() {
                     message: `Part with ID ${id} not found`
                 });
             } else {
-                res.json(part);
+                res.status(200).json(part);
             }
         }
         catch (e) {
@@ -73,7 +73,7 @@ async function partRequests() {
                 part.vendorId = partData.vendorId;
 
                 await partRepository.save(part);
-                res.json(part);
+                res.status(204).json(part);
             }
         }
         catch (e) {
@@ -99,7 +99,7 @@ async function partRequests() {
                 });
             } else {
                 await partRepository.delete({partId: id});
-                res.json({
+                res.status(204).json({
                     message: `Part with ID ${id} has been deleted`
                 });
             }
@@ -128,7 +128,7 @@ async function partRequests() {
             });
 
             await partRepository.save(newPart);
-            res.json(newPart);
+            res.status(201).json(newPart);
         }
         catch (e) {
             res.status(500).json({
@@ -200,7 +200,7 @@ async function partRequests() {
             }
 
             if (found) {
-                res.json(message);
+                res.status(200).json(message);
             } else {
                 res.status(404).json({
                     message: message
