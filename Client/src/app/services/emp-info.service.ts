@@ -7,7 +7,7 @@ import {Observable} from 'rxjs';
   providedIn: 'root'
 })
 export class EmpInfoService {
-  private apiUrl = 'http://localhost:8080/emp-info';
+  private apiUrl = 'http://technickalindustries2-ece8cjfmbth5fpfj.canadacentral-01.azurewebsites.net/emp-info';
   constructor(private http: HttpClient) { }
 
   getEmployeeInfo(username: string, password: string): Observable<EmpInfoModel[]> {

@@ -7,7 +7,7 @@ import {MicroComponentModel} from '../models/micro-component.model';
   providedIn: 'root'
 })
 export class MicroComponentService {
-  private apiUrl = 'http://localhost:8080/my-micro-components';
+  private apiUrl = 'http://technickalindustries2-ece8cjfmbth5fpfj.canadacentral-01.azurewebsites.net/my-micro-components';
   constructor(private http: HttpClient) { }
 
   getMicroComponents(id: number = 100): Observable<MicroComponentModel[]> {

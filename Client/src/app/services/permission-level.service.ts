@@ -7,8 +7,8 @@ import {Observable} from 'rxjs';
   providedIn: 'root'
 })
 export class PermissionLevelService {
-  private apiUrl = 'http://localhost:8080/my-permission-level';
-  private apiUrlHigher = 'http://localhost:8080/permission-levels';
+  private apiUrl = 'http://technickalindustries2-ece8cjfmbth5fpfj.canadacentral-01.azurewebsites.net/my-permission-level';
+  private apiUrlHigher = 'http://technickalindustries2-ece8cjfmbth5fpfj.canadacentral-01.azurewebsites.net/permission-levels';
 
   constructor(private http: HttpClient) { }
 
