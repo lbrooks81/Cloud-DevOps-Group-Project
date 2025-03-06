@@ -100,9 +100,7 @@ export class DatabaseTableComponent implements OnInit {
     if (this.selectedTable === this.purchasedParts) return 'purchased-parts';
     if (this.selectedTable === this.roles) return 'roles';
     if (this.selectedTable === this.vendors) return 'vendors';
-    else {
-      return "";
-    }
+    return '';
   }
 
   onRowClick(record: any) {
