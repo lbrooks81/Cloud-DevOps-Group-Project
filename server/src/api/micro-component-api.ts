@@ -1,8 +1,8 @@
 import {ServerData} from '../data-source';
-import {Plant} from '../entities/plant';
 import {app} from '../server';
 import {Employee} from "../entities/employee";
 import {MicroComponent} from "../entities/micro-component";
+
 export {microComponentRequests};
 
 async function microComponentRequests() {
@@ -128,6 +128,32 @@ async function microComponentRequests() {
             res.status(500).json({
                 message: "Error creating MicroComponent"
             });
+        }
+    });
+
+    // Employees can only get microComponents their part supplies
+    // @ts-ignore
+    // BUTTS
+    app.get('/my-micro-components/:id', async (req, res) => {
+        try {
+            const id = Number(req.params.id);
+            const employee = await ServerData.getRepository(Employee).findOneBy({employeeID: id});
+
+            if (!employee) {
+                return res.status(404).json({message: `Employee with ID ${id} not found`});
+            }
+
+            const microComps = await ServerData.getRepository(MicroComponent).find({
+                where: {microCompPlantId: employee.plantID}
+            });
+
+            if (!microComps || microComps.length === 0) {
+                return res.status(404).json({message: `Micro-Components with plantID ${employee.plantID} not found`});
+            }
+
+            res.json(microComps);
+        } catch (e) {
+            res.status(500).json({message: "Error getting micro components"});
         }
     });
 }
