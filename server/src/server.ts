@@ -53,10 +53,34 @@ ServerData.initialize()
     await roleRequests();
     await vendorRequests();
     await microComponentRequests();
+
+      /* GET home page. */
+      app.get('/', function(req, res, next) {
+          res.render('index', { title: "Don't Look Here" });
+      });
+
+    app.get("*", (req, res) => {
+        res.status(404).send("Page not found");
+    });
   })
   .catch((error)=>{
     console.error("Error during data source initialization", error);
   });
 
+function normalizePort(val: any) {
+    let port = parseInt(val, 10);
+
+    if (isNaN(port)) {
+        // named pipe
+        return val;
+    }
+
+    if (port >= 0) {
+        // port number
+        return port;
+    }
+
+    return false;
+}
 
 
