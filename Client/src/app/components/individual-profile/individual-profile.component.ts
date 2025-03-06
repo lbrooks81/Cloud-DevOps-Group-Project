@@ -3,6 +3,7 @@ import { NgOptimizedImage} from '@angular/common';
 import {EmployeeService} from '../../services/employee.service';
 import {EmployeeModel} from '../../models/employee.model';
 import {Router} from '@angular/router';
+import {ProfileModel} from '../../models/profile.model';
 
 @Component({
   selector: 'app-individual-profile',
@@ -15,7 +16,7 @@ import {Router} from '@angular/router';
 })
 export class IndividualProfileComponent implements OnInit {
 
-  public employees: EmployeeModel | undefined;
+  public employees: ProfileModel | undefined;
   errorMessage: string = '';
 
   constructor(private employeeService: EmployeeService, private router: Router)
@@ -26,7 +27,7 @@ export class IndividualProfileComponent implements OnInit {
     }
 
   getOneEmployees(id: number) {
-    this.employeeService.getOneEmployee(id).subscribe({
+    this.employeeService.getProfileInfo(id).subscribe({
       next: (data) => {
         this.employees = data;
         console.log("Employees", this.employees);

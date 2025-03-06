@@ -1,4 +1,4 @@
-export interface EmpInfoModel {
+ export interface EmpInfoModel {
   validLogin: boolean;
   empId: number;
 }
