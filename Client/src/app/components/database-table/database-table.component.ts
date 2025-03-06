@@ -18,6 +18,8 @@ import {RoleService} from '../../services/role.service';
 import {FormsModule} from '@angular/forms';
 import {getCookie, setCookie} from '../../cookieShtuff';
 import {Router} from '@angular/router';
+import {MicroComponentModel} from '../../models/micro-component.model';
+import {MicroComponentService} from '../../services/micro-component.service';
 
 @Component({
   selector: 'app-database-table',
@@ -30,7 +32,8 @@ import {Router} from '@angular/router';
 })
 export class DatabaseTableComponent implements OnInit {
   departments: DepartmentModel[] = [];
-  employees: EmployeeModel[] = []; // Good
+  employees: EmployeeModel[] = [];
+  microComponents: MicroComponentModel[] = [];
   parts: PartModel[] = [];
   permissionLevels: PermissionLevelModel[] = [];
   plants: PlantModel[] = [];
@@ -46,6 +49,7 @@ export class DatabaseTableComponent implements OnInit {
   // We inject services via a constructor.
   constructor(private departmentService: DepartmentService,
               private employeeService: EmployeeService,
+              private microComponentService: MicroComponentService,
               private partService: PartService,
               private permissionLevelService: PermissionLevelService,
               private plantService: PlantService,
@@ -65,7 +69,7 @@ export class DatabaseTableComponent implements OnInit {
     this.getDepartments();
     this.getParts();
     this.getRoles();
-
+    this.getMicroComponents();
     this.getPlants();
     this.getPurchasedParts();
     this.getVendors();
@@ -126,6 +130,19 @@ export class DatabaseTableComponent implements OnInit {
     }
   }
 
+
+  getMicroComponents(){
+    this.microComponentService.getMicroComponents(this.empID).subscribe(({
+      next: (data) => {
+        this.microComponents = [...data];
+        console.log("Micro Components", this.microComponents);
+      },
+      error:(error) => {
+        this.errorMessage = 'Error fetching micro components';
+        console.error(`${this.errorMessage}`, error);
+      }
+    }))
+  }
 
   getDepartments() {
     this.departmentService.getDepartments(this.empID).subscribe({

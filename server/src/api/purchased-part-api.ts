@@ -184,10 +184,6 @@ async function purchasedPartRequests() {
                     message: message
                 });
             }
-
-
-
-
         }
         catch (e) {
             res.status(500).json({
