@@ -101,6 +101,17 @@ export class RecordFormComponent implements OnInit{
     });
   }
 
+  postRecord(event: MouseEvent) {
+    console.log("Post Record");
+    console.log(this.record);
+    console.log("POST REQUEST", `https://localhost:3000/${this.table}`);
+    this.http.post(`https://localhost:3000/${this.table}`, this.record).subscribe({
+      next: (data) => {
+        console.log(data);
+      }
+    });
+  }
+
 
 
   /*async saveRecord(event: MouseEvent) {
