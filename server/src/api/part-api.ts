@@ -141,6 +141,8 @@ async function partRequests() {
     // BUTTS
     app.get('/our-parts/:id', async (req, res) => {
         // GET EMPLOYEE BY ID
+        let found = true;
+        let message;
         try {
             const id = Number(req.params.id);
             let plantIdentification: number | undefined;
@@ -150,40 +152,59 @@ async function partRequests() {
             });
 
             if (!employee) {
+                found = false;
+                message = `Employee with ID ${id} not found`;
+                /*
                 res.status(404).json({
                     message: `Employee with ID ${id} not found`
-                });
+                });*/
             } else {
                 plantIdentification = employee.plantID;
                 /*res.json(plantIdentification);*/
-            }
 
-            // GET PURCHASED PARTS BY PLANT ID
-            const purPart: PurchasedPart[] | null = await ServerData.getRepository(PurchasedPart).find({
-                where: {
-                    plantID: plantIdentification
-                }
-            });
 
-            if (!purPart) {
-                res.status(404).json({
-                    message: `Purchased Parts with Plant ID ${plantIdentification} not found`
-                });
-            } else {
-                const partIDs: number[] = purPart.map((part) => part.partID);
-                const parts: Part[] | null = await ServerData.getRepository(Part).find({
+                // GET PURCHASED PARTS BY PLANT ID
+                const purPart: PurchasedPart[] | null = await ServerData.getRepository(PurchasedPart).find({
                     where: {
-                        partId: In(partIDs)
+                        plantID: plantIdentification
                     }
                 });
 
-                if (!parts) {
-                    res.status(404).json({
-                        message: `Parts with Plant ID ${plantIdentification} not found`
-                    });
+                if (!purPart) {
+                    found = false;
+                    message = `Purchased Parts with Plant ID ${plantIdentification} not found`;
+                    /*res.status(404).json({
+                        message: `Purchased Parts with Plant ID ${plantIdentification} not found`
+                    });*/
                 } else {
-                    res.json(parts);
+                    const partIDs: number[] = purPart.map((part) => part.partID);
+                    const parts: Part[] | null = await ServerData.getRepository(Part).find({
+                        where: {
+                            partId: In(partIDs)
+                        }
+                    });
+
+                    if (!parts) {
+                        found = false;
+                        message = `Parts with Plant ID ${plantIdentification} not found`;
+                        /*res.status(404).json({
+                            message: `Parts with Plant ID ${plantIdentification} not found`
+                        });*/
+                    } else {
+                        message = parts;
+/*
+                        res.json(parts);
+*/
+                    }
                 }
+            }
+
+            if (found) {
+                res.json(message);
+            } else {
+                res.status(404).json({
+                    message: message
+                });
             }
         }
         catch (e) {
