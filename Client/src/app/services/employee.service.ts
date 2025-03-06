@@ -11,7 +11,7 @@ export class EmployeeService {
   private apiUrl = 'http://technickalindustries2-ece8cjfmbth5fpfj.canadacentral-01.azurewebsites.net';
   constructor(private http: HttpClient) { }
   getEmployees(id: number): Observable<EmployeeModel[]> {
-      return this.http.get<EmployeeModel[]>(`https://localhost:3000/myplantemployees/${id}`)
+      return this.http.get<EmployeeModel[]>(`${this.apiUrl}/myplantemployees/${id}`)
   }
   getOneEmployee(id: number): Observable<EmployeeModel>
   {
