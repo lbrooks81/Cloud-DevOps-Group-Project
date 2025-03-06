@@ -20,6 +20,7 @@ import {getCookie, setCookie} from '../../cookieShtuff';
 import {Router} from '@angular/router';
 import {MicroComponentModel} from '../../models/micro-component.model';
 import {MicroComponentService} from '../../services/micro-component.service';
+import {NgOptimizedImage} from '@angular/common';
 
 @Component({
   selector: 'app-database-table',
@@ -74,9 +75,13 @@ export class DatabaseTableComponent implements OnInit {
     this.getPurchasedParts();
     this.getVendors();
     // When the component loads, choose Employees from the drop down TODO
-
   }
 
+  async addNewRecord() {
+    setCookie('record', 'add');
+    await this.router.navigate(['/record']);
+
+  }
 
 
   /*I have an array of objects. I need the name of every one of the keys*/
@@ -104,7 +109,9 @@ export class DatabaseTableComponent implements OnInit {
     if (this.selectedTable === this.purchasedParts) return 'purchased-parts';
     if (this.selectedTable === this.roles) return 'roles';
     if (this.selectedTable === this.vendors) return 'vendors';
-    return '';
+    else {
+      return "";
+    }
   }
 
 

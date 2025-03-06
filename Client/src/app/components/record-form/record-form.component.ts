@@ -5,6 +5,15 @@ import {NgForOf} from '@angular/common';
 import {HttpClient} from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
 import {disableDebugTools} from '@angular/platform-browser';
+import {DepartmentModel} from '../../models/department.model';
+import {RoleModel} from '../../models/role.model';
+import {EmployeeModel} from '../../models/employee.model';
+import {MicroComponentModel} from '../../models/micro-component.model';
+import {PartModel} from '../../models/part.model';
+import {PermissionLevelModel} from '../../models/permission-level.model';
+import {PlantModel} from '../../models/plant.model';
+import {PurchasedPartModel} from '../../models/purchased-part.model';
+import {VendorModel} from '../../models/vendor.model';
 
 @Component({
   selector: 'app-record-form',
@@ -17,13 +26,11 @@ import {disableDebugTools} from '@angular/platform-browser';
   styleUrl: './record-form.component.css'
 })
 export class RecordFormComponent implements OnInit{
-  errorMessage: any;
   record: any;
-
-
   public id: string = '';
   public table: string = '';
   public recordKeys: any[] = [];
+
 
   constructor(private router: Router, private http: HttpClient) {
   }
@@ -34,18 +41,27 @@ export class RecordFormComponent implements OnInit{
       this.router.navigate(['/']);
     }
     // This makes sure they have chosen a row from the database to view.
-    if (!getCookie('record') || !getCookie('table-name')) {
+    if (!getCookie('record') || !getCookie('table-name') && getCookie('record') !== 'add') {
       this.router.navigate(['/database']);
+    }
+
+    else if(getCookie('record') === 'add')
+    {
+      console.log("Adding a record");
+      document.querySelector('#searching-container')!.classList.remove('d-none');
+    }
+    else{
+      this.table = getCookie('table-name');
+      this.record = JSON.parse(getCookie('record'));
+      console.log("TABBBLLLLLLEEEEE NAMMMMMMMEEEEE: ", this.table);
+      console.log("Record Clicked: ", this.record);
+      this.getRecordKeys();
     }
 
     // This is the record they clicked on's ID
 
     // This is the table they clicked on
-    this.table = getCookie('table-name');
-    this.record = JSON.parse(getCookie('record'));
-    console.log("TABBBLLLLLLEEEEE NAMMMMMMMEEEEE: ", this.table);
-    console.log("Record Clicked: ", this.record);
-    this.getRecordKeys();
+
   }
 
   getRecordKeys() {
