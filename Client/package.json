@@ -1,11 +1,12 @@
 {
   "name": "circuit-component",
   "version": "0.0.0",
+  "main": "./dist/out-tsc/main.js",
   "scripts": {
     "ng": "ng",
-    "start": "concurrently \"ng serve\" \"cd ../server && npm start\"",
+    "start": "ng serve",
     "client": "ng serve",
-    "build": "ng build",
+    "build": "tsc -p tsconfig.json",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },

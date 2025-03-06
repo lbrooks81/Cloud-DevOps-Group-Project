@@ -68,10 +68,7 @@
           },
           "defaultConfiguration": "development",
           "options": {
-            "port": 4909,
-            "sslKey": "key.pem",
-            "sslCert": "cert.pem",
-            "ssl": true
+            "port": 8080
           }
         },
         "extract-i18n": {
@@ -99,5 +96,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": false
   }
 }
