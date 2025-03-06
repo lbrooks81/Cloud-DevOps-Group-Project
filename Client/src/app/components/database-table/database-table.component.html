@@ -1,7 +1,7 @@
 <div id="searching-container">
   <label>Choose a Table
   </label>
-    <select (change)="setDataBeingViewed($event)" [(ngModel)]="this.selectedTable"
+    <select (change)="this.setDataBeingViewed($event)" [(ngModel)]="this.selectedTable"
           id="database-choice-dropdown" class="decorated h-50 form-select" aria-label="Default select example">
     <option [ngValue]="this.departments" value="1">Departments</option>
     <option [ngValue]="this.employees" value="2">Employees</option>
