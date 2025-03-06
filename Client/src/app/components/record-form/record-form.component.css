@@ -1,3 +1,22 @@
 .readable{
   color: ghostwhite !important;
 }
+
+
+/*
+[type="button"]:disabled {
+  color: white
+}
+*/
+*{
+  --bs-btn-color: var(--dark-magenta) !important;
+}
+
+
+.wtf{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-content: space-around;
+}
+

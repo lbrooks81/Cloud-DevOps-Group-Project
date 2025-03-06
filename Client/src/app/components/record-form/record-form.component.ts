@@ -3,11 +3,14 @@ import {Router} from '@angular/router';
 import {getCookie} from '../../cookieShtuff';
 import {NgForOf} from '@angular/common';
 import {HttpClient} from '@angular/common/http';
+import {FormsModule} from '@angular/forms';
+import {disableDebugTools} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-record-form',
   imports: [
-    NgForOf
+    NgForOf,
+    FormsModule
   ],
   templateUrl: './record-form.component.html',
   standalone: true,
@@ -98,6 +101,17 @@ export class RecordFormComponent implements OnInit{
     });
   }
 
+  postRecord(event: MouseEvent) {
+    console.log("Post Record");
+    console.log(this.record);
+    console.log("POST REQUEST", `https://localhost:3000/${this.table}`);
+    this.http.post(`https://localhost:3000/${this.table}`, this.record).subscribe({
+      next: (data) => {
+        console.log(data);
+      }
+    });
+  }
+
 
 
   /*async saveRecord(event: MouseEvent) {
@@ -111,5 +125,6 @@ export class RecordFormComponent implements OnInit{
     console.log(response);
   }*/
 
+  protected readonly disableDebugTools = disableDebugTools;
 }
 

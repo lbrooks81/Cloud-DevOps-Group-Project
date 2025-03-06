@@ -9,14 +9,19 @@
       <h1 class="mb-4">Product Details: {{ product.description }}</h1>
     } -->
 
-    <form (keyup)="submitFakeForm($event)" class="row g-3">
-      <div *ngFor="let key of this.recordKeys" class="col-4">
+    <form #recordForm="ngForm" (keyup)="submitFakeForm($event)" class="row g-3">
+      <div *ngFor="let key of this.recordKeys" class="col-4 form-floating">
+        <input class="form-control" [id]="key" [name]="key" [(ngModel)]="this.record[key]">
+
         <label [for]="key" class="form-label">{{ key }}</label>
-        <input class="form-control" [id]="key" [name]="key" [value]="this.record[key]">
       </div>
-      <button class="btn" type="button" id="save-record" (click)="this.putRecord($event)">OVERWRITE</button>
-      <button class="btn" type="button" id="delete-record" (click)="this.deleteRecord($event)">DELETE</button>
-    </form>
+      <div class="w-100"></div>
+      <div class="wtf">
+      <button class="btn w-25" type="button" id="save-record" (click)="this.putRecord($event)" [disabled]="!recordForm.dirty">OVERWRITE</button>
+        <button class="btn w-25" type="button" id="delete-record" (click)="this.deleteRecord($event)" [disabled]="!recordForm.pristine">DELETE</button>
+
+      </div>
+    </form> <!--Why are we using material. i said no to using material when u asked me, gah-->
 
 <!--
     <div class="toast-container position-fixed bottom-0 end-0 p-3">

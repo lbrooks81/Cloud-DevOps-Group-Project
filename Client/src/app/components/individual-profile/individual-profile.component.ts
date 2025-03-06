@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import { NgOptimizedImage} from '@angular/common';
 import {EmployeeService} from '../../services/employee.service';
 import {EmployeeModel} from '../../models/employee.model';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-individual-profile',
@@ -17,10 +18,8 @@ export class IndividualProfileComponent implements OnInit {
   public employees: EmployeeModel | undefined;
   errorMessage: string = '';
 
-  constructor(private employeeService: EmployeeService)
-    {
-
-    }
+  constructor(private employeeService: EmployeeService, private router: Router)
+    {}
 
     ngOnInit(): void {
       this.getOneEmployees(100);
@@ -37,6 +36,19 @@ export class IndividualProfileComponent implements OnInit {
         console.error(`${this.errorMessage}`, error);
       }
     })
+  }
+
+  logYourselfOut(){
+    const cookies = document.cookie.split(";");
+
+    for (let i = 0; i < cookies.length; i++) {
+      const cookie = cookies[i];
+      const eqPos = cookie.indexOf("=");
+      const name = eqPos > -1 ? cookie.substring(0, eqPos) : cookie;
+      document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/";
+    }
+
+    this.router.navigate(['/login']);
   }
 
 }
