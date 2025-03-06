@@ -12,7 +12,7 @@ async function permissionLevelRequests() {
     app.get('/permission-levels', async (req, res) => {
         try {
             const permissionLevels = await ServerData.getRepository(PermissionLevel).find();
-            res.json(permissionLevels);
+            res.status(200).json(permissionLevels);
         }
         catch (e) {
             res.status(500).json({
@@ -36,7 +36,7 @@ async function permissionLevelRequests() {
                     message: `Permission Level with ID ${id} not found`
                 });
             } else {
-                res.json(permissionLevel);
+                res.status(200).json(permissionLevel);
             }
         }
         catch (e) {
@@ -67,7 +67,7 @@ async function permissionLevelRequests() {
                 permissionLevel.permissionLevel = permissionLevelData.permissionLevel;
 
                 await permissionLevelRepository.save(permissionLevel);
-                res.json(permissionLevel);
+                res.status(204).json(permissionLevel);
             }
         }
         catch (e) {
@@ -92,7 +92,7 @@ async function permissionLevelRequests() {
                 });
             } else {
                 await ServerData.getRepository(PermissionLevel).delete(permissionLevel);
-                res.json({
+                res.status(204).json({
                     message: `Permission Level with ID ${id} has been deleted`
                 });
             }
@@ -117,7 +117,7 @@ async function permissionLevelRequests() {
             });
 
             await permissionLevelRepository.save(newPermissionLevel);
-            res.json(newPermissionLevel);
+            res.status(201).json(newPermissionLevel);
         }
         catch (e) {
             res.status(500).json({
@@ -160,7 +160,7 @@ async function permissionLevelRequests() {
                             message: `Permission Level with ID ${role_permissionLevelID} not found`
                         });
                     } else {
-                        res.json([permissionLevel]);
+                        res.status(200).json([permissionLevel]);
                     }
                 }
             }

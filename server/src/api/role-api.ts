@@ -12,7 +12,7 @@ async function roleRequests() {
     app.get('/roles', async (req, res) => {
         try {
             const roles = await ServerData.getRepository(Roles).find();
-            res.json(roles);
+            res.status(200).json(roles);
         }
         catch (e) {
             res.status(500).json({
@@ -36,7 +36,7 @@ async function roleRequests() {
                     message: `Role with ID ${id} not found`
                 });
             } else {
-                res.json(role);
+                res.status(200).json(role);
             }
         }
         catch (e) {
@@ -68,7 +68,7 @@ async function roleRequests() {
                 role.permissionLevelId = roleData.permissionLevelId;
 
                 await roleRepository.save(role);
-                res.json(role);
+                res.status(204).json(role);
             }
         }
         catch (e) {
@@ -94,7 +94,7 @@ async function roleRequests() {
                 });
             } else {
                 await roleRepository.delete(role);
-                res.json({
+                res.status(204).json({
                     message: `Role with ID ${id} has been deleted`
                 });
             }
@@ -120,7 +120,7 @@ async function roleRequests() {
             });
 
             await roleRepository.save(newRole);
-            res.json(newRole);
+            res.status(201).json(newRole);
         }
         catch (e) {
             res.status(500).json({
@@ -152,7 +152,7 @@ async function roleRequests() {
                         message: `Role with ID ${emp_roleID} not found`
                     });
                 } else {
-                    res.json([role]);
+                    res.status(200).json([role]);
                 }
             }
         }
