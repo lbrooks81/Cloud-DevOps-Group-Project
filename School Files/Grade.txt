@@ -1,0 +1,42 @@
+Group Grade - 145/150
+
+Note that this grade is based on the application demonstrated to me and my review of the source code.
+
+Categories
+
+Effort - 25/30
+
+Website Presentation and User Experience (UI/UX) - 25/25
+
+Proper Use of Required Functionality - 40/40
+
+Bug-Free - 20/20
+
+Use of DevOps Concepts - 35/35
+
+
+Individual Grade - 49/95 :(
+
+The grade for this will be derived from peer evaluation forms and your instructor's overall evaluation of you as a team member.
+
+Summary from peer reviews:
+
+Initially, there was strong engagement in the project management role, with efforts in facilitating meetings, setting up the Kanban board, and contributing to the database structure. 
+However, as the project progressed, communication and task completion declined significantly, leading to the need for a change in leadership. 
+Critical responsibilities, such as implementing stored procedures, data filtering, and supporting team members, were not fully met, and concerns were raised about professionalism in team interactions.
+While there were challenges throughout the project, it was noted that some contributions were made in the final hours, including fixing bugs and assisting with the profile page.
+The late-stage effort was appreciated by some team members, but earlier and more consistent engagement would have made a greater impact. 
+Acknowledging challenges is important, but taking proactive steps to communicate and contribute consistently throughout a project is essential for both personal growth and team success.
+
+ 
+Instructor comments:
+
+I noticed that at some point during the term, your engagement with the project and school seemed to decline. 
+After reading your comments about your performance, I understand how you may have been feeling. However, in a team setting, communication is key. 
+If you were struggling with the leadership role, letting your team know earlier could have helped everyone adjust and support each other more effectively.
+
+Grade:
+
+Peer Evaluation: 20/45
+
+Instructor Evaluation: 29/50
